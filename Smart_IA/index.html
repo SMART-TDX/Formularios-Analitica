@@ -947,7 +947,8 @@
     .matrix {
       width: 100%;
       min-width: 760px;
-      border-collapse: collapse
+      border-collapse: collapse;
+      table-layout: fixed
     }
 
     .matrix th,
@@ -966,8 +967,13 @@
 
     .matrix th:first-child,
     .matrix td:first-child {
-      min-width: 250px;
+      width: 64%;
       text-align: left
+    }
+
+    .matrix th:not(:first-child),
+    .matrix td:not(:first-child) {
+      width: 12%
     }
 
     .matrix tr:last-child td {
@@ -1177,9 +1183,9 @@
   <form id="assessment" class="shell">
     <section class="intro-card">
       <div>
-        <h2>Forumulario diagnostico</h2>
-        <p>El formulario combina preguntas de opción multiple con escalas de valoración. El cálculo interno genera una
-          categoría general y las dimensiones complementarias muestran fortalezas y brechas.</p>
+        <h2>Formulario diagnostico</h2>
+        <p>Este formulario tiene como propósito evaluar tus conocimientos sobre los procesos de la organización y el uso
+          de la inteligencia artificial.</p>
       </div>
       <span class="badge">Puntaje automático</span>
     </section>
@@ -1225,15 +1231,15 @@
       <div class="survey-list">
         <article class="survey-question">
           <div class="question-heading">
-            <h3>¿Cuál es el principal proceso o actividad que ejecuta dentro de su área?</h3>
+            <h3>¿Cuáles son las principales actividades que realiza en su trabajo?</h3>
           </div>
           <textarea id="q6Process" name="q6_process" required
-            placeholder="Describe el proceso o la actividad principal"></textarea>
+            placeholder="Mencione máximo tres actividades que realice habitualmente"></textarea>
         </article>
 
         <article class="survey-question">
           <div class="question-heading">
-            <h3>¿Qué actividad de su trabajo considera repetitiva, demorada o con alto nivel de reproceso?</h3>
+            <h3>De las actividades anteriores, ¿cuál considera más repetitiva, demorada o con mayor reproceso?</h3>
           </div>
           <p class="field-help">Describa una actividad concreta, no una necesidad general del área.</p>
           <textarea id="q7Activity" name="q7_activity" required
@@ -1449,58 +1455,47 @@
               <thead>
                 <tr>
                   <th>Actividad</th>
-                  <th>Totalmente dispuesto</th>
-                  <th>Dispuesto</th>
-                  <th>Parcialmente dispuesto</th>
-                  <th>No dispuesto</th>
+                  <th>Alta</th>
+                  <th>Media</th>
+                  <th>Baja</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>Participar en la formación inicial.</td>
-                  <td><input required type="radio" name="q19_training" value="5" aria-label="Totalmente dispuesto"></td>
-                  <td><input required type="radio" name="q19_training" value="4" aria-label="Dispuesto"></td>
-                  <td><input required type="radio" name="q19_training" value="2" aria-label="Parcialmente dispuesto">
-                  </td>
-                  <td><input required type="radio" name="q19_training" value="1" aria-label="No dispuesto"></td>
+                  <td><input required type="radio" name="q19_training" value="5" aria-label="Disposición alta"></td>
+                  <td><input required type="radio" name="q19_training" value="3" aria-label="Disposición media"></td>
+                  <td><input required type="radio" name="q19_training" value="1" aria-label="Disposición baja"></td>
                 </tr>
                 <tr>
                   <td>Asistir a sesiones quincenales.</td>
-                  <td><input required type="radio" name="q19_sessions" value="5" aria-label="Totalmente dispuesto"></td>
-                  <td><input required type="radio" name="q19_sessions" value="4" aria-label="Dispuesto"></td>
-                  <td><input required type="radio" name="q19_sessions" value="2" aria-label="Parcialmente dispuesto">
-                  </td>
-                  <td><input required type="radio" name="q19_sessions" value="1" aria-label="No dispuesto"></td>
+                  <td><input required type="radio" name="q19_sessions" value="5" aria-label="Disposición alta"></td>
+                  <td><input required type="radio" name="q19_sessions" value="3" aria-label="Disposición media"></td>
+                  <td><input required type="radio" name="q19_sessions" value="1" aria-label="Disposición baja"></td>
                 </tr>
                 <tr>
                   <td>Ejecutar pruebas.</td>
-                  <td><input required type="radio" name="q19_tests" value="5" aria-label="Totalmente dispuesto"></td>
-                  <td><input required type="radio" name="q19_tests" value="4" aria-label="Dispuesto"></td>
-                  <td><input required type="radio" name="q19_tests" value="2" aria-label="Parcialmente dispuesto"></td>
-                  <td><input required type="radio" name="q19_tests" value="1" aria-label="No dispuesto"></td>
+                  <td><input required type="radio" name="q19_tests" value="5" aria-label="Disposición alta"></td>
+                  <td><input required type="radio" name="q19_tests" value="3" aria-label="Disposición media"></td>
+                  <td><input required type="radio" name="q19_tests" value="1" aria-label="Disposición baja"></td>
                 </tr>
                 <tr>
                   <td>Presentar avances y resultados.</td>
-                  <td><input required type="radio" name="q19_results" value="5" aria-label="Totalmente dispuesto"></td>
-                  <td><input required type="radio" name="q19_results" value="4" aria-label="Dispuesto"></td>
-                  <td><input required type="radio" name="q19_results" value="2" aria-label="Parcialmente dispuesto">
-                  </td>
-                  <td><input required type="radio" name="q19_results" value="1" aria-label="No dispuesto"></td>
+                  <td><input required type="radio" name="q19_results" value="5" aria-label="Disposición alta"></td>
+                  <td><input required type="radio" name="q19_results" value="3" aria-label="Disposición media"></td>
+                  <td><input required type="radio" name="q19_results" value="1" aria-label="Disposición baja"></td>
                 </tr>
                 <tr>
                   <td>Apoyar a otros usuarios del área.</td>
-                  <td><input required type="radio" name="q19_support" value="5" aria-label="Totalmente dispuesto"></td>
-                  <td><input required type="radio" name="q19_support" value="4" aria-label="Dispuesto"></td>
-                  <td><input required type="radio" name="q19_support" value="2" aria-label="Parcialmente dispuesto">
-                  </td>
-                  <td><input required type="radio" name="q19_support" value="1" aria-label="No dispuesto"></td>
+                  <td><input required type="radio" name="q19_support" value="5" aria-label="Disposición alta"></td>
+                  <td><input required type="radio" name="q19_support" value="3" aria-label="Disposición media"></td>
+                  <td><input required type="radio" name="q19_support" value="1" aria-label="Disposición baja"></td>
                 </tr>
                 <tr>
                   <td>Comprender las politicas de seguridad.</td>
-                  <td><input required type="radio" name="q19_adjust" value="5" aria-label="Totalmente dispuesto"></td>
-                  <td><input required type="radio" name="q19_adjust" value="4" aria-label="Dispuesto"></td>
-                  <td><input required type="radio" name="q19_adjust" value="2" aria-label="Parcialmente dispuesto"></td>
-                  <td><input required type="radio" name="q19_adjust" value="1" aria-label="No dispuesto"></td>
+                  <td><input required type="radio" name="q19_adjust" value="5" aria-label="Disposición alta"></td>
+                  <td><input required type="radio" name="q19_adjust" value="3" aria-label="Disposición media"></td>
+                  <td><input required type="radio" name="q19_adjust" value="1" aria-label="Disposición baja"></td>
                 </tr>
               </tbody>
             </table>
