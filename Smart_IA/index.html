@@ -791,6 +791,240 @@
       margin: 0
     }
 
+    .ai-intro {
+      margin: 30px 0 16px;
+      padding: 20px 22px;
+      border-left: 5px solid var(--blue2);
+      border-radius: 12px;
+      background: #fff5f5
+    }
+
+    .ai-intro h3 {
+      margin: 0 0 6px;
+      font-size: 20px
+    }
+
+    .ai-intro p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55
+    }
+
+    .ai-score {
+      margin: 0 0 24px;
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-radius: 14px;
+      background: #fff5f5;
+      border: 1px solid #f0d1d3
+    }
+
+    .ai-score h3 {
+      margin: 0 0 4px;
+      font-size: 17px
+    }
+
+    .ai-score p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px
+    }
+
+    .ai-score strong {
+      color: var(--blue);
+      font-size: 28px;
+      white-space: nowrap
+    }
+
+    .survey-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px
+    }
+
+    .survey-question {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fbfbfb
+    }
+
+    .survey-question h3 {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.45
+    }
+
+    .question-heading {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px
+    }
+
+    .question-number {
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 9px;
+      background: var(--red-soft);
+      color: var(--red);
+      font-weight: 800;
+      font-size: 13px
+    }
+
+    .field-help {
+      margin: 10px 0 0 40px;
+      padding-left: 12px;
+      border-left: 3px solid var(--red-soft);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55
+    }
+
+    .survey-question textarea,
+    .survey-question select {
+      margin-top: 15px
+    }
+
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+      margin-top: 15px
+    }
+
+    .check-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 10px 13px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--white);
+      cursor: pointer
+    }
+
+    .check-option:hover {
+      border-color: var(--red);
+      background: var(--red-soft)
+    }
+
+    .check-option input {
+      flex: 0 0 auto;
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      accent-color: var(--red)
+    }
+
+    .check-option span {
+      font-size: 13px;
+      line-height: 1.35
+    }
+
+    .instruction-list {
+      margin: 8px 0 0 56px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65
+    }
+
+    .matrix-wrap {
+      margin-top: 15px;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--white)
+    }
+
+    .matrix {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse
+    }
+
+    .matrix th,
+    .matrix td {
+      padding: 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+      font-size: 12px
+    }
+
+    .matrix th {
+      background: var(--red-soft);
+      color: var(--red);
+      font-weight: 700
+    }
+
+    .matrix th:first-child,
+    .matrix td:first-child {
+      min-width: 250px;
+      text-align: left
+    }
+
+    .matrix tr:last-child td {
+      border-bottom: 0
+    }
+
+    .matrix input {
+      width: 18px;
+      height: 18px;
+      margin: 0 auto;
+      accent-color: var(--red)
+    }
+
+    .confirmation-card {
+      max-width: 760px;
+      margin: 42px auto 0;
+      padding: 54px 42px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      text-align: center
+    }
+
+    .confirmation-mark {
+      display: grid;
+      place-items: center;
+      width: 74px;
+      height: 74px;
+      margin: 0 auto 22px;
+      border-radius: 50%;
+      background: var(--red-soft);
+      color: var(--red);
+      font-size: 38px;
+      font-weight: 800
+    }
+
+    .confirmation-card h1 {
+      margin: 0 0 12px;
+      color: var(--blue);
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1.1
+    }
+
+    .confirmation-card p {
+      max-width: 560px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.65
+    }
+
+    .confirmation-card .actions {
+      justify-content: center;
+      margin-top: 30px
+    }
+
     .hidden {
       display: none !important
     }
@@ -799,6 +1033,7 @@
 
       .intro-card,
       .result-grid,
+      .check-grid,
       .recommend {
         grid-template-columns: 1fr
       }
@@ -958,13 +1193,12 @@
       <div class="section-title"><span>01</span>
         <div>
           <h2>Información del colaborador</h2>
-          <p>Datos para segmentar los resultados por área, cargo, sede y responsable.</p>
         </div>
       </div>
       <div class="identity">
         <label>Nombre completo<input id="name" required placeholder="Ej. Laura Gómez"></label>
-        <label>Número de identificación<input id="id" required inputmode="numeric"
-            placeholder="Sin puntos ni espacios"></label>
+        <label>Correo electronico<input id="id" required inputmode="numeric"
+            placeholder="ej: juan@smartidiomas.edu.co"></label>
         <label>Área<select id="area" required>
             <option value="">Selecciona un área</option>
             <option>Académica</option>
@@ -977,99 +1211,323 @@
             <option>Otra</option>
           </select></label>
         <label>Cargo<input id="role" required placeholder="Cargo actual"></label>
-        <label>Proceso<input id="location" required placeholder="Ej. Smart Online"></label>
+        <label>Proceso al que pertenece<input id="location" required placeholder="Ej. Instituto"></label>
         <label>Gerente o líder responsable<input id="manager" required placeholder="Nombre del lider"></label>
-        <label class="wide">Proceso o actividad que desea mejorar con IA<textarea id="process" required
-            placeholder="Describe brevemente el proceso, problema u oportunidad"></textarea></label>
       </div>
     </section>
 
     <section class="panel">
       <div class="section-title"><span>02</span>
         <div>
-          <h2>Preguntas para la categoría general</h2>
-          <p>Responde según la evidencia disponible y la situación real del colaborador.</p>
+          <h2>Conocimiento del proceso</h2>
         </div>
       </div>
-      <div id="criteria" class="questions"></div>
+      <div class="survey-list">
+        <article class="survey-question">
+          <div class="question-heading">
+            <h3>¿Cuál es el principal proceso o actividad que ejecuta dentro de su área?</h3>
+          </div>
+          <textarea id="q6Process" name="q6_process" required
+            placeholder="Describe el proceso o la actividad principal"></textarea>
+        </article>
+
+        <article class="survey-question">
+          <div class="question-heading">
+            <h3>¿Qué actividad de su trabajo considera repetitiva, demorada o con alto nivel de reproceso?</h3>
+          </div>
+          <p class="field-help">Describa una actividad concreta, no una necesidad general del área.</p>
+          <textarea id="q7Activity" name="q7_activity" required
+            placeholder="Describe una actividad específica"></textarea>
+        </article>
+
+        <article class="survey-question">
+          <div class="question-heading">
+            <h3>¿Con qué frecuencia realiza esta actividad?</h3>
+          </div>
+          <select id="q8Frequency" name="q8_frequency" required>
+            <option value="">Selecciona una opción</option>
+            <option>Varias veces al día.</option>
+            <option>Diariamente.</option>
+            <option>Varias veces por semana.</option>
+            <option>Semanalmente.</option>
+            <option>Mensualmente.</option>
+            <option>Ocasionalmente.</option>
+          </select>
+        </article>
+
+        <article class="survey-question">
+          <div class="question-heading">
+            <h3>Aproximadamente, ¿cuánto tiempo dedica actualmente a esta actividad?</h3>
+          </div>
+          <select id="q9Duration" name="q9_duration" required>
+            <option value="">Selecciona una opción</option>
+            <option>Menos de 30 minutos por ejecución.</option>
+            <option>Entre 30 minutos y 1 hora.</option>
+            <option>Entre 1 y 2 horas.</option>
+            <option>Entre 2 y 4 horas.</option>
+            <option>Más de 4 horas.</option>
+          </select>
+        </article>
+
+        <article class="survey-question">
+          <div class="question-heading">
+            <h3>¿Qué dificultad genera actualmente esta actividad?</h3>
+          </div>
+          <div class="check-grid" role="group" aria-label="Dificultades de la actividad">
+            <label class="check-option"><input type="checkbox" name="q10_difficulties" value="Demoras"
+                data-required-group="q10"><span>Demoras.</span></label>
+            <label class="check-option"><input type="checkbox" name="q10_difficulties" value="Errores"
+                data-required-group="q10"><span>Errores.</span></label>
+            <label class="check-option"><input type="checkbox" name="q10_difficulties" value="Reprocesos"
+                data-required-group="q10"><span>Reprocesos.</span></label>
+            <label class="check-option"><input type="checkbox" name="q10_difficulties"
+                value="Alto volumen de información" data-required-group="q10"><span>Alto volumen de
+                información.</span></label>
+            <label class="check-option"><input type="checkbox" name="q10_difficulties"
+                value="Dependencia de otras personas" data-required-group="q10"><span>Dependencia de otras
+                personas.</span></label>
+            <label class="check-option"><input type="checkbox" name="q10_difficulties" value="Respuestas inconsistentes"
+                data-required-group="q10"><span>Respuestas
+                inconsistentes.</span></label>
+            <label class="check-option"><input type="checkbox" name="q10_difficulties"
+                value="Dificultad para consultar información" data-required-group="q10"><span>Dificultad para consultar
+                información.</span></label>
+            <label class="check-option"><input type="checkbox" name="q10_difficulties"
+                value="Afectación al estudiante o cliente" data-required-group="q10"><span>Afectación al estudiante o
+                cliente.</span></label>
+            <label class="check-option"><input type="checkbox" name="q10_difficulties" value="Otra"
+                data-required-group="q10"><span>Otra.</span></label>
+          </div>
+        </article>
+
+        <article class="survey-question">
+          <div class="question-heading">
+            <h3>¿Cómo sabría que esta actividad mejoró?</h3>
+          </div>
+          <p class="field-help">Ejemplo: reducción del tiempo, disminución de errores, aumento de casos atendidos o
+            mejora en la calidad de la respuesta.</p>
+          <textarea id="q11Improvement" name="q11_improvement" required
+            placeholder="Define una meta o resultado observable"></textarea>
+        </article>
+      </div>
     </section>
 
     <section class="panel">
       <div class="section-title"><span>03</span>
         <div>
-          <h2>Perfil por dimensiones</h2>
-          <p>Esta lectura complementaria ayuda a diseñar el acompañamiento según las fortalezas y oportunidades
-            observadas.</p>
+          <h2>Experiencia y nivel actual de IA</h2>
         </div>
       </div>
-      <div id="dimensions" class="dimension-grid"></div>
+      <div class="survey-list">
+        <article class="survey-question">
+          <div class="question-heading">
+            <h3>¿Con qué frecuencia utiliza actualmente herramientas de inteligencia artificial?</h3>
+          </div>
+          <select id="q12AiFrequency" name="q12_ai_frequency" required>
+            <option value="">Selecciona una opción</option>
+            <option>Nunca.</option>
+            <option>Las he probado una o dos veces.</option>
+            <option>Algunas veces al mes.</option>
+            <option>Varias veces por semana.</option>
+            <option>Diariamente.</option>
+          </select>
+        </article>
+
+        <article class="survey-question">
+          <div class="question-heading">
+            <h3>¿Qué herramientas ha utilizado?</h3>
+          </div>
+          <div class="check-grid" role="group" aria-label="Herramientas de inteligencia artificial utilizadas">
+            <label class="check-option"><input type="checkbox" name="q13_ai_tools" value="ChatGPT"
+                data-required-group="q13"><span>ChatGPT.</span></label>
+            <label class="check-option"><input type="checkbox" name="q13_ai_tools" value="Gemini"
+                data-required-group="q13"><span>Gemini.</span></label>
+            <label class="check-option"><input type="checkbox" name="q13_ai_tools" value="Microsoft Copilot"
+                data-required-group="q13"><span>Microsoft Copilot.</span></label>
+            <label class="check-option"><input type="checkbox" name="q13_ai_tools"
+                value="Herramientas de IA incorporadas en otras plataformas"
+                data-required-group="q13"><span>Herramientas
+                de IA incorporadas en otras plataformas.</span></label>
+            <label class="check-option"><input type="checkbox" name="q13_ai_tools" value="Otra"
+                data-required-group="q13"><span>Otra.</span></label>
+            <label class="check-option"><input type="checkbox" name="q13_ai_tools" value="Ninguna"
+                data-required-group="q13"><span>Ninguna.</span></label>
+          </div>
+        </article>
+
+        <article class="survey-question">
+          <div class="question-heading">
+            <h3>¿Para qué actividades las ha utilizado?</h3>
+          </div>
+          <div class="check-grid" role="group" aria-label="Actividades realizadas con inteligencia artificial">
+            <label class="check-option"><input type="checkbox" name="q14_ai_uses" value="Redacción de textos"
+                data-required-group="q14"><span>Redacción de textos.</span></label>
+            <label class="check-option"><input type="checkbox" name="q14_ai_uses" value="Resumen de documentos"
+                data-required-group="q14"><span>Resumen de documentos.</span></label>
+            <label class="check-option"><input type="checkbox" name="q14_ai_uses" value="Investigación"
+                data-required-group="q14"><span>Investigación.</span></label>
+            <label class="check-option"><input type="checkbox" name="q14_ai_uses" value="Análisis de información"
+                data-required-group="q14"><span>Análisis de información.</span></label>
+            <label class="check-option"><input type="checkbox" name="q14_ai_uses" value="Elaboración de informes"
+                data-required-group="q14"><span>Elaboración de informes.</span></label>
+            <label class="check-option"><input type="checkbox" name="q14_ai_uses" value="Creación de contenidos"
+                data-required-group="q14"><span>Creación de contenidos.</span></label>
+            <label class="check-option"><input type="checkbox" name="q14_ai_uses" value="Preparación de presentaciones"
+                data-required-group="q14"><span>Preparación de presentaciones.</span></label>
+            <label class="check-option"><input type="checkbox" name="q14_ai_uses" value="Automatización de actividades"
+                data-required-group="q14"><span>Automatización de actividades.</span></label>
+            <label class="check-option"><input type="checkbox" name="q14_ai_uses" value="Atención de usuarios"
+                data-required-group="q14"><span>Atención de usuarios.</span></label>
+            <label class="check-option"><input type="checkbox" name="q14_ai_uses" value="No las he utilizado"
+                data-required-group="q14"><span>No las he utilizado.</span></label>
+            <label class="check-option"><input type="checkbox" name="q14_ai_uses" value="Otra"
+                data-required-group="q14"><span>Otra.</span></label>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <div class="progress-box"><span id="progressText">0 de 14 respuestas completadas</span><strong
-        id="progressPct">0%</strong>
+    <section class="panel">
+      <div class="section-title"><span>04</span>
+        <div>
+          <h2>Ejercicio práctico</h2>
+        </div>
+      </div>
+      <div class="survey-list">
+        <article class="survey-question">
+          <div class="question-heading">
+            <h3>En que actividad concreta utilizaria la inteligencia artificial y que mejora esperaria obtener?</h3>
+          </div>
+          <textarea id="q16PracticalCase" name="q16_practical_case" required
+            placeholder="Ejemplo: utilizar IA para elaborar el informe mensual de selección y reducir el tiempo de cuatro horas a una hora"></textarea>
+        </article>
+
+        <article class="survey-question">
+          <div class="question-heading">
+            <h3>¿Cuál sería una meta inicial realista para la actividad anterior?</h3>
+          </div>
+          <select id="q17InitialGoal" name="q17_initial_goal" required>
+            <option value="">Selecciona una opción</option>
+            <option>Reducir el tiempo de ejecución.</option>
+            <option>Disminuir errores.</option>
+            <option>Aumentar la cantidad de casos atendidos.</option>
+            <option>Mejorar la calidad o consistencia.</option>
+            <option>Facilitar la consulta de información.</option>
+            <option>Otra.</option>
+          </select>
+          <p class="field-help">Indique cual es el resultado medible que espera obtener del caso anterior.</p>
+          <textarea id="q17GoalDetail" name="q17_goal_detail" required
+            placeholder="Ej. reducir en 20% el tiempo promedio de respuesta"></textarea>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-title"><span>05</span>
+        <div>
+          <h2>Disponibilidad y compromiso</h2>
+        </div>
+      </div>
+      <div class="survey-list">
+        <article class="survey-question">
+          <div class="question-heading">
+            <h3>¿Cuánto tiempo podría dedicar semanalmente al programa de IA?</h3>
+          </div>
+          <select id="q18WeeklyTime" name="q18_weekly_time" required>
+            <option value="">Selecciona una opción</option>
+            <option value="1">Menos de 1 hora.</option>
+            <option value="2">Entre 1 y 2 horas.</option>
+          </select>
+        </article>
+
+        <article class="survey-question">
+          <div class="question-heading">
+            <h3>Indique su nivel de disposición frente a las siguientes actividades</h3>
+          </div>
+          <div class="matrix-wrap">
+            <table class="matrix">
+              <thead>
+                <tr>
+                  <th>Actividad</th>
+                  <th>Totalmente dispuesto</th>
+                  <th>Dispuesto</th>
+                  <th>Parcialmente dispuesto</th>
+                  <th>No dispuesto</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Participar en la formación inicial.</td>
+                  <td><input required type="radio" name="q19_training" value="5" aria-label="Totalmente dispuesto"></td>
+                  <td><input required type="radio" name="q19_training" value="4" aria-label="Dispuesto"></td>
+                  <td><input required type="radio" name="q19_training" value="2" aria-label="Parcialmente dispuesto">
+                  </td>
+                  <td><input required type="radio" name="q19_training" value="1" aria-label="No dispuesto"></td>
+                </tr>
+                <tr>
+                  <td>Asistir a sesiones quincenales.</td>
+                  <td><input required type="radio" name="q19_sessions" value="5" aria-label="Totalmente dispuesto"></td>
+                  <td><input required type="radio" name="q19_sessions" value="4" aria-label="Dispuesto"></td>
+                  <td><input required type="radio" name="q19_sessions" value="2" aria-label="Parcialmente dispuesto">
+                  </td>
+                  <td><input required type="radio" name="q19_sessions" value="1" aria-label="No dispuesto"></td>
+                </tr>
+                <tr>
+                  <td>Ejecutar pruebas.</td>
+                  <td><input required type="radio" name="q19_tests" value="5" aria-label="Totalmente dispuesto"></td>
+                  <td><input required type="radio" name="q19_tests" value="4" aria-label="Dispuesto"></td>
+                  <td><input required type="radio" name="q19_tests" value="2" aria-label="Parcialmente dispuesto"></td>
+                  <td><input required type="radio" name="q19_tests" value="1" aria-label="No dispuesto"></td>
+                </tr>
+                <tr>
+                  <td>Presentar avances y resultados.</td>
+                  <td><input required type="radio" name="q19_results" value="5" aria-label="Totalmente dispuesto"></td>
+                  <td><input required type="radio" name="q19_results" value="4" aria-label="Dispuesto"></td>
+                  <td><input required type="radio" name="q19_results" value="2" aria-label="Parcialmente dispuesto">
+                  </td>
+                  <td><input required type="radio" name="q19_results" value="1" aria-label="No dispuesto"></td>
+                </tr>
+                <tr>
+                  <td>Apoyar a otros usuarios del área.</td>
+                  <td><input required type="radio" name="q19_support" value="5" aria-label="Totalmente dispuesto"></td>
+                  <td><input required type="radio" name="q19_support" value="4" aria-label="Dispuesto"></td>
+                  <td><input required type="radio" name="q19_support" value="2" aria-label="Parcialmente dispuesto">
+                  </td>
+                  <td><input required type="radio" name="q19_support" value="1" aria-label="No dispuesto"></td>
+                </tr>
+                <tr>
+                  <td>Comprender las politicas de seguridad.</td>
+                  <td><input required type="radio" name="q19_adjust" value="5" aria-label="Totalmente dispuesto"></td>
+                  <td><input required type="radio" name="q19_adjust" value="4" aria-label="Dispuesto"></td>
+                  <td><input required type="radio" name="q19_adjust" value="2" aria-label="Parcialmente dispuesto"></td>
+                  <td><input required type="radio" name="q19_adjust" value="1" aria-label="No dispuesto"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="progress-box"><span id="progressText">0 preguntas completadas</span><strong id="progressPct">0%</strong>
       <div class="track"><i id="progressBar"></i></div>
     </div>
-    <div class="actions"><button type="reset" class="btn secondary">Limpiar formulario</button><button id="submitBtn"
-        class="btn primary" disabled>Calcular categoría →</button></div>
+    <div class="actions"><button id="submitBtn" class="btn primary">Enviar respuesta →</button></div>
   </form>
 
   <main id="result" class="result hidden">
-    <section class="result-hero"><span class="eyebrow">Resultado de selección</span>
-      <h1 id="thanks">Resultado del colaborador</h1>
-      <p id="summary"></p>
+    <section class="confirmation-card">
+      <div class="confirmation-mark" aria-hidden="true">✓</div>
+      <span class="eyebrow">Formulario completado</span>
+      <h1>Tu formulario fue llenado</h1>
+      <p>Gracias por completar toda la información. Tus respuestas quedaron registradas correctamente </p>
     </section>
-    <section class="result-grid">
-      <article class="result-card main-result">
-        <div id="ring" class="ring">
-          <div><strong id="score">0%</strong><small>puntaje</small></div>
-        </div>
-        <div><span id="category" class="category">Categoría</span>
-          <h2>Prioridad general</h2>
-          <p id="categoryText"></p>
-        </div>
-      </article>
-      <article class="result-card profile"><span class="eyebrow" style="color:var(--blue)">Perfil evaluado</span>
-        <dl>
-          <div>
-            <dt>Colaborador</dt>
-            <dd id="rname"></dd>
-          </div>
-          <div>
-            <dt>Área y cargo</dt>
-            <dd id="rprofile"></dd>
-          </div>
-          <div>
-            <dt>Proceso a mejorar</dt>
-            <dd id="rprocess"></dd>
-          </div>
-        </dl>
-      </article>
-    </section>
-    <section class="result-card breakdown">
-      <div class="section-title"><span>04</span>
-        <div>
-          <h2>Resultado por dimensiones</h2>
-          <p>Lectura ponderada para orientar la ruta de acompañamiento.</p>
-        </div>
-      </div>
-      <div id="dimensionResults"></div>
-    </section>
-    <section class="recommend">
-      <div><span class="eyebrow">Recomendación</span>
-        <h2>Próximos pasos sugeridos</h2>
-        <p>La decisión final debe combinar el resultado con validación del gerente y evidencia del proceso propuesto.
-        </p>
-      </div>
-      <div id="recommendations" class="recommend-list"></div>
-    </section>
-    <div class="actions"><button class="btn secondary" onclick="window.print()">Guardar como PDF</button><button
-        id="restart" class="btn primary">Evaluar otra persona</button></div>
   </main>
 
   <script>
     const scaleLabels = ["Bajo", "Básico", "Medio", "Alto", "Sobresaliente"];
     const criteria = [
-      { id: "processKnowledge", type: "scale", title: "¿Qué tan profundamente conoce el proceso que desea mejorar?", prompt: "Valora su dominio del flujo, responsables, datos, excepciones, tiempos y puntos de dolor.", weight: 12.5, dimension: "Conocimiento del proceso" },
+      { id: "processKnowledge", type: "scale", title: "¿Qué tan profundamente conoce el proceso que desea mejorar?", weight: 12.5, dimension: "Conocimiento del proceso" },
       {
         id: "processDiscovery", type: "choice", title: "¿Cómo realizaría el levantamiento del proceso o requerimiento antes de proponer una solución?", prompt: "Selecciona la alternativa que mejor represente su capacidad para definir el punto de partida y las metas del proyecto.", weight: 12.5, dimension: "Levantamiento y definición de metas", options: [
           { value: 1, text: "Elegiría primero una herramienta de IA y adaptaría el proceso a sus funciones." },
@@ -1118,6 +1576,35 @@
         ]
       }
     ];
+    const aiQuestions = [
+      {
+        id: "ai_fundamentals", type: "choice", title: "¿Cuál afirmación describe mejor cómo funciona una herramienta de IA generativa?", dimension: "Fundamentos de IA", options: [
+          { value: 1, text: "Consulta una base de datos y siempre devuelve información verificada." },
+          { value: 2, text: "Comprende y razona exactamente de la misma manera que una persona." },
+          { value: 3, text: "Busca información en internet cada vez que recibe una pregunta." },
+          { value: 4, text: "Genera contenido a partir de patrones aprendidos y puede producir respuestas incorrectas." },
+          { value: 5, text: "Genera contenido a partir de patrones; sus resultados dependen del contexto, los datos y la validación humana." }
+        ]
+      },
+      {
+        id: "ai_prompting", type: "choice", title: "¿Qué elementos debería incluir una buena instrucción para una herramienta de IA?", dimension: "Instrucciones y prompting", options: [
+          { value: 1, text: "Una frase corta para que la herramienta decida qué debe hacer." },
+          { value: 2, text: "Únicamente el resultado esperado." },
+          { value: 3, text: "El objetivo y una descripción general de la tarea." },
+          { value: 4, text: "Objetivo, contexto, información disponible y formato de respuesta." },
+          { value: 5, text: "Objetivo, contexto, datos permitidos, restricciones, ejemplos, formato y criterios para evaluar la respuesta." }
+        ]
+      },
+      {
+        id: "ai_validation", type: "choice", title: "Una herramienta de IA entrega una respuesta convincente con cifras y recomendaciones. ¿Qué debería hacer antes de usarla?", dimension: "Validación y pensamiento crítico", options: [
+          { value: 1, text: "Utilizarla de inmediato porque está redactada con seguridad." },
+          { value: 2, text: "Corregir únicamente la ortografía y compartirla." },
+          { value: 3, text: "Leerla rápidamente y usarla si parece coherente." },
+          { value: 4, text: "Contrastar las cifras y revisar las fuentes más importantes." },
+          { value: 5, text: "Verificar cifras, fuentes, vigencia, supuestos, riesgos y coherencia con el proceso antes de tomar una decisión." }
+        ]
+      }
+    ];
     const dimensions = [
       { id: "d_process", type: "scale", title: "Conocimiento del proceso", description: "Valora qué tan bien comprende la actividad que se quiere mejorar.", weight: 25 },
       {
@@ -1150,28 +1637,53 @@
         ]
       }
     ];
-    const answers = {};
-    const scale = (name) => `<div class="scale">${scaleLabels.map((label, index) => `<label class="rate"><input required type="radio" name="${name}" value="${index + 1}"><span><b>${index + 1}</b><small>${label}</small></span></label>`).join("")}</div>`;
-    const choices = (name, options) => `<div class="choice-list">${options.map(option => `<label class="choice"><input required type="radio" name="${name}" value="${option.value}"><span>${option.text}</span></label>`).join("")}</div>`;
-    const control = item => item.type === "choice" ? choices(item.id, item.options) : scale(item.id);
-    document.querySelector("#criteria").innerHTML = criteria.map(item => `<article class="question"><div class="qtop"><span class="qtag">${item.dimension}</span><h3>${item.title}</h3><p style="color:var(--muted);font-size:13px;line-height:1.5;margin:7px 0 0">${item.prompt}</p></div>${control(item)}</article>`).join("");
-    document.querySelector("#dimensions").innerHTML = dimensions.map(item => `<article class="dimension"><div class="qtop"><h3>${item.title}</h3><p>${item.description}</p></div>${control(item)}</article>`).join("");
+    const assessment = document.querySelector("#assessment");
+    const questionCards = [...assessment.querySelectorAll(".survey-question")];
 
-    const totalRatings = criteria.length + dimensions.length;
+    function questionCompleted(card) {
+      const controls = [...card.querySelectorAll("input, select, textarea")];
+      if (!controls.length) return false;
+
+      const requiredGroups = [...new Set(
+        controls.filter(control => control.dataset.requiredGroup).map(control => control.dataset.requiredGroup)
+      )];
+      const requiredGroupsComplete = requiredGroups.every(group =>
+        controls.some(control => control.dataset.requiredGroup === group && control.checked)
+      );
+
+      const radioNames = [...new Set(
+        controls.filter(control => control.type === "radio").map(control => control.name)
+      )];
+      const radioGroupsComplete = radioNames.every(name =>
+        controls.some(control => control.name === name && control.checked)
+      );
+
+      const fieldsComplete = controls
+        .filter(control => control.required && control.type !== "radio" && control.type !== "checkbox")
+        .every(control => control.value.trim() !== "");
+
+      return requiredGroupsComplete && radioGroupsComplete && fieldsComplete;
+    }
+
     function updateProgress() {
-      const completed = Object.keys(answers).length;
-      const pct = Math.round(completed / totalRatings * 100);
-      document.querySelector("#progressText").textContent = `${completed} de ${totalRatings} respuestas completadas`;
+      const total = questionCards.length;
+      const completed = questionCards.filter(questionCompleted).length;
+      const pct = total ? Math.round(completed / total * 100) : 0;
+      document.querySelector("#progressText").textContent = `${completed} de ${total} preguntas completadas`;
       document.querySelector("#progressPct").textContent = pct + "%";
       document.querySelector("#progressBar").style.width = pct + "%";
-      document.querySelector("#submitBtn").disabled = completed !== totalRatings;
     }
-    document.querySelector("#assessment").addEventListener("change", event => {
-      if (event.target.type !== "radio") return;
-      answers[event.target.name] = Number(event.target.value);
+
+    assessment.addEventListener("input", updateProgress);
+    assessment.addEventListener("change", event => {
+      if (event.target.matches("[data-required-group]")) {
+        const group = event.target.dataset.requiredGroup;
+        document.querySelectorAll(`[data-required-group="${group}"]`).forEach(input => input.setCustomValidity(""));
+      }
       updateProgress();
     });
-    document.querySelector("#assessment").addEventListener("reset", () => { Object.keys(answers).forEach(key => delete answers[key]); setTimeout(updateProgress, 0) });
+    assessment.addEventListener("reset", () => setTimeout(updateProgress, 0));
+    updateProgress();
 
     function categoryFor(score) {
       if (score >= 85) return { name: "Prioridad estratégica", text: "Perfil altamente recomendado para liderar un piloto de IA y movilizar aprendizaje en su equipo." };
@@ -1179,32 +1691,29 @@
       if (score >= 55) return { name: "Potencial condicionado", text: "Perfil viable si se confirman disponibilidad, respaldo y un acompañamiento más cercano." };
       return { name: "No prioritario por ahora", text: "Se recomienda fortalecer las condiciones básicas antes de asignarlo a un piloto de IA." };
     }
-    document.querySelector("#assessment").addEventListener("submit", event => {
+
+    function validateRequiredGroups() {
+      const groups = [...new Set([...document.querySelectorAll("[data-required-group]")].map(input => input.dataset.requiredGroup))];
+      for (const group of groups) {
+        const inputs = [...document.querySelectorAll(`[data-required-group="${group}"]`)];
+        const isComplete = inputs.some(input => input.checked);
+        inputs[0].setCustomValidity(isComplete ? "" : "Selecciona al menos una opción.");
+        if (!isComplete) {
+          inputs[0].reportValidity();
+          inputs[0].focus();
+          return false;
+        }
+      }
+      return true;
+    }
+
+    assessment.addEventListener("submit", event => {
       event.preventDefault();
-      const weighted = criteria.reduce((sum, item) => sum + (answers[item.id] / 5) * item.weight, 0);
-      const score = Math.round(weighted);
-      const category = categoryFor(score);
-      document.querySelector("#assessment").classList.add("hidden");
+      if (!validateRequiredGroups()) return;
+      assessment.classList.add("hidden");
       document.querySelector("#result").classList.remove("hidden");
-      document.querySelector("#thanks").textContent = `Resultado de ${document.querySelector("#name").value.split(" ")[0]}`;
-      document.querySelector("#summary").textContent = "Categoría calculada automáticamente a partir de las respuestas y criterios de selección.";
-      document.querySelector("#score").textContent = score + "%";
-      document.querySelector("#ring").style.setProperty("--score", score * 3.6 + "deg");
-      document.querySelector("#category").textContent = category.name;
-      document.querySelector("#categoryText").textContent = category.text;
-      document.querySelector("#rname").textContent = document.querySelector("#name").value;
-      document.querySelector("#rprofile").textContent = `${document.querySelector("#area").value} · ${document.querySelector("#role").value}`;
-      document.querySelector("#rprocess").textContent = document.querySelector("#process").value;
-      document.querySelector("#dimensionResults").innerHTML = dimensions.map(item => { const value = answers[item.id], pct = value * 20; return `<div class="breakdown-row"><span>${item.title}</span><div class="mini-track"><i style="width:${pct}%"></i></div><b>${value}/5</b></div>` }).join("");
-      const weakest = dimensions.slice().sort((a, b) => answers[a.id] - answers[b.id]).slice(0, 2);
-      const recs = [
-        `<article><b>01</b><div><h3>Validar con el gerente</h3><p>Confirmar disponibilidad, respaldo y alcance del proceso antes de iniciar.</p></div></article>`,
-        ...weakest.map((item, index) => `<article><b>0${index + 2}</b><div><h3>Fortalecer ${item.title.toLowerCase()}</h3><p>Diseñar una acción específica para subir la valoración actual de ${answers[item.id]}/5.</p></div></article>`)
-      ];
-      document.querySelector("#recommendations").innerHTML = recs.join("");
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
-    document.querySelector("#restart").onclick = () => location.reload();
   </script>
 </body>
 
