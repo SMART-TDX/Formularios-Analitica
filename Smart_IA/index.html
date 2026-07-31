@@ -1203,8 +1203,8 @@
       </div>
       <div class="identity">
         <label>Nombre completo<input id="name" required placeholder="Ej. Laura Gómez"></label>
-        <label>Correo electronico<input id="id" required inputmode="numeric"
-            placeholder="ej: juan@smartidiomas.edu.co"></label>
+        <label>Correo electrónico<input id="id" type="email" required inputmode="email" autocomplete="email"
+            placeholder="Ej. juan@smartidiomas.edu.co"></label>
         <label>Área<select id="area" required>
             <option value="">Selecciona un área</option>
             <option>Académica</option>
@@ -1514,12 +1514,14 @@
     <section class="confirmation-card">
       <div class="confirmation-mark" aria-hidden="true">✓</div>
       <span class="eyebrow">Formulario completado</span>
-      <h1>Tu formulario fue llenado</h1>
-      <p>Gracias por completar toda la información. Tus respuestas quedaron registradas correctamente </p>
+      <h1>Tu formulario fue enviado</h1>
+      <p>Gracias por completar toda la información. Tus respuestas quedaron registradas correctamente.</p>
     </section>
   </main>
 
   <script>
+    // Reemplazar con la URL /exec obtenida al publicar Code.gs como aplicación web.
+    const SHEETS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxvW8Tn91PhHlnhZQPq2ipWPZnoVBIrmqqY8WuynMF6mhOe5B5RzUrupa8eZWAyHZyT/exec";
     const scaleLabels = ["Bajo", "Básico", "Medio", "Alto", "Sobresaliente"];
     const criteria = [
       { id: "processKnowledge", type: "scale", title: "¿Qué tan profundamente conoce el proceso que desea mejorar?", weight: 12.5, dimension: "Conocimiento del proceso" },
@@ -1687,6 +1689,43 @@
       return { name: "No prioritario por ahora", text: "Se recomienda fortalecer las condiciones básicas antes de asignarlo a un piloto de IA." };
     }
 
+    function collectSubmission() {
+      const data = {
+        submission_id: crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+        submitted_at: new Date().toISOString(),
+        name: document.querySelector("#name").value.trim(),
+        email: document.querySelector("#id").value.trim(),
+        area: document.querySelector("#area").value,
+        role: document.querySelector("#role").value.trim(),
+        process: document.querySelector("#location").value.trim(),
+        manager: document.querySelector("#manager").value.trim()
+      };
+
+      new FormData(assessment).forEach((value, key) => {
+        if (Object.prototype.hasOwnProperty.call(data, key)) {
+          data[key] = `${data[key]} | ${value}`;
+        } else {
+          data[key] = value;
+        }
+      });
+
+      const dispositionNames = [
+        "q19_training", "q19_sessions", "q19_tests",
+        "q19_results", "q19_support", "q19_adjust"
+      ];
+      const dispositionValues = dispositionNames.map(name => Number(data[name]));
+      const dispositionScore = dispositionValues.reduce((sum, value) => sum + value, 0) / dispositionValues.length;
+      const timeScore = Number(data.q18_weekly_time) === 2 ? 100 : 50;
+      const dispositionPct = dispositionScore / 5 * 100;
+      const totalScore = Math.round(timeScore * 0.35 + dispositionPct * 0.65);
+      const category = categoryFor(totalScore);
+
+      data.score = totalScore;
+      data.category = category.name;
+      data.recommendation = category.text;
+      return data;
+    }
+
     function validateRequiredGroups() {
       const groups = [...new Set([...document.querySelectorAll("[data-required-group]")].map(input => input.dataset.requiredGroup))];
       for (const group of groups) {
@@ -1702,12 +1741,38 @@
       return true;
     }
 
-    assessment.addEventListener("submit", event => {
+    assessment.addEventListener("submit", async event => {
       event.preventDefault();
       if (!validateRequiredGroups()) return;
-      assessment.classList.add("hidden");
-      document.querySelector("#result").classList.remove("hidden");
-      window.scrollTo({ top: 0, behavior: "smooth" });
+
+      if (SHEETS_WEB_APP_URL.includes("PEGAR_AQUI")) {
+        alert("Falta configurar la URL de Google Apps Script.");
+        return;
+      }
+
+      const submitBtn = document.querySelector("#submitBtn");
+      const originalLabel = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Enviando…";
+
+      try {
+        const submission = collectSubmission();
+        const response = await fetch(SHEETS_WEB_APP_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(submission)
+        });
+        const result = await response.json();
+        if (!response.ok || !result.ok) throw new Error(result.error || "No fue posible guardar la respuesta.");
+
+        assessment.classList.add("hidden");
+        document.querySelector("#result").classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } catch (error) {
+        alert(`No pudimos guardar tu respuesta. Revisa tu conexión e inténtalo nuevamente.\n\n${error.message}`);
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+      }
     });
   </script>
 </body>
