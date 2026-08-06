@@ -1,0 +1,931 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Soporte Banner | Smart Academia de Idiomas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red:    #a9252b;
+      --red2:   #ed0016;
+      --navy:   #5b1115;
+      --redpale:#fbe9ea;
+      --paper:  #f7f7f7;
+      --ink:    #171717;
+      --muted:  #676767;
+      --line:   #e3e3e3;
+      --white:  #fff;
+      --green:  #24875b;
+      --amber:  #c77a17;
+      --blue:   #1a5fa8;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* ── TOP BAR ───────────────────────────────────────── */
+    .top {
+      height: 110px;
+      padding: 0 clamp(20px, 6vw, 90px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(90deg, #ad262c, #5b1115);
+      border-top: 5px solid #70766f;
+    }
+    .logo { display: flex; align-items: center; gap: 14px; color: #fff; }
+    .logo-frame {
+      width: 130px; height: 88px; overflow: hidden;
+      background: #fff; border-radius: 8px;
+      display: grid; place-items: center; flex: 0 0 auto;
+    }
+    .logo-frame img { width: 120px; height: 90px; max-width: none; object-fit: contain; }
+    .logo-text { border-left: 1px solid #ffffff44; padding-left: 16px; display: flex; flex-direction: column; gap: 3px; }
+    .logo-text strong { font-size: 13px; color: #fff; }
+    .logo-text small { font-size: 11px; color: #f4dfe0; }
+    .top-badge {
+      background: #ffffff18;
+      border: 1px solid #ffffff30;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 30px;
+      letter-spacing: .05em;
+      display: flex; gap: 7px; align-items: center;
+    }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 0 3px #4ade8033; }
+
+    /* ── HERO ──────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(125deg, #5b1115, #8d1c21 58%, #b82c32);
+      color: #fff;
+      padding: 64px clamp(22px, 8vw, 130px) 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 400px; height: 400px;
+      border: 72px solid #ffffff0d;
+      border-radius: 50%;
+      right: -100px; top: -180px;
+      pointer-events: none;
+    }
+    .eyebrow {
+      font-size: 11px; letter-spacing: .18em;
+      text-transform: uppercase; font-weight: 900;
+      color: #ffd6d8; margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 5.5vw, 68px);
+      letter-spacing: -.05em;
+      line-height: .98;
+      max-width: 860px;
+      margin-bottom: 18px;
+    }
+    .hero p {
+      max-width: 720px;
+      color: #f4dfe0;
+      font-size: 17px;
+      line-height: 1.65;
+      margin-bottom: 32px;
+    }
+    .hero-stats {
+      display: flex; gap: 40px; flex-wrap: wrap;
+    }
+    .hero-stat {
+      border-left: 3px solid #ed0016;
+      padding-left: 12px;
+    }
+    .hero-stat strong { display: block; font-size: 20px; }
+    .hero-stat span { font-size: 11px; color: #f1c9cb; margin-top: 2px; display: block; }
+
+    /* ── SHELL ─────────────────────────────────────────── */
+    .shell {
+      max-width: 1060px;
+      margin: -32px auto 0;
+      padding: 0 20px 80px;
+      position: relative;
+    }
+
+    /* ── CARDS / PANELS ────────────────────────────────── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: 0 14px 40px #5b111511;
+    }
+    .intro-card {
+      padding: 26px 30px;
+      display: flex;
+      align-items: flex-start;
+      gap: 22px;
+      margin-bottom: 18px;
+    }
+    .intro-icon {
+      width: 48px; height: 48px; flex: 0 0 auto;
+      border-radius: 14px;
+      background: var(--redpale);
+      color: var(--red);
+      display: grid; place-items: center;
+      font-size: 22px;
+    }
+    .intro-card h2 { font-size: 20px; margin-bottom: 6px; }
+    .intro-card p { color: var(--muted); font-size: 14px; line-height: 1.6; }
+
+    .panel { padding: 28px 30px; margin-top: 18px; }
+
+    /* ── SECTION HEADER ────────────────────────────────── */
+    .sec-head {
+      display: flex; gap: 14px; align-items: flex-start;
+      margin-bottom: 24px;
+    }
+    .sec-num {
+      width: 40px; height: 40px; flex: 0 0 auto;
+      border-radius: 12px;
+      background: var(--redpale);
+      color: var(--red);
+      font-weight: 900; font-size: 16px;
+      display: grid; place-items: center;
+    }
+    .sec-head h2 { font-size: 21px; margin-bottom: 4px; }
+    .sec-head p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+    /* ── FORM GRID ─────────────────────────────────────── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .grid-2 .wide { grid-column: 1 / -1; }
+    @media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } .grid-2 .wide { grid-column: 1; } }
+
+    /* ── FORM CONTROLS ─────────────────────────────────── */
+    label { display: block; }
+    .lbl {
+      font-size: 12px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+      margin-bottom: 7px; color: var(--ink);
+      display: flex; gap: 5px; align-items: center;
+    }
+    .req { color: var(--red2); font-size: 14px; line-height: 1; }
+    .hint { font-size: 11px; color: var(--muted); font-weight: 400; text-transform: none; letter-spacing: 0; margin-top: 2px; display: block; }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    input[type="number"],
+    select,
+    textarea {
+      display: block; width: 100%;
+      border: 1.5px solid #d7d7d7;
+      border-radius: 10px;
+      background: #fff;
+      padding: 0 14px;
+      color: var(--ink);
+      font-family: inherit; font-size: 14px;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    input[type="number"],
+    select { height: 48px; }
+    textarea {
+      min-height: 110px;
+      padding: 13px 14px;
+      resize: vertical;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--red2);
+      box-shadow: 0 0 0 3px #ed001622;
+    }
+    input::placeholder, textarea::placeholder { color: #b0b0b0; }
+    select { cursor: pointer; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23676767' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 38px;
+    }
+
+    /* ── INCIDENCE TYPE CARDS ──────────────────────────── */
+    .tipo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .tipo-card { cursor: pointer; display: block; }
+    .tipo-card input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .tipo-card span {
+      display: flex; align-items: center; gap: 10px;
+      min-height: 58px;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 14px;
+      color: var(--muted);
+      font-size: 13px; line-height: 1.35;
+      transition: .15s;
+    }
+    .tipo-card span .ti-icon {
+      font-size: 20px; flex: 0 0 auto;
+    }
+    .tipo-card:hover span { border-color: #d48f93; background: #fffafa; color: var(--ink); }
+    .tipo-card input:checked + span {
+      border-color: var(--red2);
+      background: var(--redpale);
+      color: var(--red);
+      font-weight: 600;
+    }
+
+    /* ── SEVERITY ──────────────────────────────────────── */
+    .sev-grid { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+    .sev { cursor: pointer; }
+    .sev input { position: absolute; opacity: 0; width: 0; height: 0; }
+    .sev span {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 18px;
+      border: 1.5px solid var(--line);
+      border-radius: 30px;
+      font-size: 13px; font-weight: 600;
+      color: var(--muted);
+      transition: .15s;
+    }
+    .sev:hover span { border-color: #aaa; color: var(--ink); }
+    .sev.s1 input:checked + span { border-color: #22c55e; background: #f0fdf4; color: #15803d; }
+    .sev.s2 input:checked + span { border-color: #f59e0b; background: #fffbeb; color: #92400e; }
+    .sev.s3 input:checked + span { border-color: #ef4444; background: #fef2f2; color: #991b1b; }
+    .sev.s4 input:checked + span { border-color: #7c3aed; background: #faf5ff; color: #5b21b6; }
+
+    /* ── FILE DROP ZONE ────────────────────────────────── */
+    .dropzone {
+      border: 2px dashed var(--line);
+      border-radius: 14px;
+      padding: 32px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: .15s;
+      position: relative;
+      background: #fafafa;
+    }
+    .dropzone:hover, .dropzone.drag-over {
+      border-color: var(--red2);
+      background: var(--redpale);
+    }
+    .dropzone input[type="file"] {
+      position: absolute; inset: 0;
+      opacity: 0; cursor: pointer;
+      width: 100%; height: 100%;
+    }
+    .dz-icon { font-size: 36px; margin-bottom: 10px; }
+    .dz-title { font-weight: 700; font-size: 15px; margin-bottom: 5px; }
+    .dz-sub { font-size: 12px; color: var(--muted); }
+    .file-list { margin-top: 14px; display: grid; gap: 8px; }
+    .file-item {
+      display: flex; align-items: center; gap: 10px;
+      background: #fff; border: 1px solid var(--line);
+      border-radius: 10px; padding: 9px 14px;
+      font-size: 13px;
+    }
+    .file-item .fi-name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .file-item .fi-size { color: var(--muted); font-size: 11px; flex: 0 0 auto; }
+    .file-item .fi-remove {
+      cursor: pointer; color: var(--muted);
+      font-size: 16px; flex: 0 0 auto;
+      background: none; border: none;
+      line-height: 1; padding: 2px;
+    }
+    .file-item .fi-remove:hover { color: var(--red2); }
+
+    /* ── PRIORITY TAG ──────────────────────────────────── */
+    .priority-banner {
+      display: none;
+      align-items: center; gap: 12px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 16px;
+    }
+    .priority-banner.show { display: flex; }
+    .pb-critica { background: #fef2f2; border: 1px solid #fca5a5; color: #991b1b; }
+    .pb-alta { background: #fffbeb; border: 1px solid #fcd34d; color: #92400e; }
+    .pb-media { background: #f0f9ff; border: 1px solid #7dd3fc; color: #075985; }
+    .pb-baja { background: #f0fdf4; border: 1px solid #86efac; color: #15803d; }
+
+    /* ── PROGRESS BAR ──────────────────────────────────── */
+    .progress-wrap {
+      padding: 20px 30px;
+      display: flex; align-items: center; gap: 18px;
+      margin-top: 18px;
+    }
+    .prog-bar-bg {
+      flex: 1; height: 8px; background: var(--line);
+      border-radius: 99px; overflow: hidden;
+    }
+    .prog-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--red), var(--red2));
+      border-radius: 99px;
+      width: 0%;
+      transition: width .35s ease;
+    }
+    .prog-text { font-size: 12px; color: var(--muted); white-space: nowrap; }
+    .prog-pct { font-size: 13px; font-weight: 800; color: var(--red); min-width: 36px; text-align: right; }
+
+    /* ── SUBMIT BUTTON ─────────────────────────────────── */
+    .submit-row {
+      display: flex; align-items: center; justify-content: flex-end;
+      gap: 20px; flex-wrap: wrap;
+      padding-top: 24px; margin-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    .submit-note { font-size: 12px; color: var(--muted); line-height: 1.5; }
+    .btn-submit {
+      height: 52px;
+      padding: 0 36px;
+      border-radius: 14px;
+      border: none; cursor: pointer;
+      background: linear-gradient(135deg, var(--red), var(--red2));
+      color: #fff;
+      font-family: inherit; font-size: 15px; font-weight: 700;
+      letter-spacing: .02em;
+      display: flex; align-items: center; gap: 10px;
+      transition: opacity .15s, transform .1s;
+      box-shadow: 0 6px 24px #ed001633;
+    }
+    .btn-submit:hover:not(:disabled) { opacity: .9; }
+    .btn-submit:active:not(:disabled) { transform: scale(.98); }
+    .btn-submit:disabled { opacity: .55; cursor: not-allowed; }
+
+    /* ── SUCCESS SCREEN ────────────────────────────────── */
+    #result { display: none; }
+    .result-card {
+      padding: 56px 40px;
+      text-align: center;
+      margin-top: 0;
+    }
+    .result-icon {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: #f0fdf4;
+      display: grid; place-items: center;
+      font-size: 36px;
+      margin: 0 auto 24px;
+      border: 2px solid #86efac;
+    }
+    .result-card h2 { font-size: 28px; margin-bottom: 12px; }
+    .result-card p { color: var(--muted); max-width: 480px; margin: 0 auto 24px; line-height: 1.65; }
+    .result-id {
+      display: inline-block;
+      background: var(--redpale);
+      color: var(--red);
+      font-size: 13px; font-weight: 700;
+      padding: 8px 20px;
+      border-radius: 30px;
+      letter-spacing: .05em;
+      margin-bottom: 28px;
+    }
+    .btn-new {
+      height: 48px; padding: 0 28px;
+      border-radius: 12px;
+      border: 2px solid var(--line);
+      background: #fff; cursor: pointer;
+      font-family: inherit; font-size: 14px; font-weight: 700;
+      color: var(--ink);
+      transition: border-color .15s;
+    }
+    .btn-new:hover { border-color: var(--red); color: var(--red); }
+
+    /* ── DIVIDER ───────────────────────────────────────── */
+    .divider { height: 1px; background: var(--line); margin: 24px 0; }
+
+    /* ── HIDDEN ────────────────────────────────────────── */
+    .hidden { display: none !important; }
+
+    /* ── RESPONSIVE ────────────────────────────────────── */
+    @media (max-width: 560px) {
+      .top { height: auto; padding: 14px 18px; }
+      .hero { padding: 40px 20px 60px; }
+      .hero-stats { gap: 22px; }
+      .panel, .intro-card { padding: 20px; }
+      .submit-row { flex-direction: column; align-items: stretch; }
+      .btn-submit { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="top">
+  <div class="logo">
+    <div class="logo-frame">
+      <!-- Reemplaza este src con la ruta real del logo -->
+      <img src="logo-smart.png" alt="Smart Academia de Idiomas"
+           onerror="this.parentElement.innerHTML='<span class=\'logo-fallback\'>SMART</span>'">
+    </div>
+    <div class="logo-text">
+      <strong>Smart Academia de Idiomas</strong>
+      <small>Soporte Banner · Mesa de Ayuda</small>
+    </div>
+  </div>
+  <div class="top-badge"><span class="dot"></span> En línea</div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <p class="eyebrow">Mesa de ayuda · Ellucian Banner</p>
+  <h1>Reporta tu incidencia</h1>
+  <p>Usa este formulario para notificar cualquier problema o inconsistencia que encuentres en Banner. El equipo de soporte revisará tu caso y se pondrá en contacto contigo.</p>
+
+</section>
+
+<!-- MAIN -->
+<div class="shell">
+
+  <!-- Intro card -->
+  <div class="card intro-card">
+    <div class="intro-icon">📋</div>
+    <div>
+      <h2>¿Qué necesitas para reportar?</h2>
+      <p>Completa los datos de contacto, selecciona el tipo de incidencia, describe el problema con el mayor detalle posible y adjunta capturas de pantalla u otros archivos que ayuden al equipo a entender la situación.</p>
+    </div>
+  </div>
+
+  <!-- Progress -->
+  <div class="card progress-wrap">
+    <div class="prog-bar-bg"><div class="prog-bar-fill" id="progressBar"></div></div>
+    <span class="prog-text" id="progressText">0 de 0 secciones completadas</span>
+    <span class="prog-pct" id="progressPct">0%</span>
+  </div>
+
+  <!-- FORM -->
+  <form id="ticketForm" novalidate>
+
+    <!-- ① DATOS DE CONTACTO -->
+    <div class="card panel">
+      <div class="sec-head">
+        <div class="sec-num">1</div>
+        <div>
+          <h2>Datos de contacto</h2>
+          <p>Cuéntanos quién eres para que el equipo pueda responderte directamente.</p>
+        </div>
+      </div>
+      <div class="grid-2">
+        <label>
+          <span class="lbl">Nombre completo <span class="req">*</span></span>
+          <input type="text" name="nombre" id="nombre" placeholder="Ej. María García López" required>
+        </label>
+        <label>
+          <span class="lbl">Correo institucional <span class="req">*</span></span>
+          <input type="email" name="correo" id="correo" placeholder="usuario@smart.edu.co" required>
+        </label>
+        <label>
+          <span class="lbl">Área / Dependencia <span class="req">*</span></span>
+          <select name="area" id="area" required>
+            <option value="">— Selecciona —</option>
+            <option>Admisiones</option>
+            <option>Registro y Control</option>
+            <option>Cartera y Tesorería</option>
+            <option>Contabilidad</option>
+            <option>Recursos Humanos</option>
+            <option>Dirección Académica</option>
+            <option>Sistemas / TI</option>
+            <option>Otra</option>
+          </select>
+        </label>
+        <label>
+          <span class="lbl">Cargo / Rol <span class="req">*</span></span>
+          <input type="text" name="cargo" id="cargo" placeholder="Ej. Coordinadora de Admisiones" required>
+        </label>
+        <label>
+          <span class="lbl">Módulo Banner afectado <span class="req">*</span></span>
+          <select name="modulo" id="modulo" required>
+            <option value="">— Selecciona —</option>
+            <option>SAAADMS</option>
+            <option>TSAAREV</option>
+            <option>SPAIDEN</option>
+            <option>SLARDEF</option>
+            <option>SMARQCM</option>
+            <option>GOAMTCH</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <!-- ② TIPO DE INCIDENCIA -->
+    <div class="card panel">
+      <div class="sec-head">
+        <div class="sec-num">2</div>
+        <div>
+          <h2>Tipo de incidencia</h2>
+          <p>Selecciona la categoría que mejor describe el problema. Si aplica más de una, elige la principal.</p>
+        </div>
+      </div>
+      <div class="tipo-grid" id="tipoGrid">
+        <label class="tipo-card">
+          <input type="radio" name="tipo_incidencia" value="credenciales" required>
+          <span><span class="ti-icon">🔑</span>Contraseña / usuario no válido</span>
+        </label>
+        <label class="tipo-card">
+          <input type="radio" name="tipo_incidencia" value="visualizacion">
+          <span><span class="ti-icon">🖥️</span>Visualización no carga correctamente</span>
+        </label>
+        <label class="tipo-card">
+          <input type="radio" name="tipo_incidencia" value="datos_contrato">
+          <span><span class="ti-icon">📄</span>Error / inconsistencias en datos de contrato</span>
+        </label>
+        <label class="tipo-card">
+          <input type="radio" name="tipo_incidencia" value="datos_admision">
+          <span><span class="ti-icon">📋</span>Error / inconsistencias en datos de admisión</span>
+        </label>
+        <label class="tipo-card">
+          <input type="radio" name="tipo_incidencia" value="formulario_fdi">
+          <span><span class="ti-icon">📝</span>Registro e inconsistencias en formulario FDI</span>
+        </label>
+        <label class="tipo-card">
+          <input type="radio" name="tipo_incidencia" value="detalle_cuenta">
+          <span><span class="ti-icon">💰</span>Inconsistencias en detalle de cuenta</span>
+        </label>
+        <label class="tipo-card">
+          <input type="radio" name="tipo_incidencia" value="codigos_detalle">
+          <span><span class="ti-icon">⚙️</span>Configuración de códigos de detalle</span>
+        </label>
+        <label class="tipo-card">
+          <input type="radio" name="tipo_incidencia" value="reporte_pagos">
+          <span><span class="ti-icon">💳</span>Novedades con reportes de pagos</span>
+        </label>
+        <label class="tipo-card">
+          <input type="radio" name="tipo_incidencia" value="reporte_matriculas">
+          <span><span class="ti-icon">🎓</span>Novedades con reportes de matrículas</span>
+        </label>
+        <label class="tipo-card">
+          <input type="radio" name="tipo_incidencia" value="otro">
+          <span><span class="ti-icon">🔧</span>Otro</span>
+        </label>
+      </div>
+
+      <!-- Descripción "Otro" (condicional) -->
+      <div id="otroWrap" class="hidden" style="margin-top:16px;">
+        <label>
+          <span class="lbl">Describe brevemente el tipo de incidencia <span class="req">*</span></span>
+          <input type="text" name="otro_tipo" id="otro_tipo" placeholder="Ej. Error al generar certificado de notas">
+        </label>
+      </div>
+    </div>
+
+    <!-- ③ SEVERIDAD -->
+    <div class="card panel">
+      <div class="sec-head">
+        <div class="sec-num">3</div>
+        <div>
+          <h2>Impacto y urgencia</h2>
+          <p>¿Qué tan grave es el problema y cómo afecta tu trabajo?</p>
+        </div>
+      </div>
+
+      <div>
+        <span class="lbl" style="display:block;margin-bottom:10px;">Severidad <span class="req">*</span></span>
+        <div class="sev-grid">
+          <label class="sev s1">
+            <input type="radio" name="severidad" value="baja" required>
+            <span>🟢 Baja</span>
+          </label>
+          <label class="sev s2">
+            <input type="radio" name="severidad" value="media">
+            <span>🟡 Media</span>
+          </label>
+          <label class="sev s3">
+            <input type="radio" name="severidad" value="alta">
+            <span>🔴 Alta</span>
+          </label>
+          <label class="sev s4">
+            <input type="radio" name="severidad" value="critica">
+            <span>🚨 Crítica</span>
+          </label>
+        </div>
+        <!-- Banner de prioridad -->
+        <div class="priority-banner pb-baja" id="prioBaja">✅ Será atendida en el próximo ciclo de soporte.</div>
+        <div class="priority-banner pb-media" id="prioMedia">⏳ Revisión en ≤ 48 h. El equipo te contactará.</div>
+        <div class="priority-banner pb-alta" id="prioAlta">⚠️ Atención prioritaria en ≤ 24 h.</div>
+        <div class="priority-banner pb-critica" id="prioCritica">🚨 Atención inmediata. Contacta directamente al equipo de soporte si es posible.</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <label>
+        <span class="lbl">¿El problema impide continuar con tu trabajo? <span class="req">*</span></span>
+        <select name="bloqueo" required>
+          <option value="">— Selecciona —</option>
+          <option value="si_total">Sí, completamente — no puedo avanzar</option>
+          <option value="si_parcial">Parcialmente — puedo hacer otras tareas pero no esta</option>
+          <option value="no">No, puedo continuar pero necesito la solución</option>
+        </select>
+      </label>
+    </div>
+
+    <!-- ④ DESCRIPCIÓN DEL PROBLEMA -->
+    <div class="card panel">
+      <div class="sec-head">
+        <div class="sec-num">4</div>
+        <div>
+          <h2>Descripción del problema</h2>
+          <p>Cuéntanos qué pasó, cuándo y en qué condiciones. Mientras más detalle, más rápido podemos ayudarte.</p>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <label class="wide">
+          <span class="lbl">Descripción detallada <span class="req">*</span></span>
+          <span class="hint">Explica paso a paso qué hiciste, qué esperabas que ocurriera y qué ocurrió en realidad.</span>
+          <textarea name="descripcion" id="descripcion"
+            placeholder="Ej.: Al intentar acceder al módulo de matrículas desde el menú principal, la pantalla se queda en blanco y aparece el mensaje 'Error 403 Forbidden'. Esto ocurre en todos los navegadores que probé (Chrome y Edge)." required minlength="30" rows="6"></textarea>
+        </label>
+
+        <label>
+          <span class="lbl">¿Cuándo ocurrió por primera vez? <span class="req">*</span></span>
+          <input type="date" name="fecha_ocurrencia" required>
+        </label>
+
+        <label>
+          <span class="lbl">Mensaje de error (si hay)</span>
+          <input type="text" name="mensaje_error" placeholder="Ej. ORA-00942: table or view does not exist">
+        </label>
+        <label>
+          <span class="lbl">Navegador / dispositivo</span>
+          <select name="navegador">
+            <option value="">— Selecciona —</option>
+            <option>Google Chrome</option>
+            <option>Microsoft Edge</option>
+            <option>Mozilla Firefox</option>
+            <option>Safari</option>
+            <option>Internet Explorer</option>
+            <option>Otro</option>
+          </select>
+        </label>
+
+        <label class="wide">
+          <span class="lbl">ID Banner</span>
+          <span class="hint">Si el error está relacionado con un registro específico, indica el ID numérico para facilitar la revisión.</span>
+          <input type="number" name="id_afectado" placeholder="Ej. 2024010045" min="0" step="1">
+        </label>
+      </div>
+    </div>
+
+    <!-- ⑤ ARCHIVOS ADJUNTOS -->
+    <div class="card panel">
+      <div class="sec-head">
+        <div class="sec-num">5</div>
+        <div>
+          <h2>Capturas y archivos adjuntos</h2>
+          <p>Adjunta capturas de pantalla, documentos PDF, exportaciones de datos o cualquier evidencia que ayude a entender o reproducir el problema.</p>
+        </div>
+      </div>
+
+      <div class="dropzone" id="dropzone">
+        <input type="file" id="fileInput" multiple
+               accept="image/*,.pdf,.xlsx,.xls,.csv,.docx,.doc,.txt,.zip,.log">
+        <div class="dz-icon">📎</div>
+        <div class="dz-title">Arrastra aquí tus archivos o haz clic para seleccionarlos</div>
+        <div class="dz-sub">Imágenes, PDF, Excel, Word, CSV, ZIP · Máx. 10 MB por archivo</div>
+      </div>
+      <div class="file-list" id="fileList"></div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="card panel">
+      <div class="submit-row">
+        <p class="submit-note">
+          Al enviar confirmas que la información es correcta.<br>
+          Recibirás un correo con el número de ticket.
+        </p>
+        <button type="submit" class="btn-submit" id="submitBtn">
+          <span>Enviar reporte</span>
+          <span>→</span>
+        </button>
+      </div>
+    </div>
+
+  </form><!-- /#ticketForm -->
+
+  <!-- SUCCESS -->
+  <div id="result">
+    <div class="card result-card">
+      <div class="result-icon">✅</div>
+      <h2>¡Reporte enviado correctamente!</h2>
+      <p>El equipo de soporte de Banner revisará tu caso y se comunicará contigo en el tiempo de respuesta indicado según la severidad reportada.</p>
+      <div class="result-id" id="resultId">Ticket #—</div>
+      <br>
+      <p style="font-size:13px;color:var(--muted);">Conserva este número de ticket para hacer seguimiento.</p>
+      <br>
+      <button class="btn-new" onclick="resetForm()">Reportar otra incidencia</button>
+    </div>
+  </div>
+
+</div><!-- /.shell -->
+
+<script>
+  // ── CONFIG ─────────────────────────────────────────────────────────────────
+  // Reemplaza esta URL con la de tu Google Apps Script desplegado
+  const SHEETS_URL = "PEGAR_URL_APPS_SCRIPT_AQUI";
+
+  // ── ARCHIVO ADJUNTO ─────────────────────────────────────────────────────────
+  let attachedFiles = [];
+  const fileInput  = document.getElementById("fileInput");
+  const fileList   = document.getElementById("fileList");
+  const dropzone   = document.getElementById("dropzone");
+
+  fileInput.addEventListener("change", () => addFiles([...fileInput.files]));
+
+  dropzone.addEventListener("dragover", e => { e.preventDefault(); dropzone.classList.add("drag-over"); });
+  dropzone.addEventListener("dragleave", () => dropzone.classList.remove("drag-over"));
+  dropzone.addEventListener("drop", e => {
+    e.preventDefault();
+    dropzone.classList.remove("drag-over");
+    addFiles([...e.dataTransfer.files]);
+  });
+
+  function addFiles(newFiles) {
+    const MAX_MB = 10;
+    newFiles.forEach(f => {
+      if (f.size > MAX_MB * 1024 * 1024) {
+        alert(`"${f.name}" supera los ${MAX_MB} MB y no se puede adjuntar.`);
+        return;
+      }
+      if (attachedFiles.some(x => x.name === f.name && x.size === f.size)) return;
+      attachedFiles.push(f);
+    });
+    renderFiles();
+    fileInput.value = "";
+  }
+
+  function removeFile(idx) {
+    attachedFiles.splice(idx, 1);
+    renderFiles();
+  }
+
+  function renderFiles() {
+    fileList.innerHTML = attachedFiles.map((f, i) => `
+      <div class="file-item">
+        <span>${fileIcon(f.name)}</span>
+        <span class="fi-name">${f.name}</span>
+        <span class="fi-size">${(f.size / 1024).toFixed(0)} KB</span>
+        <button type="button" class="fi-remove" onclick="removeFile(${i})" title="Quitar">✕</button>
+      </div>`).join("");
+  }
+
+  function fileIcon(name) {
+    const ext = name.split(".").pop().toLowerCase();
+    return { png:"🖼️", jpg:"🖼️", jpeg:"🖼️", gif:"🖼️", webp:"🖼️",
+             pdf:"📄", xlsx:"📊", xls:"📊", csv:"📊",
+             docx:"📝", doc:"📝", txt:"📝",
+             zip:"🗜️", log:"🗒️" }[ext] || "📎";
+  }
+
+  // ── TIPO "OTRO" CONDICIONAL ─────────────────────────────────────────────────
+  document.querySelectorAll('input[name="tipo_incidencia"]').forEach(r => {
+    r.addEventListener("change", () => {
+      const otroWrap = document.getElementById("otroWrap");
+      const otroInput = document.getElementById("otro_tipo");
+      if (r.value === "otro" && r.checked) {
+        otroWrap.classList.remove("hidden");
+        otroInput.required = true;
+      } else {
+        otroWrap.classList.add("hidden");
+        otroInput.required = false;
+        otroInput.value = "";
+      }
+      updateProgress();
+    });
+  });
+
+  // ── SEVERITY BANNERS ────────────────────────────────────────────────────────
+  const prioMap = {
+    baja:   "prioBaja",
+    media:  "prioMedia",
+    alta:   "prioAlta",
+    critica:"prioCritica"
+  };
+  document.querySelectorAll('input[name="severidad"]').forEach(r => {
+    r.addEventListener("change", () => {
+      Object.values(prioMap).forEach(id => document.getElementById(id).classList.remove("show"));
+      if (r.checked && prioMap[r.value]) {
+        document.getElementById(prioMap[r.value]).classList.add("show");
+      }
+      updateProgress();
+    });
+  });
+
+  // ── PROGRESS ────────────────────────────────────────────────────────────────
+  const REQUIRED_FIELDS = [
+    "nombre", "correo", "area", "cargo", "modulo",
+    "tipo_incidencia",
+    "severidad", "bloqueo",
+    "descripcion", "fecha_ocurrencia"
+  ];
+
+  function fieldDone(name) {
+    const els = [...document.querySelectorAll(`[name="${name}"]`)];
+    if (!els.length) return false;
+    if (els[0].type === "radio") return els.some(e => e.checked);
+    return els[0].value.trim() !== "";
+  }
+
+  function updateProgress() {
+    const done = REQUIRED_FIELDS.filter(fieldDone).length;
+    const total = REQUIRED_FIELDS.length;
+    const pct = Math.round(done / total * 100);
+    document.getElementById("progressBar").style.width = pct + "%";
+    document.getElementById("progressText").textContent = `${done} de ${total} campos requeridos completados`;
+    document.getElementById("progressPct").textContent = pct + "%";
+  }
+
+  document.getElementById("ticketForm").addEventListener("input", updateProgress);
+  document.getElementById("ticketForm").addEventListener("change", updateProgress);
+  updateProgress();
+
+  // ── TICKET ID ────────────────────────────────────────────────────────────────
+  function genTicketId() {
+    const d = new Date();
+    const yyyymmdd = `${d.getFullYear()}${String(d.getMonth()+1).padStart(2,"0")}${String(d.getDate()).padStart(2,"0")}`;
+    const rand = Math.random().toString(36).slice(2,6).toUpperCase();
+    return `BNR-${yyyymmdd}-${rand}`;
+  }
+
+  // ── SUBMIT ───────────────────────────────────────────────────────────────────
+  document.getElementById("ticketForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    if (!form.checkValidity()) {
+      // Desplaza al primer campo inválido
+      const first = form.querySelector(":invalid");
+      if (first) { first.reportValidity(); first.scrollIntoView({ behavior: "smooth", block: "center" }); }
+      return;
+    }
+
+    const btn = document.getElementById("submitBtn");
+    btn.disabled = true;
+    btn.innerHTML = "<span>Enviando…</span><span>⏳</span>";
+
+    const fd = new FormData(form);
+    const payload = {};
+    fd.forEach((v, k) => { payload[k] = v; });
+
+    payload.ticket_id      = genTicketId();
+    payload.submitted_at   = new Date().toISOString();
+    payload.archivos       = attachedFiles.map(f => f.name).join(", ") || "(ninguno)";
+    payload.num_archivos   = attachedFiles.length;
+
+    // Si tipo = otro, usa la descripción del campo adicional
+    if (payload.tipo_incidencia === "otro" && payload.otro_tipo) {
+      payload.tipo_incidencia = `Otro: ${payload.otro_tipo}`;
+    }
+
+    try {
+      if (SHEETS_URL !== "PEGAR_URL_APPS_SCRIPT_AQUI") {
+        const resp = await fetch(SHEETS_URL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(payload)
+        });
+        const result = await resp.json();
+        if (!resp.ok || !result.ok) throw new Error(result.error || "Error desconocido.");
+      }
+      // Pantalla de éxito
+      document.getElementById("ticketForm").classList.add("hidden");
+      document.getElementById("result").style.display = "block";
+      document.getElementById("resultId").textContent = "Ticket " + payload.ticket_id;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (err) {
+      alert(`No pudimos registrar tu reporte.\nRevisa tu conexión e intenta de nuevo.\n\n${err.message}`);
+      btn.disabled = false;
+      btn.innerHTML = "<span>Enviar reporte</span><span>→</span>";
+    }
+  });
+
+  // ── RESET ────────────────────────────────────────────────────────────────────
+  function resetForm() {
+    document.getElementById("ticketForm").reset();
+    document.getElementById("ticketForm").classList.remove("hidden");
+    document.getElementById("result").style.display = "none";
+    document.getElementById("otroWrap").classList.add("hidden");
+    Object.values(prioMap).forEach(id => document.getElementById(id).classList.remove("show"));
+    attachedFiles = [];
+    renderFiles();
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    document.getElementById("submitBtn").disabled = false;
+    document.getElementById("submitBtn").innerHTML = "<span>Enviar reporte</span><span>→</span>";
+  }
+</script>
+</body>
+</html>
