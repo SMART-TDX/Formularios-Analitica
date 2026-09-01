@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mi Desempeño — SAC Smart Academia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Inter',sans-serif;font-size:14px;background:#f1f5f9;color:#0f172a;-webkit-font-smoothing:antialiased}
+.shell{display:flex;min-height:100vh}
+.sidebar{width:220px;background:#C1272D;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100}
+.main{margin-left:220px;flex:1;display:flex;flex-direction:column}
+/* SIDEBAR */
+.sb-head{padding:22px 18px 16px;border-bottom:1px solid rgba(255,255,255,.12)}
+.sb-title{color:#fff;font-size:14px;font-weight:700;line-height:1.3}
+.sb-sub{color:rgba(255,255,255,.52);font-size:10px;margin-top:3px;text-transform:uppercase;letter-spacing:.04em}
+.sb-div{height:1px;background:rgba(255,255,255,.14);margin-top:10px}
+.sb-nav{padding:14px 10px;flex:1}
+.sb-sec{color:rgba(255,255,255,.38);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:0 8px;margin:14px 0 5px}
+.sb-btn{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;color:rgba(255,255,255,.68);font-size:12px;font-weight:500;margin-bottom:2px;border:none;background:transparent;width:100%;text-align:left;cursor:pointer;font-family:inherit;transition:background .13s}
+.sb-btn:hover:not(.active){background:rgba(255,255,255,.1);color:#fff}
+.sb-btn.active{background:rgba(255,255,255,.2);color:#fff;font-weight:700}
+.sb-icon{font-size:15px;width:20px;text-align:center}
+/* GAUGE en sidebar */
+.sb-gauge-wrap{margin:12px;background:rgba(0,0,0,.18);border-radius:12px;padding:16px;text-align:center}
+.sb-gauge-label{color:rgba(255,255,255,.6);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.gauge-svg{width:110px;height:60px;overflow:visible;margin:0 auto;display:block}
+.sb-gauge-num{color:#fff;font-size:28px;font-weight:700;margin-top:4px;line-height:1}
+.sb-gauge-cat{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;display:inline-block;margin-top:5px}
+.sb-streak{margin:0 12px 12px;background:rgba(0,0,0,.12);border-radius:10px;padding:11px 13px;display:flex;align-items:center;gap:10px}
+.sb-streak-num{color:#fff;font-size:22px;font-weight:700;line-height:1}
+.sb-streak-info{flex:1}
+.sb-streak-label{color:rgba(255,255,255,.7);font-size:11px;font-weight:500}
+.sb-streak-sub{color:rgba(255,255,255,.45);font-size:10px;margin-top:2px}
+/* PREVIEW BANNER */
+.preview-wrap{padding:12px 24px 0}
+.preview-banner{background:#fef3c7;border:2px solid #f59e0b;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.preview-badge{background:#f59e0b;color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;flex-shrink:0}
+.preview-text{font-size:13px;color:#92400e;font-weight:500;flex:1;min-width:160px}
+.preview-sel{border:1.5px solid #f59e0b;border-radius:9px;padding:8px 12px;font-size:13px;font-family:'Inter',sans-serif;background:#fff;color:#0f172a;outline:none;cursor:pointer;min-width:200px;flex:1;max-width:280px}
+.preview-btn{background:#f59e0b;color:#fff;border:none;border-radius:9px;padding:8px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:background .13s}
+.preview-btn:hover{background:#d97706}
+/* TOPBAR */
+.topbar{background:#fff;border-bottom:1px solid #e2e8f0;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;position:sticky;top:0;z-index:50;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.tb-left .tb-title{font-size:16px;font-weight:700;letter-spacing:-.02em}
+.tb-left .tb-sub{font-size:11px;color:#64748b;margin-top:1px}
+.tb-right{display:flex;align-items:center;gap:10px}
+.tb-date{font-size:11px;color:#94a3b8;background:#f8fafc;border:1px solid #e2e8f0;border-radius:20px;padding:5px 12px;font-weight:500}
+.user-chip{display:flex;align-items:center;gap:7px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:20px;padding:4px 12px 4px 5px}
+.user-av{width:27px;height:27px;border-radius:50%;background:#C1272D;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff}
+.user-chip span{font-size:11px;color:#334155;font-weight:500;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.content{flex:1;padding:22px 24px}
+/* ACCESS DENIED */
+.access-denied{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;text-align:center;padding:40px}
+.access-denied .icon{font-size:52px;margin-bottom:16px}
+.access-denied h2{font-size:20px;font-weight:700;margin-bottom:8px}
+.access-denied p{font-size:13px;color:#64748b;max-width:360px;line-height:1.7}
+/* KPI */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.kpi{background:#fff;border:1px solid #e2e8f0;border-radius:13px;padding:16px 18px;box-shadow:0 1px 3px rgba(0,0,0,.04);position:relative;overflow:hidden}
+.kpi-icon{position:absolute;top:12px;right:14px;font-size:22px;opacity:.15}
+.kpi-label{font-size:10px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.kpi-val{font-size:26px;font-weight:700;color:#0f172a;letter-spacing:-.02em;line-height:1}
+.kpi-sub{font-size:11px;color:#94a3b8;margin-top:4px}
+/* CARDS */
+.card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:18px 20px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.card-label{font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;display:flex;align-items:center;gap:7px}
+.card-label::before{content:'';width:5px;height:5px;border-radius:50%;background:#C1272D;flex-shrink:0}
+.charts-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.charts-row .card{margin-bottom:0}
+.chart-wrap{height:220px;position:relative}
+.chart-wrap-sm{height:180px;position:relative}
+/* TOP CRITERIOS */
+.top-crit-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.top-crit-grid .card{margin-bottom:0}
+.top-list{display:flex;flex-direction:column;gap:8px}
+.top-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;border:1px solid}
+.top-item.strong{background:#f0fdf4;border-color:#bbf7d0}
+.top-item.weak{background:#fef2f2;border-color:#fecaca}
+.top-medal{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+.top-item.strong .top-medal{background:#dcfce7}
+.top-item.weak .top-medal{background:#fee2e2}
+.top-name{flex:1;font-size:12px;font-weight:500}
+.top-item.strong .top-name{color:#166534}
+.top-item.weak .top-name{color:#991b1b}
+.top-pct{font-size:13px;font-weight:700}
+.top-item.strong .top-pct{color:#16a34a}
+.top-item.weak .top-pct{color:#dc2626}
+/* RACHA */
+.racha-card{display:flex;align-items:center;gap:20px;padding:18px 20px;background:linear-gradient(135deg,#1e293b 0%,#374151 100%);border-radius:14px;margin-bottom:14px;box-shadow:0 4px 12px rgba(0,0,0,.12)}
+.racha-icon{font-size:40px;flex-shrink:0}
+.racha-num{font-size:42px;font-weight:700;color:#fff;line-height:1}
+.racha-label{font-size:13px;color:rgba(255,255,255,.7);margin-top:4px}
+.racha-sub{font-size:11px;color:rgba(255,255,255,.45);margin-top:3px}
+.racha-badges{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.racha-badge{background:rgba(255,255,255,.12);border-radius:20px;padding:4px 12px;font-size:11px;color:rgba(255,255,255,.7);font-weight:500}
+/* CRITERIOS */
+.crit-list{display:flex;flex-direction:column;gap:8px}
+.crit-item{display:flex;align-items:center;gap:10px}
+.crit-name{font-size:12px;color:#334155;width:240px;flex-shrink:0}
+.crit-bar-bg{flex:1;height:8px;background:#f1f5f9;border-radius:4px;overflow:hidden}
+.crit-bar-fill{height:100%;border-radius:4px;transition:width .6s}
+.crit-pct{font-size:12px;font-weight:700;width:42px;text-align:right;flex-shrink:0}
+/* VS EQUIPO */
+.vs-bar-wrap{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.vs-bar-label{font-size:11px;font-weight:600;width:55px;flex-shrink:0}
+.vs-bar-bg{flex:1;height:8px;background:#f1f5f9;border-radius:4px;overflow:hidden}
+.vs-bar-fill{height:100%;border-radius:4px;transition:width .6s}
+.vs-pct{font-size:12px;font-weight:700;width:42px;text-align:right;flex-shrink:0}
+/* TABLA */
+.tbl-wrap{overflow-x:auto;border-radius:10px;border:1px solid #e2e8f0}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead tr{background:#f8fafc}
+th{padding:10px 12px;text-align:left;font-weight:700;color:#64748b;border-bottom:1.5px solid #e2e8f0;font-size:11px;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+td{padding:11px 12px;border-bottom:1px solid #f1f5f9;vertical-align:middle;color:#334155;font-size:12px}
+tbody tr:hover td{background:#fafafa}
+tbody tr:last-child td{border-bottom:none}
+.pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.pill-green{background:#dcfce7;color:#166534}
+.pill-blue{background:#dbeafe;color:#1e40af}
+.pill-amber{background:#fef3c7;color:#92400e}
+.pill-red{background:#fee2e2;color:#991b1b}
+/* LOADING */
+.loading{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:50vh;gap:12px;color:#94a3b8;text-align:center;padding:20px}
+.spin-big{width:40px;height:40px;border:3px solid #e2e8f0;border-top-color:#C1272D;border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px;animation:fadeIn .2s ease}
+.modal-box{background:#fff;border-radius:16px;width:100%;max-width:620px;max-height:88vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.22);animation:slideUp .25s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.modal-head{padding:18px 20px 14px;border-bottom:1px solid #e2e8f0;display:flex;align-items:flex-start;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:1}
+.modal-title{font-size:15px;font-weight:700;color:#0f172a}
+.modal-sub{font-size:12px;color:#64748b;margin-top:3px}
+.modal-close{background:transparent;border:none;font-size:20px;cursor:pointer;color:#94a3b8;padding:2px 6px;border-radius:6px}
+.modal-close:hover{background:#f1f5f9;color:#374151}
+.modal-body{padding:18px 20px 22px}
+.modal-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.modal-kpi{background:#f8fafc;border-radius:10px;padding:12px;text-align:center}
+.modal-kpi-label{font-size:10px;color:#64748b;font-weight:600;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.modal-kpi-val{font-size:20px;font-weight:700;color:#0f172a}
+.crit-det-list{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.crit-det-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:9px}
+.crit-det-item.ok{background:#f0fdf4;border:1px solid #bbf7d0}
+.crit-det-item.fail{background:#fef2f2;border:1px solid #fecaca}
+.crit-det-num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.crit-det-item.ok .crit-det-num{background:#dcfce7;color:#166534}
+.crit-det-item.fail .crit-det-num{background:#fee2e2;color:#991b1b}
+.crit-det-label{flex:1;font-size:12px;font-weight:500}
+.crit-det-item.ok .crit-det-label{color:#166534}
+.crit-det-item.fail .crit-det-label{color:#991b1b}
+.crit-det-result{font-size:11px;font-weight:700;padding:2px 10px;border-radius:20px}
+.crit-det-item.ok .crit-det-result{background:#dcfce7;color:#166534}
+.crit-det-item.fail .crit-det-result{background:#fee2e2;color:#991b1b}
+.modal-obs{background:#eff6ff;border-radius:9px;padding:12px 14px;font-size:13px;color:#1e40af;line-height:1.7;border:1px solid #bfdbfe}
+.modal-obs-label{font-size:10px;font-weight:700;color:#1e40af;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+/* TOAST */
+.toast-ct{position:fixed;top:16px;right:18px;z-index:9999;display:flex;flex-direction:column;gap:7px;pointer-events:none}
+.toast{background:#1e293b;color:#fff;padding:12px 16px;border-radius:10px;font-size:13px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.2);pointer-events:auto;display:flex;align-items:center;gap:9px;border-left:4px solid #64748b;animation:tIn .2s ease}
+.toast.ok{background:#14532d;border-left-color:#22c55e}
+.toast.err{background:#7f1d1d;border-left-color:#ef4444}
+.toast.warn{background:#78350f;border-left-color:#f59e0b}
+@keyframes tIn{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:translateX(0)}}
+.empty{text-align:center;padding:36px;color:#94a3b8;font-size:13px}
+.empty-icon{font-size:30px;margin-bottom:8px}
+/* ── FILTROS DASHBOARD ── */
+.filtros-bar{background:#fff;border-bottom:1px solid #e2e8f0;padding:10px 24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:58px;z-index:40;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.filtros-label{font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.filtro-input{border:1.5px solid #e2e8f0;border-radius:8px;padding:6px 10px;font-size:12px;font-family:'Inter',sans-serif;color:#0f172a;outline:none;transition:border-color .15s}
+.filtro-input:focus{border-color:#C1272D;box-shadow:0 0 0 3px rgba(193,39,45,.08)}
+.periodos{display:flex;gap:5px;flex-wrap:wrap}
+.periodo-btn{border:1.5px solid #e2e8f0;border-radius:20px;padding:5px 12px;font-size:11px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;background:#fff;color:#64748b;transition:all .13s;white-space:nowrap}
+.periodo-btn:hover{border-color:#C1272D;color:#C1272D}
+.periodo-btn.active{background:#C1272D;border-color:#C1272D;color:#fff}
+.filtro-sep{width:1px;height:24px;background:#e2e8f0;flex-shrink:0}
+.btn-aplicar{background:#C1272D;color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap;transition:background .13s}
+.btn-aplicar:hover{background:#a01f24}
+.btn-limpiar{background:#f1f5f9;color:#374151;border:1.5px solid #e2e8f0;border-radius:8px;padding:7px 12px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;white-space:nowrap}
+.btn-limpiar:hover{background:#e2e8f0}
+.filtro-activo-chip{background:#fee2e2;border:1px solid #fecaca;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:600;color:#991b1b;display:none;align-items:center;gap:5px;white-space:nowrap}
+.filtro-activo-chip.show{display:flex}
+</style>
+</head>
+<body>
+<div id="toast-ct" class="toast-ct"></div>
+
+<!-- MODAL DETALLE -->
+<div id="modal-detalle" class="modal-overlay" style="display:none" onclick="if(event.target===this)cerrarModal()">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div>
+        <div class="modal-title" id="modal-titulo">Detalle de evaluación</div>
+        <div class="modal-sub" id="modal-sub">—</div>
+      </div>
+      <button class="modal-close" onclick="cerrarModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-kpis">
+        <div class="modal-kpi"><div class="modal-kpi-label">Puntaje</div><div class="modal-kpi-val" id="modal-pct">—</div></div>
+        <div class="modal-kpi"><div class="modal-kpi-label">Resultado</div><div class="modal-kpi-val" id="modal-resultado" style="font-size:14px">—</div></div>
+        <div class="modal-kpi"><div class="modal-kpi-label">Criterios cumplidos</div><div class="modal-kpi-val" id="modal-cumplidos">—</div></div>
+      </div>
+      <div style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">Detalle por criterio</div>
+      <div class="crit-det-list" id="modal-criterios"></div>
+      <div id="modal-obs-wrap" style="display:none">
+        <div class="modal-obs-label">Observaciones del evaluador</div>
+        <div class="modal-obs" id="modal-obs"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sb-head">
+      <div class="sb-title">Smart Academia<br>de Idiomas</div>
+      <div class="sb-sub">Portal de desempeño SAC</div>
+      <div class="sb-div"></div>
+    </div>
+    <nav class="sb-nav">
+      <div class="sb-sec">Mi desempeño</div>
+      <button class="sb-btn active" onclick="showView('dashboard',this)"><span class="sb-icon">📊</span> Dashboard</button>
+      <button class="sb-btn" onclick="showView('criterios',this)"><span class="sb-icon">📋</span> Por criterio</button>
+      <button class="sb-btn" onclick="showView('historial',this)"><span class="sb-icon">📂</span> Mis evaluaciones</button>
+      <button class="sb-btn" onclick="showView('equipo',this)"><span class="sb-icon">👥</span> vs Equipo</button>
+    </nav>
+    <!-- GAUGE promedio -->
+    <div class="sb-gauge-wrap" id="sb-gauge-wrap" style="display:none">
+      <div class="sb-gauge-label">Mi promedio general</div>
+      <svg class="gauge-svg" id="gauge-svg" viewBox="0 0 110 60">
+        <path d="M10,55 A45,45 0 0,1 100,55" fill="none" stroke="#ffffff22" stroke-width="10" stroke-linecap="round"/>
+        <path id="gauge-arc" d="M10,55 A45,45 0 0,1 100,55" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-dasharray="0 142"/>
+      </svg>
+      <div class="sb-gauge-num" id="sb-gauge-num">—</div>
+      <span class="sb-gauge-cat" id="sb-gauge-cat">—</span>
+    </div>
+    <!-- RACHA en sidebar -->
+    <div class="sb-streak" id="sb-streak" style="display:none">
+      <div style="font-size:24px">🔥</div>
+      <div class="sb-streak-info">
+        <div style="display:flex;align-items:baseline;gap:4px">
+          <span class="sb-streak-num" id="sb-streak-num">0</span>
+          <span style="color:rgba(255,255,255,.6);font-size:11px"> sobre prom.</span>
+        </div>
+        <div class="sb-streak-sub">evaluaciones consecutivas</div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <!-- BANNER MODO ADMIN -->
+    <div id="preview-wrap" style="display:none" class="preview-wrap">
+      <div class="preview-banner">
+        <span class="preview-badge">👁 MODO ADMIN</span>
+        <span class="preview-text">Selecciona un agente para ver su dashboard:</span>
+        <select class="preview-sel" id="preview-select">
+          <option value="">— Seleccionar agente —</option>
+        </select>
+        <button class="preview-btn" onclick="cargarPreview()">▶ Ver datos</button>
+      </div>
+    </div>
+
+    <!-- BARRA DE FILTROS -->
+    <div class="filtros-bar" id="filtros-bar" style="display:none">
+      <span class="filtros-label">📅 Período</span>
+      <div class="periodos">
+        <button class="periodo-btn" onclick="setPeriodo(7,this)">7 días</button>
+        <button class="periodo-btn" onclick="setPeriodo(30,this)">30 días</button>
+        <button class="periodo-btn active" onclick="setPeriodo(0,this)" id="btn-todo">Todo</button>
+        <button class="periodo-btn" onclick="setPeriodoMes('este',this)">Este mes</button>
+        <button class="periodo-btn" onclick="setPeriodoMes('anterior',this)">Mes anterior</button>
+      </div>
+      <div class="filtro-sep"></div>
+      <span class="filtros-label">Desde</span>
+      <input type="date" class="filtro-input" id="f-desde" onchange="onFiltroManual()">
+      <span class="filtros-label">Hasta</span>
+      <input type="date" class="filtro-input" id="f-hasta" onchange="onFiltroManual()">
+      <button class="btn-aplicar" onclick="aplicarFiltro()">🔍 Aplicar</button>
+      <button class="btn-limpiar" onclick="limpiarFiltro()">✕ Limpiar</button>
+      <div class="filtro-activo-chip" id="filtro-chip">
+        <span id="filtro-chip-txt">—</span>
+      </div>
+    </div>
+
+    <div class="topbar">
+      <div class="tb-left">
+        <div class="tb-title" id="tb-title">Cargando…</div>
+        <div class="tb-sub" id="tb-sub">Portal de desempeño individual SAC</div>
+      </div>
+      <div class="tb-right">
+        <span class="tb-date" id="tb-date">—</span>
+        <div class="user-chip">
+          <div class="user-av" id="user-av">—</div>
+          <span id="user-name">—</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARGANDO -->
+    <div class="content" id="view-loading">
+      <div class="loading"><div class="spin-big"></div><span>Cargando tu información…</span></div>
+    </div>
+
+    <!-- ACCESO DENEGADO -->
+    <div class="content" id="view-denied" style="display:none">
+      <div class="access-denied">
+        <div class="icon">🔒</div>
+        <h2>Acceso restringido</h2>
+        <p>Tu correo no está registrado en el sistema SAC.<br>Contacta al coordinador de calidad para que te agregue al sistema.</p>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="content" id="view-dashboard" style="display:none">
+      <div class="kpi-row">
+        <div class="kpi"><span class="kpi-icon">📋</span><div class="kpi-label">Evaluaciones recibidas</div><div class="kpi-val" id="k-total">—</div><div class="kpi-sub">Total histórico</div></div>
+        <div class="kpi"><span class="kpi-icon">⭐</span><div class="kpi-label">Promedio de calidad</div><div class="kpi-val" id="k-prom">—</div><div class="kpi-sub" id="k-cat">—</div></div>
+        <div class="kpi"><span class="kpi-icon">📈</span><div class="kpi-label">Última evaluación</div><div class="kpi-val" id="k-ultima">—</div><div class="kpi-sub" id="k-ultima-fecha">—</div></div>
+        <div class="kpi"><span class="kpi-icon">🏆</span><div class="kpi-label">Mejor resultado</div><div class="kpi-val" id="k-mejor">—</div><div class="kpi-sub">Puntaje máximo</div></div>
+      </div>
+
+      <!-- RACHA y TENDENCIA -->
+      <div id="racha-card" style="display:none" class="racha-card">
+        <div class="racha-icon">🔥</div>
+        <div style="flex:1">
+          <div style="display:flex;align-items:baseline;gap:8px">
+            <div class="racha-num" id="racha-num">0</div>
+            <div class="racha-label">evaluaciones consecutivas sobre el promedio del equipo</div>
+          </div>
+          <div class="racha-sub" id="racha-sub">—</div>
+          <div class="racha-badges" id="racha-badges"></div>
+        </div>
+      </div>
+
+      <div class="charts-row">
+        <div class="card">
+          <div class="card-label">Tendencia de calidad por evaluación</div>
+          <div class="chart-wrap"><canvas id="chart-tend"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-label">Distribución de resultados</div>
+          <div class="chart-wrap"><canvas id="chart-dist"></canvas></div>
+        </div>
+      </div>
+
+      <!-- EVOLUCIÓN MENSUAL -->
+      <div class="card">
+        <div class="card-label">Evolución mensual del promedio</div>
+        <div class="chart-wrap"><canvas id="chart-mensual"></canvas></div>
+      </div>
+
+      <!-- TOP CRITERIOS -->
+      <div class="top-crit-grid">
+        <div class="card">
+          <div class="card-label">💪 Tus 3 puntos más fuertes</div>
+          <div class="top-list" id="top-fuertes"></div>
+        </div>
+        <div class="card">
+          <div class="card-label">⚠️ Tus 3 oportunidades de mejora</div>
+          <div class="top-list" id="top-debiles"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POR CRITERIO -->
+    <div class="content" id="view-criterios" style="display:none">
+      <div class="card">
+        <div class="card-label">Cumplimiento por criterio — % de veces que cumpliste cada criterio</div>
+        <div class="crit-list" id="crit-list"><div class="empty"><div class="empty-icon">📋</div>Sin datos</div></div>
+      </div>
+      <div class="card">
+        <div class="card-label">Comparativo por criterio</div>
+        <div class="chart-wrap" style="height:300px"><canvas id="chart-radar"></canvas></div>
+      </div>
+    </div>
+
+    <!-- MIS EVALUACIONES -->
+    <div class="content" id="view-historial" style="display:none">
+      <div class="card">
+        <div class="card-label" id="hist-label">Mis evaluaciones recibidas</div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr>
+              <th>Fecha</th><th>N° Caso</th><th>Evaluador</th>
+              <th>Puntaje</th><th>Resultado</th><th>Observaciones</th><th></th>
+            </tr></thead>
+            <tbody id="h-body">
+              <tr><td colspan="7"><div class="empty"><div class="empty-icon">📂</div>Sin evaluaciones</div></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- VS EQUIPO -->
+    <div class="content" id="view-equipo" style="display:none">
+      <div class="card">
+        <div class="card-label">Tu desempeño vs promedio del equipo</div>
+        <div id="vs-content"><div class="empty"><div class="empty-icon">👥</div>Sin datos</div></div>
+      </div>
+      <div class="card">
+        <div class="card-label">Comparativo visual</div>
+        <div class="chart-wrap"><canvas id="chart-equipo"></canvas></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+var D = { email:'', nombre:'', rol:'', nombreVista:'', evals:[], criterios:[], agentes:[] };
+var chartTend=null, chartDist=null, chartEquipo=null, chartMensual=null, chartRadar=null;
+var NOMBRES_CRITERIOS = [
+  'Resolución en primer contacto','Claridad y fondo','Saludo y cordialidad',
+  'Personalización','Tiempo de respuesta','Registro de campos',
+  'Cumplimiento del proceso','Experiencia del estudiante',
+  'Ortografía y redacción','Despedida y cierre'
+];
+
+window.onload = function() {
+  var now = new Date();
+  document.getElementById('tb-date').textContent =
+    now.toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  iniciar();
+};
+
+function iniciar() {
+  google.script.run
+    .withSuccessHandler(function(info) {
+      if (!info || info.rol === 'denegado') { showOnly('denied'); return; }
+      D.email=info.email; D.nombre=info.nombre; D.rol=info.rol; D.agentes=info.agentes||[];
+      var ini=(info.nombre||'??').split(' ').map(function(p){return p[0]||'';}).join('').toUpperCase().slice(0,2);
+      document.getElementById('user-av').textContent=ini;
+      document.getElementById('user-name').textContent=info.nombre||info.email;
+      if (D.rol==='auditor') {
+        document.getElementById('preview-wrap').style.display='block';
+        var sel=document.getElementById('preview-select');
+        D.agentes.forEach(function(a){var o=document.createElement('option');o.value=a;o.textContent=a;sel.appendChild(o);});
+        document.getElementById('tb-title').textContent='👁 Vista admin — dashboard agentes';
+        document.getElementById('tb-sub').textContent='Selecciona un agente para previsualizar su dashboard';
+        showOnly('loading');
+        document.getElementById('view-loading').innerHTML=
+          '<div class="loading"><div style="font-size:48px;margin-bottom:16px">☝️</div>'+
+          '<div style="font-weight:700;font-size:15px;color:#92400e;margin-bottom:8px">Modo administrador activo</div>'+
+          '<div style="font-size:13px;color:#64748b;max-width:340px">Selecciona un agente arriba y haz clic en ▶ Ver datos</div></div>';
+      } else {
+        D.nombreVista=info.nombre;
+        document.getElementById('tb-title').textContent='Hola, '+(info.nombre||'').split(' ')[0]+' 👋';
+        cargarEvaluaciones();
+      }
+    })
+    .withFailureHandler(function(err){toast('Error: '+err.message,'err');showOnly('denied');})
+    .getInfoUsuario();
+}
+
+function cargarPreview() {
+  var sel=document.getElementById('preview-select');
+  if (!sel.value){toast('Selecciona un agente primero','warn');return;}
+  D.nombreVista=sel.value;
+  resetGraficas();
+  document.getElementById('sb-gauge-wrap').style.display='none';
+  document.getElementById('sb-streak').style.display='none';
+  document.getElementById('racha-card').style.display='none';
+  document.getElementById('tb-title').textContent='👁 Viendo: '+D.nombreVista;
+  document.getElementById('tb-sub').textContent='Vista admin — datos de '+D.nombreVista;
+  document.getElementById('hist-label').textContent='Evaluaciones de '+D.nombreVista;
+  document.querySelectorAll('.sb-btn').forEach(function(b){b.classList.remove('active');});
+  document.querySelector('.sb-btn').classList.add('active');
+  showOnly('loading');
+  document.getElementById('view-loading').innerHTML=
+    '<div class="loading"><div class="spin-big"></div><span>Cargando datos de <b>'+D.nombreVista+'</b>…</span></div>';
+  cargarEvaluaciones();
+}
+
+function cargarEvaluaciones() {
+  google.script.run
+    .withSuccessHandler(function(data){
+      D.evals=data.evals||[]; D.criterios=data.criterios||[];
+      var promEquipo=data.promEquipo||0;
+      D._promEquipoBase = promEquipo; // guardar para filtros
+      if (D.evals.length) actualizarSidebar(D.evals, promEquipo);
+      // Mostrar barra de filtros
+      if (D.evals.length) {
+        document.getElementById('filtros-bar').style.display = 'flex';
+      }
+      renderDashboard(promEquipo);
+      renderCriterios();
+      renderHistorial();
+      renderVsEquipo(promEquipo);
+      showOnly('dashboard');
+    })
+    .withFailureHandler(function(err){toast('Error: '+err.message,'err');showOnly('dashboard');})
+    .getMisEvaluaciones(D.nombreVista||D.nombre);
+}
+
+// ── SIDEBAR GAUGE + RACHA ────────────────────────────────────
+function actualizarSidebar(evals, promEquipo) {
+  var prom = calcProm(evals);
+  // Gauge SVG
+  var arc = document.getElementById('gauge-arc');
+  var totalLen = 142;
+  var len = Math.round((prom/100)*totalLen);
+  var cat = categoria(prom);
+  arc.style.stroke = cat.color_hex || '#fff';
+  arc.setAttribute('stroke-dasharray', len+' '+(totalLen-len));
+  document.getElementById('sb-gauge-num').textContent = prom+'%';
+  var catEl = document.getElementById('sb-gauge-cat');
+  catEl.textContent = cat.label;
+  catEl.style.background = cat.bg; catEl.style.color = cat.color;
+  document.getElementById('sb-gauge-wrap').style.display = 'block';
+
+  // Racha
+  var racha = calcRacha(evals, promEquipo);
+  if (racha > 0) {
+    document.getElementById('sb-streak-num').textContent = racha;
+    document.getElementById('sb-streak').style.display = 'flex';
+  }
+}
+
+function calcRacha(evals, promEquipo) {
+  if (!evals.length) return 0;
+  var racha = 0;
+  for (var i = 0; i < evals.length; i++) {
+    if (evals[i].pct >= promEquipo) racha++;
+    else break;
+  }
+  return racha;
+}
+
+// ── RENDER DASHBOARD ─────────────────────────────────────────
+function renderDashboard(promEquipo) {
+  var evals=D.evals, total=evals.length;
+  var prom=calcProm(evals), mejor=total?Math.max.apply(null,evals.map(function(e){return e.pct;})):0;
+  var ultima=total?evals[0]:null, cat=categoria(prom);
+  document.getElementById('k-total').textContent=total;
+  document.getElementById('k-prom').textContent=prom?prom+'%':'—';
+  document.getElementById('k-cat').textContent=cat.label;
+  document.getElementById('k-mejor').textContent=mejor?mejor+'%':'—';
+  if (ultima){document.getElementById('k-ultima').textContent=ultima.pct+'%';document.getElementById('k-ultima-fecha').textContent=ultima.fechaEval;}
+  if (!total) return;
+
+  // Racha card
+  var racha=calcRacha(evals, promEquipo||0);
+  if (racha>0) {
+    document.getElementById('racha-num').textContent=racha;
+    document.getElementById('racha-sub').textContent=racha>=5?'¡Excelente racha, sigue así! 💪':racha>=3?'¡Buen ritmo!':'¡Sigue construyendo tu racha!';
+    var badges=['',racha>=3?'🔥 '+racha+' seguidas':'',racha>=5?'⭐ Top desempeño':'',prom>=90?'🏆 Excelente':''].filter(Boolean);
+    document.getElementById('racha-badges').innerHTML=badges.map(function(b){return '<span class="racha-badge">'+b+'</span>';}).join('');
+    document.getElementById('racha-card').style.display='flex';
+  }
+
+  // Gráfica tendencia
+  if (chartTend) chartTend.destroy();
+  var labT=evals.slice().reverse().map(function(e){return e.fechaEval;});
+  var valT=evals.slice().reverse().map(function(e){return e.pct;});
+  chartTend=new Chart(document.getElementById('chart-tend').getContext('2d'),{
+    type:'line',
+    data:{labels:labT,datasets:[{label:'Puntaje',data:valT,borderColor:'#C1272D',backgroundColor:'rgba(193,39,45,.07)',borderWidth:2.5,pointRadius:5,pointBackgroundColor:'#C1272D',pointBorderColor:'#fff',pointBorderWidth:2,tension:0.3,fill:true}]},
+    options:{responsive:true,maintainAspectRatio:false,scales:{y:{min:0,max:100,grid:{color:'#f1f5f9'},ticks:{callback:function(v){return v+'%';},font:{family:'Inter',size:10}}},x:{grid:{display:false},ticks:{font:{family:'Inter',size:10},maxTicksLimit:6}}},plugins:{legend:{display:false},annotation:{annotations:{line1:{type:'line',yMin:promEquipo,yMax:promEquipo,borderColor:'#94a3b8',borderWidth:1.5,borderDash:[4,4],label:{content:'Prom. equipo',enabled:true,position:'end',font:{size:10}}}}}}}
+  });
+
+  // Dona
+  if (chartDist) chartDist.destroy();
+  var dist={Excelente:0,Cumple:0,Mejora:0,'No cumple':0};
+  evals.forEach(function(e){if(dist[e.resultado]!==undefined)dist[e.resultado]++;});
+  var colores={Excelente:'#16a34a',Cumple:'#2563eb',Mejora:'#d97706','No cumple':'#dc2626'};
+  var conDatos=Object.entries(dist).filter(function(x){return x[1]>0;});
+  chartDist=new Chart(document.getElementById('chart-dist').getContext('2d'),{
+    type:'doughnut',
+    data:{labels:conDatos.map(function(x){return x[0]+' ('+x[1]+')'; }),datasets:[{data:conDatos.map(function(x){return x[1];}),backgroundColor:conDatos.map(function(x){return colores[x[0]];}),borderWidth:3,borderColor:'#fff',hoverOffset:5}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{position:'bottom',labels:{font:{family:'Inter',size:11},padding:12,usePointStyle:true}}}}
+  });
+
+  // EVOLUCIÓN MENSUAL
+  renderChartMensual(evals);
+
+  // Top 3 fuertes y débiles
+  renderTopCriterios();
+}
+
+function renderChartMensual(evals) {
+  // Agrupar por mes
+  var porMes = {};
+  evals.forEach(function(e) {
+    var mes = e.fechaEval ? e.fechaEval.substring(0,7) : '';
+    if (!mes) return;
+    if (!porMes[mes]) porMes[mes]={suma:0,total:0};
+    porMes[mes].suma+=e.pct; porMes[mes].total++;
+  });
+  var meses=Object.keys(porMes).sort();
+  var vals=meses.map(function(m){return Math.round(porMes[m].suma/porMes[m].total);});
+  var labels=meses.map(function(m){
+    var parts=m.split('-');
+    var nombres=['','Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+    return nombres[parseInt(parts[1])]||parts[1]+'/'+parts[0].slice(2);
+  });
+
+  if (chartMensual) chartMensual.destroy();
+  var colors=vals.map(function(v){return v>=90?'rgba(22,163,74,.8)':v>=80?'rgba(37,99,235,.8)':v>=70?'rgba(217,119,6,.8)':'rgba(220,38,38,.8)';});
+  chartMensual=new Chart(document.getElementById('chart-mensual').getContext('2d'),{
+    type:'bar',
+    data:{labels:labels,datasets:[{label:'Promedio mensual',data:vals,backgroundColor:colors,borderColor:colors.map(function(c){return c.replace('.8','.1').replace('rgba','rgb').replace(',1)',')');}),borderWidth:2,borderRadius:8,hoverOffset:4}]},
+    options:{responsive:true,maintainAspectRatio:false,scales:{y:{min:0,max:100,grid:{color:'#f1f5f9'},ticks:{callback:function(v){return v+'%';},font:{family:'Inter',size:11}}},x:{grid:{display:false},ticks:{font:{family:'Inter',size:11}}}},plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' Promedio: '+c.parsed.y+'%';}}}}}
+  });
+}
+
+function renderTopCriterios() {
+  var crit=D.criterios;
+  if (!crit||!crit.length) return;
+  var sorted=crit.slice().sort(function(a,b){return b.pct-a.pct;});
+  var fuertes=sorted.slice(0,3), debiles=sorted.slice(-3).reverse();
+  var medallas=['🥇','🥈','🥉'];
+
+  document.getElementById('top-fuertes').innerHTML=fuertes.map(function(c,i){
+    return '<div class="top-item strong">'+
+      '<div class="top-medal">'+medallas[i]+'</div>'+
+      '<span class="top-name">'+c.label+'</span>'+
+      '<span class="top-pct">'+c.pct+'%</span>'+
+    '</div>';
+  }).join('');
+
+  document.getElementById('top-debiles').innerHTML=debiles.map(function(c,i){
+    return '<div class="top-item weak">'+
+      '<div class="top-medal">'+['⚠️','⚠️','⚠️'][i]+'</div>'+
+      '<span class="top-name">'+c.label+'</span>'+
+      '<span class="top-pct">'+c.pct+'%</span>'+
+    '</div>';
+  }).join('');
+}
+
+// ── RENDER CRITERIOS ─────────────────────────────────────────
+function renderCriterios() {
+  var lista=D.criterios, el=document.getElementById('crit-list');
+  if (!lista||!lista.length){el.innerHTML='<div class="empty"><div class="empty-icon">📋</div>Sin datos</div>';return;}
+  var ordered=lista.slice().sort(function(a,b){return b.pct-a.pct;});
+  el.innerHTML=ordered.map(function(c){
+    var color=c.pct>=90?'#16a34a':c.pct>=70?'#d97706':'#dc2626';
+    return '<div class="crit-item">'+
+      '<span class="crit-name">'+c.label+'</span>'+
+      '<div class="crit-bar-bg"><div class="crit-bar-fill" style="width:'+c.pct+'%;background:'+color+'"></div></div>'+
+      '<span class="crit-pct" style="color:'+color+'">'+c.pct+'%</span>'+
+    '</div>';
+  }).join('');
+
+  // Radar chart
+  if (chartRadar) chartRadar.destroy();
+  var labels=lista.map(function(c){return c.label.split(' ').slice(0,3).join(' ');});
+  var vals=lista.map(function(c){return c.pct;});
+  chartRadar=new Chart(document.getElementById('chart-radar').getContext('2d'),{
+    type:'radar',
+    data:{labels:labels,datasets:[{label:'Tu cumplimiento %',data:vals,backgroundColor:'rgba(193,39,45,.1)',borderColor:'#C1272D',borderWidth:2,pointBackgroundColor:'#C1272D',pointRadius:4}]},
+    options:{responsive:true,maintainAspectRatio:false,scales:{r:{min:0,max:100,ticks:{stepSize:25,font:{size:9},callback:function(v){return v+'%';}},pointLabels:{font:{size:10,family:'Inter'}},grid:{color:'#e2e8f0'},angleLines:{color:'#e2e8f0'}}},plugins:{legend:{display:false}}}
+  });
+}
+
+// ── RENDER HISTORIAL ─────────────────────────────────────────
+function renderHistorial() {
+  var tbody=document.getElementById('h-body'), evals=D.evals;
+  if (!evals.length){tbody.innerHTML='<tr><td colspan="7"><div class="empty"><div class="empty-icon">📂</div>Sin evaluaciones</div></td></tr>';return;}
+  window._evalsDetalle=evals;
+  var pClass=function(r){return r==='Excelente'?'pill-green':r==='Cumple'?'pill-blue':r==='Mejora'?'pill-amber':'pill-red';};
+  var sColor=function(p){return p>=90?'#166534':p>=80?'#1e40af':p>=70?'#92400e':'#991b1b';};
+  tbody.innerHTML=evals.map(function(e,idx){
+    return '<tr style="cursor:pointer" onclick="abrirDetalle('+idx+')">'+
+      '<td style="color:#64748b">'+e.fechaEval+'</td>'+
+      '<td style="font-family:monospace;color:#64748b">'+e.caso+'</td>'+
+      '<td>'+e.evaluador+'</td>'+
+      '<td style="font-weight:700;color:'+sColor(e.pct)+'">'+e.pct+'%</td>'+
+      '<td><span class="pill '+pClass(e.resultado)+'">'+e.resultado+'</span></td>'+
+      '<td style="color:#64748b;max-width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="'+(e.observaciones||'')+'">'+( e.observaciones||'—')+'</td>'+
+      '<td><button style="background:#f1f5f9;border:1px solid #e2e8f0;border-radius:7px;padding:4px 10px;font-size:11px;font-weight:600;cursor:pointer;color:#374151" onclick="event.stopPropagation();abrirDetalle('+idx+')">Ver detalle</button></td>'+
+    '</tr>';
+  }).join('');
+}
+
+// ── RENDER VS EQUIPO ─────────────────────────────────────────
+function renderVsEquipo(promEquipo) {
+  var miProm=calcProm(D.evals), diff=miProm-promEquipo, signo=diff>=0?'+':'', color=diff>=0?'#16a34a':'#dc2626';
+  document.getElementById('vs-content').innerHTML=
+    '<div class="vs-bar-wrap"><span class="vs-bar-label" style="color:#C1272D">Tú</span>'+
+    '<div class="vs-bar-bg"><div class="vs-bar-fill" style="width:'+miProm+'%;background:#C1272D"></div></div>'+
+    '<span class="vs-pct" style="color:#C1272D">'+miProm+'%</span></div>'+
+    '<div class="vs-bar-wrap"><span class="vs-bar-label" style="color:#64748b">Equipo</span>'+
+    '<div class="vs-bar-bg"><div class="vs-bar-fill" style="width:'+promEquipo+'%;background:#94a3b8"></div></div>'+
+    '<span class="vs-pct" style="color:#64748b">'+promEquipo+'%</span></div>'+
+    '<div style="margin-top:12px;font-size:13px;color:'+color+';font-weight:600">'+signo+diff+'% respecto al promedio del equipo</div>';
+
+  if (chartEquipo) chartEquipo.destroy();
+  chartEquipo=new Chart(document.getElementById('chart-equipo').getContext('2d'),{
+    type:'bar',
+    data:{labels:['Tu promedio','Promedio equipo'],datasets:[{data:[miProm,promEquipo],backgroundColor:['rgba(193,39,45,.85)','rgba(148,163,184,.6)'],borderColor:['#C1272D','#94a3b8'],borderWidth:2,borderRadius:8}]},
+    options:{responsive:true,maintainAspectRatio:false,scales:{y:{min:0,max:100,grid:{color:'#f1f5f9'},ticks:{callback:function(v){return v+'%';},font:{family:'Inter',size:11}}},x:{grid:{display:false},ticks:{font:{family:'Inter',size:11}}}},plugins:{legend:{display:false}}}
+  });
+}
+
+// ── MODAL ────────────────────────────────────────────────────
+function abrirDetalle(idx) {
+  var evals=window._evalsDetalle; if(!evals||!evals[idx])return;
+  var e=evals[idx];
+  document.getElementById('modal-titulo').textContent='Caso '+e.caso;
+  document.getElementById('modal-sub').textContent=e.fechaEval+'  ·  Evaluador: '+e.evaluador;
+  var pColor=e.pct>=90?'#166534':e.pct>=80?'#1e40af':e.pct>=70?'#92400e':'#991b1b';
+  document.getElementById('modal-pct').textContent=e.pct+'%';
+  document.getElementById('modal-pct').style.color=pColor;
+  document.getElementById('modal-resultado').textContent=e.resultado;
+  document.getElementById('modal-resultado').style.color=pColor;
+  var criterios=e.criterios||[], cumplidos=criterios.filter(function(c){return c;}).length;
+  document.getElementById('modal-cumplidos').textContent=cumplidos+' / 10';
+  var listEl=document.getElementById('modal-criterios');
+  if(criterios.length===10){
+    listEl.innerHTML=criterios.map(function(ok,i){
+      var cls=ok?'ok':'fail';
+      return '<div class="crit-det-item '+cls+'">'+
+        '<div class="crit-det-num">'+(i+1)+'</div>'+
+        '<span class="crit-det-label">'+(NOMBRES_CRITERIOS[i]||'Criterio '+(i+1))+'</span>'+
+        '<span class="crit-det-result">'+(ok?'✓ Cumple':'✗ No cumple')+'</span>'+
+      '</div>';
+    }).join('');
+  }else{listEl.innerHTML='<p style="color:#94a3b8;font-size:13px">Detalle no disponible</p>';}
+  var obsWrap=document.getElementById('modal-obs-wrap');
+  if(e.observaciones&&e.observaciones.trim()){document.getElementById('modal-obs').textContent=e.observaciones;obsWrap.style.display='block';}
+  else obsWrap.style.display='none';
+  document.getElementById('modal-detalle').style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function cerrarModal(){document.getElementById('modal-detalle').style.display='none';document.body.style.overflow='';}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')cerrarModal();});
+
+// ── FILTROS DE FECHA ─────────────────────────────────────────
+var F = { desde:'', hasta:'' };
+
+function setPeriodo(dias, btn) {
+  document.querySelectorAll('.periodo-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  var hoy = new Date();
+  var hasta = hoy.toISOString().split('T')[0];
+  if (dias === 0) {
+    // Todo el historial
+    document.getElementById('f-desde').value = '';
+    document.getElementById('f-hasta').value = '';
+    F.desde = ''; F.hasta = '';
+  } else {
+    var desde = new Date(hoy); desde.setDate(hoy.getDate() - dias);
+    document.getElementById('f-desde').value = desde.toISOString().split('T')[0];
+    document.getElementById('f-hasta').value = hasta;
+    F.desde = desde.toISOString().split('T')[0];
+    F.hasta = hasta;
+  }
+  aplicarFiltro();
+}
+
+function setPeriodoMes(tipo, btn) {
+  document.querySelectorAll('.periodo-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  var hoy = new Date();
+  var desde, hasta;
+  if (tipo === 'este') {
+    desde = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
+    hasta = new Date(hoy.getFullYear(), hoy.getMonth()+1, 0);
+  } else {
+    desde = new Date(hoy.getFullYear(), hoy.getMonth()-1, 1);
+    hasta = new Date(hoy.getFullYear(), hoy.getMonth(), 0);
+  }
+  F.desde = desde.toISOString().split('T')[0];
+  F.hasta = hasta.toISOString().split('T')[0];
+  document.getElementById('f-desde').value = F.desde;
+  document.getElementById('f-hasta').value = F.hasta;
+  aplicarFiltro();
+}
+
+function onFiltroManual() {
+  // Quitar activo de botones de período al escribir fechas manualmente
+  document.querySelectorAll('.periodo-btn').forEach(function(b){b.classList.remove('active');});
+  F.desde = document.getElementById('f-desde').value;
+  F.hasta = document.getElementById('f-hasta').value;
+}
+
+function aplicarFiltro() {
+  F.desde = document.getElementById('f-desde').value;
+  F.hasta = document.getElementById('f-hasta').value;
+
+  // Filtrar evaluaciones
+  var evFiltradas = D.evals.filter(function(e) {
+    if (F.desde && e.fechaEval < F.desde) return false;
+    if (F.hasta && e.fechaEval > F.hasta) return false;
+    return true;
+  });
+
+  // Actualizar chip informativo
+  var chip = document.getElementById('filtro-chip');
+  var chipTxt = document.getElementById('filtro-chip-txt');
+  if (F.desde || F.hasta) {
+    var txt = '';
+    if (F.desde && F.hasta) txt = F.desde + ' → ' + F.hasta;
+    else if (F.desde) txt = 'Desde ' + F.desde;
+    else txt = 'Hasta ' + F.hasta;
+    chipTxt.textContent = evFiltradas.length + ' eval. · ' + txt;
+    chip.classList.add('show');
+  } else {
+    chip.classList.remove('show');
+  }
+
+  // Recalcular promedio del equipo con las mismas fechas
+  var promEquipoFiltrado = D._promEquipoBase || 0;
+
+  // Re-renderizar todo con los datos filtrados
+  var DFiltrado = Object.assign({}, D, { evals: evFiltradas });
+  renderDashboardFiltrado(DFiltrado, promEquipoFiltrado);
+  renderCriteriosFiltrado(DFiltrado);
+  renderHistorialFiltrado(DFiltrado);
+  renderVsEquipoFiltrado(DFiltrado, promEquipoFiltrado);
+}
+
+function limpiarFiltro() {
+  document.getElementById('f-desde').value = '';
+  document.getElementById('f-hasta').value = '';
+  F.desde = ''; F.hasta = '';
+  document.querySelectorAll('.periodo-btn').forEach(function(b){b.classList.remove('active');});
+  document.getElementById('btn-todo').classList.add('active');
+  document.getElementById('filtro-chip').classList.remove('show');
+  // Restaurar datos completos
+  renderDashboardFiltrado(D, D._promEquipoBase||0);
+  renderCriteriosFiltrado(D);
+  renderHistorialFiltrado(D);
+  renderVsEquipoFiltrado(D, D._promEquipoBase||0);
+}
+
+// Wrappers que aceptan datos filtrados
+function renderDashboardFiltrado(data, promEquipo) {
+  var _evals = D.evals; var _crit = D.criterios;
+  D.evals = data.evals; D.criterios = recalcularCriterios(data.evals);
+  renderDashboard(promEquipo);
+  D.evals = _evals; D.criterios = _crit;
+}
+function renderCriteriosFiltrado(data) {
+  var _evals = D.evals; var _crit = D.criterios;
+  D.evals = data.evals; D.criterios = recalcularCriterios(data.evals);
+  renderCriterios();
+  D.evals = _evals; D.criterios = _crit;
+}
+function renderHistorialFiltrado(data) {
+  var _evals = D.evals;
+  D.evals = data.evals;
+  renderHistorial();
+  D.evals = _evals;
+}
+function renderVsEquipoFiltrado(data, promEquipo) {
+  var _evals = D.evals;
+  D.evals = data.evals;
+  renderVsEquipo(promEquipo);
+  D.evals = _evals;
+}
+
+function recalcularCriterios(evals) {
+  if (!evals || !evals.length) return D.criterios.map(function(c){return Object.assign({},c,{pct:0});});
+  var NOMBRES = ['Resolución en primer contacto','Claridad y fondo de la respuesta','Saludo y cordialidad','Personalización del mensaje','Tiempo de respuesta adecuado','Registro correcto de campos','Cumplimiento del proceso','Experiencia del estudiante','Ortografía y redacción','Despedida y cierre apropiado'];
+  var si = new Array(10).fill(0), tot = new Array(10).fill(0);
+  evals.forEach(function(e) {
+    if (!e.criterios || e.criterios.length !== 10) return;
+    e.criterios.forEach(function(ok, i) { tot[i]++; if(ok) si[i]++; });
+  });
+  return tot.map(function(t,i){return{label:NOMBRES[i]||'C'+(i+1),pct:t>0?Math.round((si[i]/t)*100):0};});
+}
+
+// ── NAVEGACIÓN ───────────────────────────────────────────────
+function showView(view,btn){
+  if(btn){document.querySelectorAll('.sb-btn').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');}
+  ['loading','denied','dashboard','criterios','historial','equipo'].forEach(function(v){
+    var el=document.getElementById('view-'+v); if(el)el.style.display=(v===view)?'block':'none';
+  });
+}
+function showOnly(view){showView(view,null);}
+
+// ── HELPERS ──────────────────────────────────────────────────
+function resetGraficas(){
+  D.evals=[];D.criterios=[];
+  [chartTend,chartDist,chartEquipo,chartMensual,chartRadar].forEach(function(c){if(c)c.destroy();});
+  chartTend=null;chartDist=null;chartEquipo=null;chartMensual=null;chartRadar=null;
+}
+function calcProm(evals){if(!evals||!evals.length)return 0;return Math.round(evals.reduce(function(s,e){return s+e.pct;},0)/evals.length);}
+function categoria(pct){
+  if(pct>=90)return{label:'Excelente',bg:'#dcfce7',color:'#166534',color_hex:'#22c55e'};
+  if(pct>=80)return{label:'Cumple',bg:'#dbeafe',color:'#1e40af',color_hex:'#3b82f6'};
+  if(pct>=70)return{label:'Mejora',bg:'#fef3c7',color:'#92400e',color_hex:'#f59e0b'};
+  return{label:'No cumple',bg:'#fee2e2',color:'#991b1b',color_hex:'#ef4444'};
+}
+function toast(msg,type){
+  var ct=document.getElementById('toast-ct'),el=document.createElement('div');
+  el.className='toast '+(type||'');
+  el.innerHTML='<span>'+(type==='ok'?'✅':type==='err'?'❌':'⚠️')+'</span><span>'+msg+'</span>';
+  ct.appendChild(el);setTimeout(function(){try{ct.removeChild(el);}catch(e){}},4000);
+}
+</script>
+</body>
+</html>
