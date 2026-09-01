@@ -427,4 +427,4 @@ Supervisión de calidad: Luz Adriana Aristizábal Duarte · Coordinadora SAC
 
 ---
 
-*Sistema de Auditoría de Calidad SAC — v9.3 · Agosto 2026*
+*Sistema de Auditoría de Calidad SAC · Agosto 2026*
