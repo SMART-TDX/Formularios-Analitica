@@ -9,7 +9,8 @@ const HEADERS = [
   "Usos de IA", "Caso práctico", "Meta inicial", "Detalle de la meta",
   "Tiempo semanal", "Formación inicial", "Sesiones quincenales", "Ejecutar pruebas",
   "Presentar resultados", "Apoyar usuarios", "Políticas de seguridad",
-  "Puntaje", "Clasificación", "Recomendación"
+  "Puntaje", "Clasificación", "Recomendación", "Participación en el proyecto",
+  "Disponibilidad de dos horas semanales para capacitación"
 ];
 
 const FIELDS = [
@@ -18,7 +19,8 @@ const FIELDS = [
   "q11_improvement", "q12_ai_frequency", "q13_ai_tools", "q14_ai_uses",
   "q16_practical_case", "q17_initial_goal", "q17_goal_detail", "q18_weekly_time",
   "q19_training", "q19_sessions", "q19_tests", "q19_results", "q19_support", "q19_adjust",
-  "score", "category", "recommendation"
+  "score", "category", "recommendation", "q20_project_participation",
+  "q21_training_availability"
 ];
 
 function doPost(event) {
@@ -58,6 +60,15 @@ function ensureHeaders_(sheet) {
     sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]);
     sheet.setFrozenRows(1);
     sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight("bold");
+    return;
+  }
+
+  const lastColumn = sheet.getLastColumn();
+  if (lastColumn < HEADERS.length) {
+    const missingHeaders = HEADERS.slice(lastColumn);
+    sheet.getRange(1, lastColumn + 1, 1, missingHeaders.length)
+      .setValues([missingHeaders])
+      .setFontWeight("bold");
   }
 }
 
