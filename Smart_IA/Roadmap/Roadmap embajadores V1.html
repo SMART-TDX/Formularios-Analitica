@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roadmap de Embajadores SmartIA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #12304a;
+      --navy-2: #1d4563;
+      --ink: #142333;
+      --muted: #697580;
+      --yellow: #f8b230;
+      --yellow-soft: #fff3d7;
+      --soft: #f7f8f7;
+      --white: #fff;
+      --line: #e7e9e8;
+      --shadow: 0 24px 70px rgba(18, 48, 74, .12);
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: var(--soft);
+      color: var(--ink);
+      font-family: "Poppins", system-ui, sans-serif
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(126deg, #0f2b43 0%, #17415f 62%, #1d506f 100%);
+      color: #fff
+    }
+
+    .hero:before {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 50%;
+      right: -150px;
+      top: -300px;
+      box-shadow: 0 0 0 72px rgba(255, 255, 255, .025), 0 0 0 144px rgba(255, 255, 255, .018)
+    }
+
+    .hero:after {
+      content: "";
+      position: absolute;
+      width: 310px;
+      height: 310px;
+      border-radius: 50%;
+      right: 13%;
+      bottom: -250px;
+      background: var(--yellow);
+      filter: blur(1px);
+      opacity: .16
+    }
+
+    .wrap {
+      width: min(1160px, calc(100% - 40px));
+      margin: auto
+    }
+
+    .nav {
+      height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px
+    }
+
+    .brand img {
+      width: 132px;
+      height: auto;
+      filter: brightness(0) invert(1)
+    }
+
+    .brand span {
+      height: 28px;
+      width: 1px;
+      background: rgba(255, 255, 255, .28)
+    }
+
+    .brand strong {
+      font-size: 12px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #dce8ef
+    }
+
+    .wave {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 9px 14px;
+      border: 1px solid rgba(255, 255, 255, .25);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .08)
+    }
+
+    .hero-grid {
+      min-height: 460px;
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      align-items: center;
+      gap: 48px;
+      padding: 54px 0 76px;
+      position: relative;
+      z-index: 1
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: #ffd36f;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .16em
+    }
+
+    .eyebrow:before {
+      content: "";
+      width: 34px;
+      height: 3px;
+      background: var(--yellow);
+      border-radius: 99px
+    }
+
+    h1 {
+      font-size: clamp(40px, 5.3vw, 72px);
+      line-height: 1.03;
+      letter-spacing: -.045em;
+      margin: 18px 0 20px;
+      max-width: 820px
+    }
+
+    .lead {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #d4e0e7;
+      max-width: 720px;
+      margin: 0
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 34px
+    }
+
+    .meta {
+      padding: 13px 17px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .09);
+      border: 1px solid rgba(255, 255, 255, .16)
+    }
+
+    .meta b {
+      display: block;
+      font-size: 18px
+    }
+
+    .meta small {
+      color: #c7d7e1
+    }
+
+    .mascot {
+      justify-self: end;
+      position: relative;
+      width: min(330px, 100%);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #ffc54b, #f7a91f);
+      border-radius: 42% 58% 55% 45% / 46% 43% 57% 54%;
+      box-shadow: 0 32px 70px rgba(2, 16, 28, .3)
+    }
+
+    .mascot img {
+      width: 72%;
+      height: 72%;
+      object-fit: contain;
+      image-rendering: auto;
+      filter: drop-shadow(0 20px 22px rgba(18, 48, 74, .22))
+    }
+
+    .mascot:after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(255, 255, 255, .36);
+      border-radius: inherit
+    }
+
+    main {
+      padding: 74px 0 90px
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 34px;
+      align-items: end;
+      margin-bottom: 36px
+    }
+
+    .section-head h2 {
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.12;
+      letter-spacing: -.035em;
+      margin: 8px 0
+    }
+
+    .section-head p {
+      max-width: 520px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 0
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 18px
+    }
+
+    .timeline:before {
+      content: "";
+      position: absolute;
+      left: 41px;
+      top: 48px;
+      bottom: 48px;
+      width: 2px;
+      background: linear-gradient(var(--yellow), #dce5e9 14%, #dce5e9 86%, var(--yellow))
+    }
+
+    .step {
+      position: relative;
+      display: grid;
+      grid-template-columns: 84px 1fr;
+      gap: 22px;
+      align-items: stretch
+    }
+
+    .num {
+      position: relative;
+      z-index: 1;
+      width: 52px;
+      height: 52px;
+      margin: 25px auto 0;
+      display: grid;
+      place-items: center;
+      border-radius: 17px;
+      background: var(--white);
+      border: 2px solid #d9e2e7;
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 9px 20px rgba(18, 48, 74, .08)
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 26px 28px;
+      box-shadow: 0 10px 30px rgba(18, 48, 74, .055);
+      display: grid;
+      grid-template-columns: 1.05fr 1.45fr 1.25fr;
+      gap: 30px;
+      align-items: start;
+      transition: .25s ease
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: #d8e1e6
+    }
+
+    .date {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--navy-2);
+      font-size: 12px;
+      font-weight: 700
+    }
+
+    .date:before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--yellow);
+      box-shadow: 0 0 0 5px var(--yellow-soft)
+    }
+
+    .phase h3 {
+      margin: 12px 0 0;
+      font-size: 20px;
+      line-height: 1.3;
+      color: var(--navy)
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 8px;
+      color: #8a969f;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase
+    }
+
+    .card p {
+      margin: 0;
+      color: #536270;
+      font-size: 13px;
+      line-height: 1.65
+    }
+
+    .result {
+      background: #f6f9fa;
+      border-radius: 15px;
+      padding: 15px 17px;
+      border-left: 3px solid var(--yellow)
+    }
+
+    .result p {
+      color: #243949;
+      font-weight: 600
+    }
+
+    .step.final .num {
+      background: var(--yellow);
+      border-color: var(--yellow);
+      color: var(--navy)
+    }
+
+    .step.final .card {
+      background: linear-gradient(120deg, var(--navy), var(--navy-2));
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 22px 54px rgba(18, 48, 74, .23)
+    }
+
+    .step.final .phase h3,
+    .step.final .date {
+      color: #fff
+    }
+
+    .step.final .card p {
+      color: #dce6ec
+    }
+
+    .step.final .label {
+      color: #ffd36f
+    }
+
+    .step.final .result {
+      background: rgba(255, 255, 255, .09);
+      border-color: var(--yellow)
+    }
+
+    .step.final .result p {
+      color: #fff
+    }
+
+    .closing {
+      margin-top: 54px;
+      background: var(--yellow-soft);
+      border: 1px solid #f4d99d;
+      border-radius: 28px;
+      padding: 30px 34px;
+      display: flex;
+      align-items: center;
+      gap: 22px
+    }
+
+    .closing img {
+      width: 76px;
+      height: 76px;
+      border-radius: 22px
+    }
+
+    .closing h3 {
+      margin: 0 0 5px;
+      color: var(--navy);
+      font-size: 22px
+    }
+
+    .closing p {
+      margin: 0;
+      color: #655f5b;
+      line-height: 1.55
+    }
+
+    footer {
+      padding: 28px 0 36px;
+      color: #7b878f;
+      font-size: 12px
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      border-top: 1px solid #dce2e5;
+      padding-top: 24px
+    }
+
+    .footer-inner img {
+      width: 110px;
+      height: auto
+    }
+
+    @media(max-width:900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        padding-top: 30px
+      }
+
+      .mascot {
+        justify-self: start;
+        width: 220px
+      }
+
+      .card {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .result {
+        grid-column: 1/-1
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column
+      }
+    }
+
+    @media(max-width:640px) {
+      .wrap {
+        width: min(100% - 24px, 1160px)
+      }
+
+      .nav {
+        height: 72px
+      }
+
+      .brand strong,
+      .brand span {
+        display: none
+      }
+
+      .hero-grid {
+        padding-bottom: 52px
+      }
+
+      .mascot {
+        width: 180px;
+        border-radius: 36px
+      }
+
+      .timeline:before {
+        left: 24px
+      }
+
+      .step {
+        grid-template-columns: 50px 1fr;
+        gap: 10px
+      }
+
+      .num {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        margin-top: 20px
+      }
+
+      .card {
+        grid-template-columns: 1fr;
+        padding: 21px;
+        gap: 20px
+      }
+
+      .result {
+        grid-column: auto
+      }
+
+      .closing {
+        align-items: flex-start;
+        padding: 24px
+      }
+
+      .closing img {
+        width: 56px;
+        height: 56px
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff
+      }
+
+      .hero {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact
+      }
+
+      .card,
+      .step.final .card {
+        break-inside: avoid;
+        box-shadow: none
+      }
+
+      .card:hover {
+        transform: none
+      }
+
+      main {
+        padding-top: 40px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <nav class="nav">
+        <div class="brand"><img src="assets/reference-03.png" alt="Migui"><span></span><strong>SmartIA</strong></div>
+        <div class="wave">ciclo 1 · 2026</div>
+      </nav>
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Ruta de ejecución</div>
+          <h1>Roadmap de Embajadores SmartIA</h1>
+          <p class="lead">Un recorrido práctico para convertir oportunidades del negocio en soluciones validadas,
+            medibles y listas para generar valor en Smart.</p>
+          <div class="hero-meta">
+            <div class="meta"><b>10 hitos</b><small>de formación a resultados</small></div>
+            <div class="meta"><b>21 sep. — 4 dic.</b><small>ciclo completo de la ciclo 1</small></div>
+            <div class="meta"><b>1 caso por embajador </b><small>con evidencia de impacto</small></div>
+          </div>
+        </div>
+        <div class="mascot"><img src="assets/reference-04.png" alt="Migui, asistente de SmartIA"></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="section-head">
+        <div>
+          <div class="eyebrow" style="color:var(--navy-2)">Del reto al resultado</div>
+          <h2>Una ruta clara, un entregable por etapa</h2>
+        </div>
+        <p>Cada fase reduce incertidumbre y acerca el caso a una decisión: continuar, ajustar o detener antes de
+          invertir más tiempo.</p>
+      </section>
+
+      <section class="timeline" aria-label="Cronograma del programa de embajadores">
+        <article class="step">
+          <div class="num">01</div>
+          <div class="card">
+            <div class="phase"><span class="date">21 al 25 de septiembre</span>
+              <h3>Kick-off + Formación</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>Lanzamiento formal del programa: reglas, roles, política de IA, metodología y presentación del reto.
+              </p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>El embajador y el lider comprende qué debe entregar, cómo será medido y cuáles son las fechas clave.
+              </p>
+            </div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="num">02</div>
+          <div class="card">
+            <div class="phase"><span class="date">28 de septiembre al 2 de octubre</span>
+              <h3>Caso de negocio</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>Taller práctico y trabajo del área sobre el problema, línea base, hipótesis, alcance, indicador y meta.
+              </p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>Caso de negocio de una página listo para presentar.</p>
+            </div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="num">03</div>
+          <div class="card">
+            <div class="phase"><span class="date">2 al 9 de octubre</span>
+              <h3>Presentación del Caso de negocio</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>Cada embajador presenta su caso ante TDX y el sponsor; recibe retroalimentación y una decisión.</p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>Caso aprobado, enviado a ajustes o pospuesto.</p>
+            </div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="num">04</div>
+          <div class="card">
+            <div class="phase"><span class="date">12 al 16 de octubre</span>
+              <h3>Diseño de solución</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>Definir funcionamiento, fuentes, prompts, usuarios, criterios de aceptación y riesgos.</p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>Diseño funcional aprobado.</p>
+            </div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="num">05</div>
+          <div class="card">
+            <div class="phase"><span class="date">19 al 30 de octubre</span>
+              <h3>Construcción</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>Configuración, preparación de información, primeras pruebas y ajustes.</p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>Primera versión funcional del caso.</p>
+            </div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="num">06</div>
+          <div class="card">
+            <div class="phase"><span class="date">2 al 6 de noviembre</span>
+              <h3>Pruebas internas</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>El embajador y su equipo prueban la solución con escenarios reales del proceso.</p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>Defectos, oportunidades y ajustes identificados.</p>
+            </div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="num">07</div>
+          <div class="card">
+            <div class="phase"><span class="date">9 al 13 de noviembre</span>
+              <h3>Validación con usuarios</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>Los usuarios del proceso utilizan la solución y se mide el resultado obtenido.</p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>Evidencia real y ajustes finales priorizados.</p>
+            </div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="num">08</div>
+          <div class="card">
+            <div class="phase"><span class="date">16 al 20 de noviembre</span>
+              <h3>Implementación</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>El caso se incorpora al proceso real del área con acompañamiento y seguimiento.</p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>Solución implementada en operación.</p>
+            </div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="num">09</div>
+          <div class="card">
+            <div class="phase"><span class="date">23 al 27 de noviembre</span>
+              <h3>Medición + Demo final</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>Comparar el antes y el después, beneficios, aprendizajes y decisión de continuidad.</p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>Caso cerrado con resultados y recomendación.</p>
+            </div>
+          </div>
+        </article>
+        <article class="step final">
+          <div class="num">10</div>
+          <div class="card">
+            <div class="phase"><span class="date">30 de noviembre al 4 de diciembre</span>
+              <h3>Resultados, reconocimientos y Ciclo 2</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>Presentar resultados, reconocer a los embajadores con mayor desempeño e impacto favorable y activar la
+                rotación.</p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>Reconocimientos entregados, aprendizajes compartidos e inicio de la Ciclo 2 con nuevos embajadores.</p>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <aside class="closing"><img src="assets/reference-04.png" alt="Migui">
+        <div>
+          <h3>El cierre de una ciclo abre la siguiente.</h3>
+          <p>La demostración final no es solo una entrega: convierte los aprendizajes de la ciclo 1 en mejores
+            decisiones,
+            nuevos referentes y un punto de partida más sólido para la ciclo 2.</p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner"><span>Programa de Embajadores SmartIA · Roadmap ejecutivo</span><img
+        src="assets/reference-05.png" alt="Smart TDX"></div>
+  </footer>
+</body>
+
+</html>
