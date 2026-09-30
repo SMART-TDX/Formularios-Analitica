@@ -1,0 +1,1676 @@
+<!doctype html>
+<!-- Versión SmartIA: avatar del pulpito integrado con fondo transparente. -->
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description"
+    content="Guía práctica para convertir un reto con Migui en un caso de negocio claro, medible y ejecutable.">
+  <title>SMART · Caso de negocio con Migui</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+    :root {
+      --migui: url("pulpito-migui-transparente.png")
+    }
+
+    :root {
+      --navy: #12304a;
+      --navy2: #1d4563;
+      --yellow: #f8b230;
+      --yellow-soft: #fff3d7;
+      --gray: #86817d;
+      --ink: #142333;
+      --muted: #697580;
+      --line: #e7e9e8;
+      --soft: #f7f8f7;
+      --white: #fff;
+      --shadow: 0 24px 70px rgba(18, 48, 74, .12)
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--ink);
+      background: #fff;
+      font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased
+    }
+
+    button,
+    a {
+      font: inherit
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    button {
+      cursor: pointer
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 40px));
+      margin: auto
+    }
+
+    .nav-shell {
+      position: fixed;
+      inset: 18px 0 auto;
+      z-index: 20;
+      pointer-events: none
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      min-height: 68px;
+      padding: 10px 12px 10px 22px;
+      border: 1px solid rgba(18, 48, 74, .08);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .88);
+      box-shadow: 0 12px 35px rgba(18, 48, 74, .08);
+      backdrop-filter: blur(18px);
+      pointer-events: auto
+    }
+
+    :root {
+      --migui-flow: url("pulpito-migui-transparente.png")
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      color: var(--navy)
+    }
+
+    .brand-logo {
+      display: block;
+      width: 112px;
+      height: auto
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700
+    }
+
+    .nav-links a:hover {
+      color: var(--navy)
+    }
+
+    .brand-logo {
+      display: none
+    }
+
+    .brand:before {
+      content: "";
+      display: block;
+      width: 48px;
+      height: 48px;
+      border: 0;
+      border-radius: 15px;
+      background-color: var(--yellow);
+      background-image: var(--migui-flow);
+      background-repeat: no-repeat;
+      background-size: 175%;
+      background-position: 50% 3%;
+      box-shadow: 0 6px 18px rgba(18, 48, 74, .12)
+    }
+
+    .nav-cta,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 0 20px;
+      border: 0;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--navy);
+      font-size: 13px;
+      font-weight: 800;
+      transition: .2s
+    }
+
+    .nav-cta {
+      margin-left: 28px;
+      color: var(--navy);
+      background: var(--yellow)
+    }
+
+    .nav-cta:hover,
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(18, 48, 74, .2)
+    }
+
+    .button.yellow {
+      color: var(--navy);
+      background: var(--yellow)
+    }
+
+    .button.ghost {
+      color: var(--navy);
+      background: transparent;
+      box-shadow: inset 0 0 0 1px var(--line)
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      align-items: center;
+      min-height: 720px;
+      padding: 100px 0 55px;
+      background: radial-gradient(circle at 8% 10%, rgba(248, 178, 48, .16), transparent 23%), linear-gradient(180deg, #fbfcff, #fff)
+    }
+
+    .hero:after {
+      content: "";
+      position: absolute;
+      right: -120px;
+      top: 110px;
+      width: 310px;
+      height: 310px;
+      border: 1px solid rgba(18, 48, 74, .08);
+      border-radius: 50%
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      align-items: center;
+      gap: clamp(42px, 7vw, 92px)
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 22px;
+      color: #655f5b;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .13em;
+      text-transform: uppercase
+    }
+
+    .eyebrow:before {
+      content: "";
+      width: 28px;
+      height: 3px;
+      border-radius: 99px;
+      background: var(--yellow)
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      text-wrap: pretty
+    }
+
+    h1 {
+      max-width: 700px;
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(42px, 5.2vw, 64px);
+      line-height: 1.02;
+      letter-spacing: -.045em
+    }
+
+    h1 span {
+      position: relative
+    }
+
+    .hero-copy>p:not(.eyebrow) {
+      max-width: 610px;
+      margin: 26px 0 0;
+      color: var(--muted);
+      font-size: clamp(17px, 1.6vw, 20px);
+      line-height: 1.45
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 530px
+    }
+
+    .visual-blob {
+      position: absolute;
+      inset: 38px 34px 32px 20px;
+      overflow: hidden;
+      border-radius: 46% 54% 45% 55%/55% 38% 62% 45%;
+      background: var(--yellow);
+      transform: rotate(-3deg)
+    }
+
+    .visual-blob:before {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      right: -100px;
+      bottom: -90px;
+      border: 65px solid rgba(255, 255, 255, .34);
+      border-radius: 50%
+    }
+
+    .visual-blob:after {
+      content: "Migui";
+      position: absolute;
+      left: 42px;
+      bottom: 20px;
+      color: rgba(18, 48, 74, .08);
+      font-size: 105px;
+      font-weight: 950;
+      letter-spacing: -.08em
+    }
+
+    .dashboard {
+      position: absolute;
+      inset: 88px 66px 80px 60px;
+      z-index: 2;
+      padding: 29px;
+      border: 1px solid rgba(255, 255, 255, .75);
+      border-radius: 26px;
+      background: rgba(255, 255, 255, .92);
+      box-shadow: var(--shadow);
+      transform: rotate(2deg)
+    }
+
+    .dash-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .dash-label {
+      color: var(--gray);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase
+    }
+
+    .status {
+      padding: 7px 10px;
+      border-radius: 99px;
+      color: var(--navy);
+      background: var(--yellow-soft);
+      font-size: 10px;
+      font-weight: 900
+    }
+
+    .dashboard h3 {
+      margin: 18px 0 7px;
+      color: var(--navy);
+      font-size: 26px;
+      line-height: 1.14
+    }
+
+    .dashboard p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55
+    }
+
+    .progress {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 5px;
+      margin: 28px 0
+    }
+
+    .progress span {
+      height: 7px;
+      border-radius: 99px;
+      background: var(--navy)
+    }
+
+    .progress span:last-child {
+      background: var(--yellow)
+    }
+
+    .dash-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px
+    }
+
+    .dash-mini {
+      padding: 15px;
+      border-radius: 15px;
+      background: var(--soft)
+    }
+
+    .dash-mini small {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--gray);
+      font-size: 9px;
+      font-weight: 900;
+      text-transform: uppercase
+    }
+
+    .dash-mini strong {
+      color: var(--navy);
+      font-size: 18px
+    }
+
+    .float-card {
+      position: absolute;
+      z-index: 3;
+      padding: 16px 19px;
+      border-radius: 17px;
+      background: #fff;
+      box-shadow: 0 18px 38px rgba(18, 48, 74, .14)
+    }
+
+    .float-card small {
+      display: block;
+      color: var(--gray);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase
+    }
+
+    .float-card strong {
+      display: block;
+      margin-top: 5px;
+      color: var(--navy);
+      font-size: 18px
+    }
+
+    .float-card.one {
+      top: 36px;
+      right: 0
+    }
+
+    .float-card.two {
+      left: 0;
+      bottom: 35px
+    }
+
+    .dashboard {
+      display: none
+    }
+
+    .migui-hero {
+      position: absolute;
+      z-index: 2;
+      inset: 8px 5px 0 10px;
+      background-image: var(--migui);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      filter: drop-shadow(0 24px 26px rgba(18, 48, 74, .16));
+      transition: transform .4s cubic-bezier(.22, 1, .36, 1)
+    }
+
+    .hero-visual:hover .migui-hero {
+      transform: translateY(-5px) rotate(-1deg)
+    }
+
+    .quick-value {
+      padding: 26px 0 70px
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: #fff;
+      box-shadow: 0 16px 45px rgba(18, 48, 74, .06)
+    }
+
+    .value-item {
+      display: flex;
+      align-items: center;
+      gap: 17px;
+      padding: 27px 30px
+    }
+
+    .value-item+.value-item {
+      border-left: 1px solid var(--line)
+    }
+
+    .value-item .value-icon {
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      margin: 0;
+      border-radius: 16px;
+      color: var(--navy);
+      background: var(--yellow-soft)
+    }
+
+    .value-icon svg {
+      width: 25px;
+      height: 25px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .value-item strong,
+    .value-item div>span {
+      display: block
+    }
+
+    .value-item strong {
+      color: var(--navy);
+      font-size: 15px
+    }
+
+    .value-item div>span {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45
+    }
+
+    .section {
+      padding: 104px 0
+    }
+
+    .soft {
+      background: var(--soft)
+    }
+
+    #metodo {
+      position: relative;
+      overflow: hidden;
+      background: rgba(248, 178, 48, .12)
+    }
+
+    #metodo:before {
+      content: "";
+      position: absolute;
+      right: -150px;
+      top: -250px;
+      width: 480px;
+      height: 480px;
+      border: 95px solid rgba(18, 48, 74, .09);
+      border-radius: 50%;
+      pointer-events: none
+    }
+
+    #metodo>.container {
+      position: relative;
+      z-index: 1
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: .78fr 1.22fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 48px
+    }
+
+    .section-head h2 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(32px, 4vw, 48px);
+      line-height: 1.08;
+      letter-spacing: -.035em
+    }
+
+    .section-head p {
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7
+    }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px
+    }
+
+    .method-card {
+      position: relative;
+      min-height: 250px;
+      padding: 28px;
+      overflow: hidden;
+      isolation: isolate;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: #fff;
+      transition: .25s
+    }
+
+    .method-card>* {
+      position: relative;
+      z-index: 1
+    }
+
+    .method-card:hover {
+      transform: translateY(-5px);
+      border-color: transparent;
+      box-shadow: var(--shadow)
+    }
+
+    .method-card:nth-child(2),
+    .method-card:nth-child(5) {
+      transform: translateY(18px)
+    }
+
+    .method-card:nth-child(2):hover,
+    .method-card:nth-child(5):hover {
+      transform: translateY(13px)
+    }
+
+    .method-number {
+      color: var(--yellow);
+      font-size: 42px;
+      font-weight: 950;
+      letter-spacing: -.06em
+    }
+
+    .method-card h3 {
+      max-width: 270px;
+      margin: 20px 0 11px;
+      color: var(--navy);
+      font-size: 21px;
+      line-height: 1.2
+    }
+
+    .method-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.62
+    }
+
+    .method-card:after {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      right: -35px;
+      bottom: -35px;
+      width: 90px;
+      height: 90px;
+      border: 18px solid var(--yellow-soft);
+      border-radius: 50%;
+      pointer-events: none
+    }
+
+    .case-grid {
+      display: grid;
+      grid-template-columns: .88fr 1.12fr;
+      gap: clamp(50px, 8vw, 100px);
+      align-items: center
+    }
+
+    .case-visual {
+      position: relative;
+      min-height: 550px
+    }
+
+    .case-shape {
+      position: absolute;
+      inset: 20px 55px 20px 0;
+      border-radius: 80px 180px 90px 160px;
+      background: var(--navy)
+    }
+
+    .case-shape:after {
+      content: "";
+      position: absolute;
+      right: -38px;
+      top: 45px;
+      width: 90px;
+      height: 90px;
+      border-radius: 28px;
+      background: var(--yellow);
+      transform: rotate(13deg)
+    }
+
+    .case-panel {
+      position: absolute;
+      z-index: 2;
+      inset: 85px 12px 70px 65px;
+      padding: 30px;
+      border-radius: 25px;
+      background: #fff;
+      box-shadow: var(--shadow)
+    }
+
+    .case-panel h3 {
+      margin: 10px 0 28px;
+      color: var(--navy);
+      font-size: 22px
+    }
+
+    .flow-item {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 14px;
+      align-items: center
+    }
+
+    .flow-item+.flow-item {
+      margin-top: 17px
+    }
+
+    .flow-icon {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      color: var(--navy);
+      background: var(--yellow-soft);
+      font-weight: 950
+    }
+
+    .flow-item:nth-of-type(3) .flow-icon {
+      color: #fff;
+      background: var(--navy)
+    }
+
+    .flow-item strong,
+    .flow-item small {
+      display: block
+    }
+
+    .flow-item strong {
+      color: var(--navy);
+      font-size: 14px
+    }
+
+    .flow-item small {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 12px
+    }
+
+    .case-copy h2 {
+      max-width: 600px;
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(34px, 4.2vw, 50px);
+      line-height: 1.08;
+      letter-spacing: -.04em
+    }
+
+    .case-copy>p:not(.eyebrow) {
+      margin: 23px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7
+    }
+
+    .hypothesis {
+      margin-top: 28px;
+      padding: 23px 25px;
+      border-left: 5px solid var(--yellow);
+      border-radius: 0 16px 16px 0;
+      color: var(--navy);
+      background: var(--yellow-soft);
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.55
+    }
+
+    .hypothesis b {
+      color: #655f5b
+    }
+
+    .scope-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px
+    }
+
+    .scope-card {
+      padding: 34px;
+      border-radius: 24px
+    }
+
+    .scope-card.yes {
+      color: #fff;
+      background: var(--navy)
+    }
+
+    .scope-card.no {
+      border: 1px solid var(--line);
+      background: #fff
+    }
+
+    .scope-card h3 {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin: 0 0 22px;
+      font-size: 22px
+    }
+
+    .scope-card h3 span {
+      display: grid;
+      place-items: center;
+      width: 33px;
+      height: 33px;
+      border-radius: 50%;
+      color: var(--navy);
+      background: var(--yellow)
+    }
+
+    .scope-card ul {
+      display: grid;
+      gap: 13px;
+      margin: 0;
+      padding: 0;
+      list-style: none
+    }
+
+    .scope-card li {
+      position: relative;
+      padding-left: 22px;
+      line-height: 1.5
+    }
+
+    .scope-card li:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .6em;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--yellow)
+    }
+
+    .scope-card.no li {
+      color: var(--muted)
+    }
+
+    .scope-card.no li:before {
+      background: var(--gray)
+    }
+
+    .results {
+      position: relative;
+      overflow: hidden;
+      color: #fff;
+      background: var(--navy)
+    }
+
+    .results:before {
+      content: "";
+      position: absolute;
+      left: -150px;
+      bottom: -220px;
+      width: 480px;
+      height: 480px;
+      border: 95px solid rgba(248, 178, 48, .12);
+      border-radius: 50%
+    }
+
+    .results-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: .78fr 1.22fr;
+      gap: 90px;
+      align-items: center
+    }
+
+    .results h2 {
+      margin: 0;
+      font-size: clamp(34px, 4.2vw, 50px);
+      line-height: 1.08;
+      letter-spacing: -.04em
+    }
+
+    .results .eyebrow {
+      color: #c9d4dc
+    }
+
+    .results-copy>p:not(.eyebrow) {
+      margin: 22px 0 0;
+      color: #c5d0d8;
+      line-height: 1.7
+    }
+
+    .metric-main {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 18px;
+      padding: 34px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 25px;
+      background: rgba(255, 255, 255, .07)
+    }
+
+    .metric-main div {
+      text-align: center
+    }
+
+    .metric-main small,
+    .metric-main strong {
+      display: block
+    }
+
+    .metric-main small {
+      color: #acbdc9;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase
+    }
+
+    .metric-main strong {
+      margin-top: 8px;
+      font-size: clamp(34px, 4.5vw, 54px);
+      letter-spacing: -.04em
+    }
+
+    .metric-main b {
+      color: var(--yellow);
+      font-size: 34px
+    }
+
+    .result-mini {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 11px;
+      margin-top: 12px
+    }
+
+    .result-mini div {
+      padding: 18px;
+      border-radius: 16px;
+      background: #fff
+    }
+
+    .result-mini small,
+    .result-mini strong {
+      display: block
+    }
+
+    .result-mini small {
+      color: var(--gray);
+      font-size: 9px;
+      font-weight: 900;
+      text-transform: uppercase
+    }
+
+    .result-mini strong {
+      margin-top: 7px;
+      color: var(--navy);
+      font-size: 13px;
+      line-height: 1.35
+    }
+
+    .deliverable {
+      text-align: center
+    }
+
+    .deliverable .section-head {
+      display: block;
+      max-width: 720px;
+      margin-inline: auto
+    }
+
+    .deliverable .section-head p {
+      margin-top: 18px
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      text-align: left
+    }
+
+    .summary-item {
+      padding: 23px;
+      border: 1px solid rgba(18, 48, 74, .05);
+      border-radius: 18px;
+      background: rgba(18, 48, 74, .09)
+    }
+
+    .summary-item small {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--gray);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .09em;
+      text-transform: uppercase
+    }
+
+    .summary-item strong {
+      color: var(--navy);
+      line-height: 1.45
+    }
+
+    .final-card {
+      display: flex;
+      align-items: center;
+      gap: 35px;
+      margin-top: 42px;
+      padding: 30px 36px;
+      border-radius: 24px;
+      color: #fff;
+      background: var(--navy);
+      text-align: left
+    }
+
+    .final-icon {
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      width: 62px;
+      height: 62px;
+      border-radius: 19px;
+      color: var(--navy);
+      background: var(--yellow);
+      font-size: 23px;
+      font-weight: 950
+    }
+
+    .final-card h3 {
+      margin: 0 0 5px;
+      font-size: 23px
+    }
+
+    .final-card p {
+      margin: 0;
+      color: #c6d1d8;
+      line-height: 1.5
+    }
+
+    .final-card .button {
+      margin-left: auto;
+      white-space: nowrap
+    }
+
+    .value-item,
+    .dashboard,
+    .float-card,
+    .dash-mini,
+    .method-card,
+    .case-panel,
+    .scope-card,
+    .metric-main,
+    .result-mini div,
+    .summary-item,
+    .final-card {
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease
+    }
+
+    .footer {
+      padding: 32px 0;
+      color: #d1d9df;
+      background: #0c2235
+    }
+
+    .footer-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 13px
+    }
+
+    .footer .brand-logo {
+      width: 104px;
+      filter: brightness(0) invert(1)
+    }
+
+    .footer a:last-child {
+      margin-left: auto;
+      color: var(--yellow);
+      font-weight: 800
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .65s, transform .65s
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none
+    }
+
+    @media(hover:hover) {
+
+      .value-item:hover,
+      .float-card:hover,
+      .dash-mini:hover,
+      .method-card:hover,
+      .case-panel:hover,
+      .scope-card:hover,
+      .metric-main:hover,
+      .result-mini div:hover,
+      .summary-item:hover,
+      .final-card:hover {
+        z-index: 2;
+        transform: translateY(-5px);
+        box-shadow: var(--shadow)
+      }
+
+      .method-card:nth-child(2):hover,
+      .method-card:nth-child(5):hover {
+        transform: translateY(13px)
+      }
+
+      .dashboard:hover {
+        transform: translateY(-5px) rotate(2deg);
+        box-shadow: 0 30px 78px rgba(18, 48, 74, .17)
+      }
+    }
+
+    .case-shape,
+    .case-shape:after,
+    .case-panel {
+      transition: transform .48s cubic-bezier(.22, 1, .36, 1), box-shadow .48s ease
+    }
+
+    .flow-icon.migui-flow {
+      overflow: hidden;
+      background-color: var(--yellow-soft);
+      background-image: var(--migui-flow);
+      background-repeat: no-repeat;
+      background-size: 175%;
+      background-position: 50% 3%;
+      font-size: 0
+    }
+
+    @media(hover:hover) {
+      #ejemplo .case-visual:hover .case-shape {
+        transform: translateX(-16px)
+      }
+
+      #ejemplo .case-visual:hover .case-shape:after {
+        transform: translateX(-6px) rotate(13deg)
+      }
+
+      #ejemplo .case-visual:hover .case-panel {
+        transform: translateX(16px);
+        box-shadow: 0 30px 78px rgba(18, 48, 74, .17)
+      }
+
+      #ejemplo .case-visual:hover .case-panel:hover {
+        transform: translate(16px, -4px)
+      }
+    }
+
+    @media(max-width:900px) {
+      .nav-links {
+        display: none
+      }
+
+      .hero {
+        min-height: auto
+      }
+
+      .hero-grid,
+      .case-grid,
+      .results-grid {
+        grid-template-columns: 1fr
+      }
+
+      .hero-copy {
+        padding-top: 20px
+      }
+
+      .hero-visual {
+        width: min(590px, 100%);
+        margin: auto
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 18px
+      }
+
+      .method-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .method-card:nth-child(2),
+      .method-card:nth-child(5),
+      .method-card:nth-child(2):hover,
+      .method-card:nth-child(5):hover {
+        transform: none
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media(max-width:640px) {
+      .container {
+        width: min(100% - 24px, 1160px)
+      }
+
+      .nav-shell {
+        top: 10px
+      }
+
+      .nav {
+        min-height: 60px;
+        padding: 8px 9px 8px 15px
+      }
+
+      .nav-cta {
+        margin-left: auto;
+        min-height: 42px;
+        padding: 0 15px
+      }
+
+      .brand-logo {
+        width: 92px
+      }
+
+      .hero {
+        padding-top: 82px
+      }
+
+      .hero-visual {
+        min-height: 450px
+      }
+
+      .visual-blob {
+        inset: 38px 18px 28px
+      }
+
+      .dashboard {
+        inset: 78px 32px 67px;
+        padding: 22px
+      }
+
+      .float-card.one {
+        right: 2px
+      }
+
+      .float-card.two {
+        left: 2px
+      }
+
+      .value-grid,
+      .method-grid,
+      .scope-grid,
+      .summary-grid {
+        grid-template-columns: 1fr
+      }
+
+      .value-item+.value-item {
+        border-top: 1px solid var(--line);
+        border-left: 0
+      }
+
+      .section {
+        padding: 78px 0
+      }
+
+      .method-card {
+        min-height: auto
+      }
+
+      .case-visual {
+        min-height: 485px
+      }
+
+      .case-panel {
+        inset: 70px 8px 50px 28px;
+        padding: 23px
+      }
+
+      .case-shape {
+        right: 28px
+      }
+
+      .results-grid {
+        gap: 45px
+      }
+
+      .metric-main {
+        padding: 25px 16px;
+        gap: 8px
+      }
+
+      .result-mini {
+        grid-template-columns: 1fr
+      }
+
+      .final-card {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 18px
+      }
+
+      .final-card .button {
+        width: 100%;
+        margin: 0
+      }
+
+      .footer-row {
+        flex-wrap: wrap
+      }
+
+      .footer a:last-child {
+        width: 100%;
+        margin-left: 0
+      }
+    }
+
+    @media(max-width:640px) {
+      .brand:before {
+        width: 42px;
+        height: 42px;
+        border-radius: 13px
+      }
+
+      .migui-hero {
+        inset: 16px 0 0
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      html {
+        scroll-behavior: auto
+      }
+
+      *,
+      *:before,
+      *:after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    @media print {
+
+      .nav-shell,
+      .hero-actions,
+      .footer {
+        display: none
+      }
+
+      .hero,
+      .section {
+        min-height: 0;
+        padding: 40px 0
+      }
+
+      .hero-grid,
+      .case-grid,
+      .results-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none
+      }
+
+      .method-card,
+      .scope-card,
+      .summary-item {
+        break-inside: avoid
+      }
+    }
+
+    .advisor-icon svg {
+      width: 25px;
+      height: 25px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .nav .brand {
+      gap: 11px
+    }
+
+    .nav .brand:after {
+      content: "Migui";
+      color: var(--navy);
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -.025em;
+      line-height: 1
+    }
+
+    @media(max-width:640px) {
+      .nav .brand {
+        gap: 9px
+      }
+
+      .nav .brand:after {
+        font-size: 17px
+      }
+    }
+
+    .nav .brand:after {
+      content: none
+    }
+
+    .brand-wordmark-img {
+      display: block;
+      width: 64px;
+      height: 64px;
+      margin-left: 10px;
+      mix-blend-mode: normal;
+      object-fit: contain
+    }
+
+    @media(max-width:640px) {
+      .brand-wordmark-img {
+        width: 54px;
+        height: 54px;
+        margin-left: 8px
+      }
+    }
+  </style>
+  <style>
+    .brand-wordmark-img {
+      content: url("pulpito-migui-transparente.png");
+      mix-blend-mode: normal;
+    }
+  </style>
+  <style>
+    .brand:before {
+      background-color: transparent;
+      background-image: url("pulpito-migui-transparente.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 15px;
+    }
+  </style>
+  <style>
+    .nav .brand,
+    .nav .brand-wordmark-img {
+      display: none !important
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav-shell">
+    <nav class="nav container" aria-label="Navegación principal">
+      <a class="brand" href="#inicio" aria-label="SMART TDX"><img class="brand-logo"
+          src="smart-tdx-logo.png"
+          alt="SMART TDX"></a>
+      <img class="brand-wordmark-img"
+        src="pulpito-migui-transparente.png"
+        alt="Migui">
+      <div class="nav-links"><a href="#metodo">Método</a><a href="#ejemplo">Ejemplo</a><a href="#medicion">Medición</a>
+      </div>
+    </nav>
+  </div>
+
+  <header class="hero" id="inicio">
+    <div class="container hero-grid">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Programa Migui - Embajadores</p>
+        <h1>Convierte un reto en un <span>caso de negocio</span></h1>
+        <p>Una guía simple para definir un problema real, proponer una solución con Migui, tu asistente IA corporativo,
+          y comprobar su valor en un piloto corto.</p>
+        <div class="hero-actions"><a class="button yellow" href="#metodo">Conoce el método ↓</a><button
+            class="button ghost" type="button" onclick="window.print()">Guardar / imprimir</button></div>
+      </div>
+      <div class="hero-visual reveal" aria-label="Resumen visual de un caso de negocio">
+        <div class="visual-blob"></div>
+        <div class="migui-hero" role="img" aria-label="Migui presenta el caso de negocio"></div>
+        <article class="dashboard">
+          <div class="dash-top"><span class="dash-label">Tu caso de negocio</span><span class="status">Listo para
+              validar</span></div>
+          <h3>Respuestas comerciales con Migui</h3>
+          <p>Un reto concreto, una meta clara y un piloto controlado.</p>
+          <div class="progress" aria-label="Seis de seis pasos completados">
+            <span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="dash-row">
+            <div class="dash-mini"><small>Meta</small><strong>−50 %</strong></div>
+            <div class="dash-mini"><small>Duración</small><strong>8 semanas</strong></div>
+          </div>
+        </article>
+        <div class="float-card one"><small>Indicador</small><strong>20 min/caso</strong></div>
+        <div class="float-card two"><small>Control</small><strong>Validación humana ✓</strong></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="quick-value" aria-label="Principios del caso de negocio">
+    <div class="container value-grid reveal">
+      <div class="value-item"><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="8"></circle>
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M15 9l5-5m0 0v4m0-4h-4"></path>
+          </svg></span>
+        <div><strong>Un reto concreto</strong><span>Evita resolver todo el proceso a la vez.</span></div>
+      </div>
+      <div class="value-item"><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24">
+            <path d="M4 19V9m6 10V5m6 14v-7m4 7H2"></path>
+            <path d="M4 7l5-4 6 5 5-4"></path>
+          </svg></span>
+        <div><strong>Una mejora medible</strong><span>Compara el resultado contra una línea base.</span></div>
+      </div>
+      <div class="value-item"><span class="value-icon" aria-hidden="true"><svg viewBox="0 0 24 24">
+            <circle cx="12" cy="13" r="8"></circle>
+            <path d="M9 2h6M12 5v3m5.5-.5 1.5-1.5M12 13l3-2"></path>
+          </svg></span>
+        <div><strong>Un piloto corto</strong><span>Aprende y ajusta antes de escalar.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="section soft" id="metodo">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Método práctico</p>
+            <h2>Seis preguntas. Una decisión clara.</h2>
+          </div>
+          <p>Cada respuesta debe ser breve y verificable. Al terminar tendrás lo necesario para decidir si el reto
+            merece un piloto.</p>
+        </div>
+        <div class="method-grid">
+          <article class="method-card reveal"><span class="method-number">01</span>
+            <h3>¿Qué problema quiero resolver?</h3>
+            <p>Elige una actividad que genere demora, errores o trabajo manual.</p>
+          </article>
+          <article class="method-card reveal"><span class="method-number">02</span>
+            <h3>¿Cómo estamos hoy?</h3>
+            <p>Define la línea base con dos o tres datos confiables.</p>
+          </article>
+          <article class="method-card reveal"><span class="method-number">03</span>
+            <h3>¿Cómo puede ayudar Migui?</h3>
+            <p>Describe el apoyo esperado sin tecnicismos y con supervisión humana.</p>
+          </article>
+          <article class="method-card reveal"><span class="method-number">04</span>
+            <h3>¿Qué resultado espero?</h3>
+            <p>Plantea una mejora cuantificable y una condición de calidad.</p>
+          </article>
+          <article class="method-card reveal"><span class="method-number">05</span>
+            <h3>¿Qué voy a implementar?</h3>
+            <p>Delimita personas, casos, información y duración del piloto.</p>
+          </article>
+          <article class="method-card reveal"><span class="method-number">06</span>
+            <h3>¿Cómo demostraré que funcionó?</h3>
+            <p>Acuerda indicador, meta y evidencia antes de comenzar.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ejemplo">
+      <div class="container case-grid">
+        <div class="case-visual reveal" aria-label="Flujo del ejemplo comercial">
+          <div class="case-shape"></div>
+          <article class="case-panel"><span class="dash-label">Ejemplo comercial</span>
+            <h3>De la consulta a una respuesta validada</h3>
+            <div class="flow-item"><span class="flow-icon advisor-icon" role="img" aria-label="Asesor"><svg
+                  viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="7" r="3.4"></circle>
+                  <path d="M5.5 19.5c.5-4 2.8-6.2 6.5-6.2s6 2.2 6.5 6.2"></path>
+                  <path d="M9.8 14.1 12 17l2.2-2.9M12 17v2.5"></path>
+                </svg></span>
+              <div><strong>El asesor plantea el caso</strong><small>Pregunta u objeción seleccionada</small></div>
+            </div>
+            <div class="flow-item"><span class="flow-icon migui-flow" role="img" aria-label="Migui"></span>
+              <div><strong>Migui crea un borrador</strong><small>Usa información comercial validada</small></div>
+            </div>
+            <div class="flow-item"><span class="flow-icon">✓</span>
+              <div><strong>El asesor revisa y decide</strong><small>La respuesta nunca sale automáticamente</small>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="case-copy reveal">
+          <p class="eyebrow">Caso aplicado</p>
+          <h2>Preparar respuestas comerciales en la mitad del tiempo</h2>
+          <p>Hoy los asesores consultan información, organizan argumentos y responden objeciones de forma manual. El
+            proceso tarda en promedio <strong>40 minutos por caso</strong> y la calidad varía.</p>
+          <div class="hypothesis"><b>Hipótesis:</b> si Migui prepara una primera versión con información validada, el
+            tiempo puede bajar de 40 a 20 minutos, manteniendo la calidad y la revisión del asesor.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="alcance">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Alcance del piloto</p>
+            <h2>Empezar pequeño también es avanzar.</h2>
+          </div>
+          <p>Durante ocho semanas se probará la idea con límites claros. Esto reduce el riesgo y permite aprender antes
+            de integrar o automatizar.</p>
+        </div>
+        <div class="scope-grid">
+          <article class="scope-card yes reveal">
+            <h3><span>✓</span>El piloto incluye</h3>
+            <ul>
+              <li>Un grupo definido de asesores</li>
+              <li>Preguntas y objeciones seleccionadas</li>
+              <li>Información comercial previamente validada</li>
+              <li>Borrador de Migui con revisión final humana</li>
+            </ul>
+          </article>
+          <article class="scope-card no reveal">
+            <h3><span>×</span>Por ahora, no incluye</h3>
+            <ul>
+              <li>Respuestas automáticas al cliente</li>
+              <li>Integraciones o cambios en Salesforce</li>
+              <li>Automatización completa del proceso</li>
+              <li>Decisiones comerciales autónomas</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section results" id="medicion">
+      <div class="container results-grid">
+        <div class="results-copy reveal">
+          <p class="eyebrow">Medición del valor</p>
+          <h2>El antes y el después cuentan la historia.</h2>
+          <p>El piloto funciona si reduce el tiempo sin deteriorar la calidad de las respuestas.</p>
+        </div>
+        <div class="results-data reveal">
+          <div class="metric-main">
+            <div><small>Línea base</small><strong>40 min</strong></div><b>→</b>
+            <div><small>Meta</small><strong>20 min</strong></div>
+          </div>
+          <div class="result-mini">
+            <div><small>Indicador</small><strong>Tiempo promedio por caso</strong></div>
+            <div><small>Calidad</small><strong>% aprobado sin ajustes mayores</strong></div>
+            <div><small>Evidencia</small><strong>Tiempos + muestra de respuestas</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section deliverable" id="entregable">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow">Entregable final</p>
+          <h2>Todo debe estar en una página.</h2>
+          <p>Si una persona puede entender el reto, la propuesta y la forma de medirla en pocos minutos, el caso está
+            listo para conversar.</p>
+        </div>
+        <div class="summary-grid">
+          <div class="summary-item reveal"><small>Reto</small><strong>Preparación de respuestas comerciales</strong>
+          </div>
+          <div class="summary-item reveal"><small>Problema</small><strong>40 minutos y calidad variable</strong></div>
+          <div class="summary-item reveal"><small>Solución</small><strong>Borrador de Migui validado por el
+              asesor</strong></div>
+          <div class="summary-item reveal"><small>Meta</small><strong>Reducir el tiempo en 50 %</strong></div>
+          <div class="summary-item reveal"><small>Alcance</small><strong>Grupo controlado durante 8 semanas</strong>
+          </div>
+          <div class="summary-item reveal"><small>Éxito</small><strong>20 minutos o menos, sin perder calidad</strong>
+          </div>
+        </div>
+        <div class="final-card reveal"><span class="final-icon">✓</span>
+          <div>
+            <h3>Claro, pequeño y medible</h3>
+            <p>Ese es el punto de partida de un buen caso de negocio con Migui.</p>
+          </div><button class="button yellow" type="button" onclick="window.print()">Guardar esta guía</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row"><a class="brand" href="#inicio" aria-label="SMART TDX"><img class="brand-logo"
+          src="smart-tdx-logo.png"
+          alt="SMART TDX"></a><span>Programa Migui - Embajadores</span><a href="#inicio">Volver arriba ↑</a></div>
+  </footer>
+  <script>
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target) } }), { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+  </script>
+</body>
+
+</html>
