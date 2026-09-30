@@ -1,0 +1,1340 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roadmap de Embajadores SmartIA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #12304a;
+      --navy-2: #1d4563;
+      --ink: #142333;
+      --muted: #697580;
+      --yellow: #f8b230;
+      --yellow-soft: #fff3d7;
+      --soft: #f7f8f7;
+      --white: #fff;
+      --line: #e7e9e8;
+      --shadow: 0 24px 70px rgba(18, 48, 74, .12);
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: var(--soft);
+      color: var(--ink);
+      font-family: "Poppins", system-ui, sans-serif
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(126deg, #0f2b43 0%, #17415f 62%, #1d506f 100%);
+      color: #fff
+    }
+
+    .hero:before {
+      content: "";
+      position: absolute;
+      width: 520px;
+      height: 520px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 50%;
+      right: -150px;
+      top: -300px;
+      box-shadow: 0 0 0 72px rgba(255, 255, 255, .025), 0 0 0 144px rgba(255, 255, 255, .018)
+    }
+
+    .hero:after {
+      content: "";
+      position: absolute;
+      width: 310px;
+      height: 310px;
+      border-radius: 50%;
+      right: 13%;
+      bottom: -250px;
+      background: var(--yellow);
+      filter: blur(1px);
+      opacity: .16
+    }
+
+    .wrap {
+      width: min(1160px, calc(100% - 40px));
+      margin: auto
+    }
+
+    .nav {
+      height: 84px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px
+    }
+
+    .brand img {
+      width: 132px;
+      height: auto;
+      filter: brightness(0) invert(1)
+    }
+
+    .brand span {
+      height: 28px;
+      width: 1px;
+      background: rgba(255, 255, 255, .28)
+    }
+
+    .brand strong {
+      font-size: 12px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #dce8ef
+    }
+
+    .wave {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 9px 14px;
+      border: 1px solid rgba(255, 255, 255, .25);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .08)
+    }
+
+    .hero-grid {
+      min-height: 460px;
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      align-items: center;
+      gap: 48px;
+      padding: 54px 0 76px;
+      position: relative;
+      z-index: 1
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: #ffd36f;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .16em
+    }
+
+    .eyebrow:before {
+      content: "";
+      width: 34px;
+      height: 3px;
+      background: var(--yellow);
+      border-radius: 99px
+    }
+
+    h1 {
+      font-size: clamp(40px, 5.3vw, 72px);
+      line-height: 1.03;
+      letter-spacing: -.045em;
+      margin: 18px 0 20px;
+      max-width: 820px
+    }
+
+    .lead {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #d4e0e7;
+      max-width: 720px;
+      margin: 0
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 34px
+    }
+
+    .meta {
+      padding: 13px 17px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .09);
+      border: 1px solid rgba(255, 255, 255, .16)
+    }
+
+    .meta b {
+      display: block;
+      font-size: 18px
+    }
+
+    .meta small {
+      color: #c7d7e1
+    }
+
+    .mascot {
+      justify-self: end;
+      position: relative;
+      width: min(330px, 100%);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #ffc54b, #f7a91f);
+      border-radius: 42% 58% 55% 45% / 46% 43% 57% 54%;
+      box-shadow: 0 32px 70px rgba(2, 16, 28, .3)
+    }
+
+    .mascot img {
+      width: 72%;
+      height: 72%;
+      object-fit: contain;
+      image-rendering: auto;
+      filter: drop-shadow(0 20px 22px rgba(18, 48, 74, .22))
+    }
+
+    .mascot:after {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border: 1px solid rgba(255, 255, 255, .36);
+      border-radius: inherit
+    }
+
+    main {
+      padding: 74px 0 90px
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 34px;
+      align-items: end;
+      margin-bottom: 36px
+    }
+
+    .section-head h2 {
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.12;
+      letter-spacing: -.035em;
+      margin: 8px 0
+    }
+
+    .section-head p {
+      max-width: 520px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin: 0
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 18px
+    }
+
+    .timeline:before {
+      content: "";
+      position: absolute;
+      left: 41px;
+      top: 48px;
+      bottom: 48px;
+      width: 2px;
+      background: linear-gradient(var(--yellow), #dce5e9 14%, #dce5e9 86%, var(--yellow))
+    }
+
+    .step {
+      position: relative;
+      display: grid;
+      grid-template-columns: 84px 1fr;
+      gap: 22px;
+      align-items: stretch
+    }
+
+    .num {
+      position: relative;
+      z-index: 1;
+      width: 52px;
+      height: 52px;
+      margin: 25px auto 0;
+      display: grid;
+      place-items: center;
+      border-radius: 17px;
+      background: var(--white);
+      border: 2px solid #d9e2e7;
+      color: var(--navy);
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 9px 20px rgba(18, 48, 74, .08)
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 26px 28px;
+      box-shadow: 0 10px 30px rgba(18, 48, 74, .055);
+      display: grid;
+      grid-template-columns: 1.05fr 1.45fr 1.25fr;
+      gap: 30px;
+      align-items: start;
+      transition: .25s ease
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: #d8e1e6
+    }
+
+    .date {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--navy-2);
+      font-size: 12px;
+      font-weight: 700
+    }
+
+    .date:before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--yellow);
+      box-shadow: 0 0 0 5px var(--yellow-soft)
+    }
+
+    .phase h3 {
+      margin: 12px 0 0;
+      font-size: 20px;
+      line-height: 1.3;
+      color: var(--navy)
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 8px;
+      color: #8a969f;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase
+    }
+
+    .card p {
+      margin: 0;
+      color: #536270;
+      font-size: 13px;
+      line-height: 1.65
+    }
+
+    .result {
+      background: #f6f9fa;
+      border-radius: 15px;
+      padding: 15px 17px;
+      border-left: 3px solid var(--yellow)
+    }
+
+    .result p {
+      color: #243949;
+      font-weight: 600
+    }
+
+    .step.final .num {
+      background: var(--yellow);
+      border-color: var(--yellow);
+      color: var(--navy)
+    }
+
+    .step.final .card {
+      background: linear-gradient(120deg, var(--navy), var(--navy-2));
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 22px 54px rgba(18, 48, 74, .23)
+    }
+
+    .step.final .phase h3,
+    .step.final .date {
+      color: #fff
+    }
+
+    .step.final .card p {
+      color: #dce6ec
+    }
+
+    .step.final .label {
+      color: #ffd36f
+    }
+
+    .step.final .result {
+      background: rgba(255, 255, 255, .09);
+      border-color: var(--yellow)
+    }
+
+    .step.final .result p {
+      color: #fff
+    }
+
+    .closing {
+      margin-top: 54px;
+      background: var(--yellow-soft);
+      border: 1px solid #f4d99d;
+      border-radius: 28px;
+      padding: 30px 34px;
+      display: flex;
+      align-items: center;
+      gap: 22px
+    }
+
+    .closing img {
+      width: 76px;
+      height: 76px;
+      border-radius: 22px
+    }
+
+    .closing h3 {
+      margin: 0 0 5px;
+      color: var(--navy);
+      font-size: 22px
+    }
+
+    .closing p {
+      margin: 0;
+      color: #655f5b;
+      line-height: 1.55
+    }
+
+    footer {
+      padding: 28px 0 36px;
+      color: #7b878f;
+      font-size: 12px
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      border-top: 1px solid #dce2e5;
+      padding-top: 24px
+    }
+
+    .footer-inner img {
+      width: 110px;
+      height: auto
+    }
+
+    @media(max-width:900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        padding-top: 30px
+      }
+
+      .mascot {
+        justify-self: start;
+        width: 220px
+      }
+
+      .card {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .result {
+        grid-column: 1/-1
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column
+      }
+    }
+
+    @media(max-width:640px) {
+      .wrap {
+        width: min(100% - 24px, 1160px)
+      }
+
+      .nav {
+        height: 72px
+      }
+
+      .brand strong,
+      .brand span {
+        display: none
+      }
+
+      .hero-grid {
+        padding-bottom: 52px
+      }
+
+      .mascot {
+        width: 180px;
+        border-radius: 36px
+      }
+
+      .timeline:before {
+        left: 24px
+      }
+
+      .step {
+        grid-template-columns: 50px 1fr;
+        gap: 10px
+      }
+
+      .num {
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        margin-top: 20px
+      }
+
+      .card {
+        grid-template-columns: 1fr;
+        padding: 21px;
+        gap: 20px
+      }
+
+      .result {
+        grid-column: auto
+      }
+
+      .closing {
+        align-items: flex-start;
+        padding: 24px
+      }
+
+      .closing img {
+        width: 56px;
+        height: 56px
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff
+      }
+
+      .hero {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact
+      }
+
+      .card,
+      .step.final .card {
+        break-inside: avoid;
+        box-shadow: none
+      }
+
+      .card:hover {
+        transform: none
+      }
+
+      main {
+        padding-top: 40px
+      }
+    }
+
+    .tracker {
+      margin: 70px 0 10px;
+      padding: clamp(24px, 4vw, 46px);
+      border-radius: 30px;
+      color: #fff;
+      background: linear-gradient(135deg, #0f2b43, #1b4d6c);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .tracker:after {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      right: -150px;
+      top: -170px;
+      background: rgba(248, 178, 48, .15);
+    }
+
+    .tracker-head,
+    .tracker-controls,
+    .tracker-stage,
+    .tracker-summary {
+      position: relative;
+      z-index: 1;
+    }
+
+    .tracker-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      align-items: end;
+    }
+
+    .tracker-head h2 {
+      margin: 7px 0 0;
+      font-size: clamp(26px, 3.4vw, 42px);
+      line-height: 1.12;
+    }
+
+    .tracker-head p {
+      color: #cbd9e2;
+      max-width: 480px;
+      margin: 0;
+      line-height: 1.65;
+    }
+
+    .tracker-controls {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto auto;
+      gap: 12px;
+    }
+
+    .tracker select,
+    .tracker button {
+      min-height: 48px;
+      border-radius: 13px;
+      font: inherit;
+      font-weight: 700;
+    }
+
+    .tracker select {
+      padding: 0 15px;
+      color: var(--ink);
+      background: #fff;
+      border: 1px solid rgba(255, 255, 255, .3);
+    }
+
+    .tracker button {
+      padding: 0 19px;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, .24);
+      color: #fff;
+      background: rgba(255, 255, 255, .08);
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .tracker button.primary {
+      color: #132f47;
+      border-color: var(--yellow);
+      background: var(--yellow);
+    }
+
+    .tracker button:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+
+    .tracker button:disabled {
+      opacity: .42;
+      cursor: not-allowed;
+    }
+
+    .tracker-stage {
+      margin-top: 42px;
+      padding: 76px 2px 34px;
+      overflow-x: auto;
+      scrollbar-color: var(--yellow) rgba(255, 255, 255, .1);
+    }
+
+    .journey {
+      min-width: 920px;
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      position: relative;
+    }
+
+    .journey:before,
+    .journey-progress {
+      content: "";
+      position: absolute;
+      top: 12px;
+      left: 5%;
+      height: 5px;
+      border-radius: 99px;
+    }
+
+    .journey:before {
+      width: 90%;
+      background: rgba(255, 255, 255, .2);
+    }
+
+    .journey-progress {
+      width: 0;
+      background: var(--yellow);
+      transition: width .65s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .journey-person {
+      position: absolute;
+      top: -67px;
+      left: 5%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 0;
+      transition: left .65s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .journey-person .migui {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 12px rgba(0, 0, 0, .2));
+      position: relative;
+      z-index: 3;
+      transition: transform .28s ease;
+    }
+
+    .tentacle {
+      width: 30px;
+      height: 15px;
+      margin-left: -12px;
+      margin-right: -5px;
+      border: 6px solid #173d68;
+      border-left: 0;
+      border-bottom-color: #f5f0e9;
+      border-radius: 0 22px 22px 0;
+      transform: rotate(8deg);
+      transform-origin: left center;
+      transition: width .3s ease, transform .3s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    .collaborator-avatar {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 3px solid var(--yellow);
+      background: #fff;
+      font-size: 27px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, .2);
+      position: relative;
+      z-index: 4;
+      transition: transform .3s ease;
+    }
+
+    .journey-person.pushing .migui {
+      transform: translateX(10px) rotate(7deg) scale(1.04);
+    }
+
+    .journey-person.pushing .tentacle {
+      width: 60px;
+      transform: rotate(1deg) scaleY(1.12);
+    }
+
+    .journey-person.pushing .collaborator-avatar {
+      transform: translateX(14px) scale(1.06);
+    }
+
+    .journey-point {
+      text-align: center;
+      position: relative;
+      padding: 38px 7px 0;
+      color: #9eb2c0;
+      font-size: 10px;
+      line-height: 1.35;
+      transition: color .3s ease;
+    }
+
+    .journey-point:before {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      top: 5px;
+      left: calc(50% - 9px);
+      border-radius: 50%;
+      background: #567287;
+      border: 4px solid #173d59;
+      transition: background .3s ease, transform .3s ease;
+    }
+
+    .journey-point.done,
+    .journey-point.active {
+      color: #fff;
+    }
+
+    .journey-point.done:before,
+    .journey-point.active:before {
+      background: var(--yellow);
+    }
+
+    .journey-point.active:before {
+      transform: scale(1.35);
+      box-shadow: 0 0 0 7px rgba(248, 178, 48, .18);
+    }
+
+    .tracker-summary {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .07);
+    }
+
+    .tracker-summary .stage-number {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      color: #15344c;
+      background: var(--yellow);
+      font-weight: 800;
+    }
+
+    .tracker-summary h3,
+    .tracker-summary p {
+      margin: 0;
+    }
+
+    .tracker-summary p {
+      margin-top: 4px;
+      color: #cbd9e2;
+      font-size: 13px;
+    }
+
+    .tracker-summary .progress-copy {
+      color: #ffd36f;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    /* Versión limpia: Migui recorre solo la línea del roadmap */
+    .tracker-controls {
+      grid-template-columns: minmax(260px, 1fr) auto auto;
+      max-width: none;
+      margin-left: 0;
+    }
+
+    .tracker-controls label,
+    .journey-person .tentacle,
+    .journey-person .collaborator-avatar {
+      display: none;
+    }
+
+    .tracker-controls select {
+      display: block;
+    }
+
+    .tracker-editor {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 14px;
+      align-items: end;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, .13);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, .07);
+      position: relative;
+      z-index: 1;
+    }
+
+    .tracker-field {
+      display: grid;
+      gap: 7px;
+      color: #dce8ef;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .tracker-field select,
+    .tracker-field textarea {
+      width: 100%;
+      min-height: 48px;
+      padding: 11px 14px;
+      border: 1px solid rgba(255, 255, 255, .3);
+      border-radius: 13px;
+      background: #fff;
+      color: var(--ink);
+      font: inherit;
+      resize: vertical;
+    }
+
+    .tracker-field textarea {
+      min-height: 96px;
+      box-sizing: border-box;
+      resize: none;
+    }
+
+    .project-readout {
+      display: grid;
+      gap: 7px;
+      color: #dce8ef;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .project-readout p {
+      margin: 0;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 11px 14px;
+      border: 1px solid rgba(255, 255, 255, .3);
+      border-radius: 13px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .save-progress {
+      min-height: 48px;
+      padding: 0 20px;
+      border: 0;
+      border-radius: 13px;
+      background: var(--yellow);
+      color: #132f47;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .save-progress:disabled {
+      opacity: .55;
+      cursor: wait;
+    }
+
+    .save-message {
+      grid-column: 1 / -1;
+      min-height: 20px;
+      margin: 0;
+      color: #ffd36f;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .journey-person {
+      top: -76px;
+      min-width: 76px;
+      justify-content: center;
+    }
+
+    .journey-person .migui {
+      width: 76px;
+      height: 76px;
+    }
+
+    .journey-person.pushing .migui {
+      animation: miguiHop .65s ease-in-out;
+    }
+
+    @keyframes miguiHop {
+      0% {
+        transform: translateY(0) rotate(0) scale(1);
+      }
+
+      35% {
+        transform: translateY(-13px) rotate(7deg) scale(1.06);
+      }
+
+      70% {
+        transform: translateY(-5px) rotate(-4deg) scale(.98, 1.04);
+      }
+
+      100% {
+        transform: translateY(0) rotate(0) scale(1);
+      }
+    }
+
+    @media(max-width:760px) {
+
+      .tracker-head,
+      .tracker-summary {
+        grid-template-columns: 1fr;
+        display: grid;
+        align-items: start;
+      }
+
+      .tracker-controls {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .tracker-controls select {
+        grid-column: 1 / -1;
+      }
+
+      .tracker-editor {
+        grid-template-columns: 1fr;
+      }
+
+      .save-message {
+        grid-column: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <nav class="nav">
+        <div class="brand"><img src="assets/reference-03.png" alt="Migui"><span></span><strong>SmartIA</strong></div>
+        <div class="wave">ciclo 1 · 2026</div>
+      </nav>
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Ruta de ejecución</div>
+          <h1>Roadmap de Embajadores SmartIA</h1>
+          <p class="lead">Un recorrido práctico para convertir oportunidades del negocio en soluciones validadas,
+            medibles y listas para generar valor en Smart.</p>
+          <div class="hero-meta">
+            <div class="meta"><b>10 hitos</b><small>de formación a resultados</small></div>
+            <div class="meta"><b>28 sep. — 11 dic.</b><small>ciclo completo de la Ola 1</small></div>
+            <div class="meta"><b>1 caso por embajador </b><small>con evidencia de impacto</small></div>
+          </div>
+        </div>
+        <div class="mascot"><img src="assets/pulpito-migui-transparente.png" alt="Pulpito Migui, asistente de SmartIA">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="section-head">
+        <div>
+          <div class="eyebrow" style="color:var(--navy-2)">Del reto al resultado</div>
+          <h2>Una ruta clara, un entregable por etapa</h2>
+        </div>
+        <p>Cada fase reduce incertidumbre y acerca el caso a una decisión: continuar, ajustar o detener antes de
+          invertir más tiempo.</p>
+      </section>
+
+      <section class="timeline" aria-label="Cronograma del programa de embajadores">
+        <article class="step">
+          <div class="num">01</div>
+          <div class="card">
+            <div class="phase"><span class="date">28 de septiembre al 2 de octubre</span>
+              <h3>Kick-off + Formación</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>Lanzamiento formal del programa: reglas, roles, política de IA, metodología y presentación del reto.
+              </p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>El embajador y el lider comprende qué debe entregar, cómo será medido y cuáles son las fechas clave.
+              </p>
+            </div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="num">02</div>
+          <div class="card">
+            <div class="phase"><span class="date">5 al 9 de octubre</span>
+              <h3>Caso de negocio</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>Taller práctico y trabajo del área sobre el problema, línea base, hipótesis, alcance, indicador y meta.
+              </p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>Caso de negocio de una página listo para presentar.</p>
+            </div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="num">03</div>
+          <div class="card">
+            <div class="phase"><span class="date">9 al 16 de octubre</span>
+              <h3>Presentación del Caso de negocio</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>Cada embajador presenta su caso ante TDX y el sponsor; recibe retroalimentación y una decisión.</p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>Caso aprobado, enviado a ajustes o pospuesto.</p>
+            </div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="num">04</div>
+          <div class="card">
+            <div class="phase"><span class="date">19 al 23 de octubre</span>
+              <h3>Diseño de solución</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>Definir funcionamiento, fuentes, prompts, usuarios, criterios de aceptación y riesgos.</p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>Diseño funcional aprobado.</p>
+            </div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="num">05</div>
+          <div class="card">
+            <div class="phase"><span class="date">26 de octubre al 6 de noviembre</span>
+              <h3>Construcción</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>Configuración, preparación de información, primeras pruebas y ajustes.</p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>Primera versión funcional del caso.</p>
+            </div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="num">06</div>
+          <div class="card">
+            <div class="phase"><span class="date">9 al 13 de noviembre</span>
+              <h3>Pruebas internas</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>El embajador y su equipo prueban la solución con escenarios reales del proceso.</p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>Defectos, oportunidades y ajustes identificados.</p>
+            </div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="num">07</div>
+          <div class="card">
+            <div class="phase"><span class="date">16 al 20 de noviembre</span>
+              <h3>Validación con usuarios</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>Los usuarios del proceso utilizan la solución y se mide el resultado obtenido.</p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>Evidencia real y ajustes finales priorizados.</p>
+            </div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="num">08</div>
+          <div class="card">
+            <div class="phase"><span class="date">23 al 27 de noviembre</span>
+              <h3>Implementación</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>El caso se incorpora al proceso real del área con acompañamiento y seguimiento.</p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>Solución implementada en operación.</p>
+            </div>
+          </div>
+        </article>
+        <article class="step">
+          <div class="num">09</div>
+          <div class="card">
+            <div class="phase"><span class="date">30 de noviembre al 4 de diciembre</span>
+              <h3>Medición + Demo final</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>Comparar el antes y el después, beneficios, aprendizajes y decisión de continuidad.</p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>Caso cerrado con resultados y recomendación.</p>
+            </div>
+          </div>
+        </article>
+        <article class="step final">
+          <div class="num">10</div>
+          <div class="card">
+            <div class="phase"><span class="date">7 al 11 de diciembre</span>
+              <h3>Resultados, reconocimientos y Ciclo 2</h3>
+            </div>
+            <div><span class="label">Actividad principal</span>
+              <p>Presentar resultados, reconocer a los embajadores con mayor desempeño e impacto favorable y activar la
+                rotación.</p>
+            </div>
+            <div class="result"><span class="label">Resultado esperado</span>
+              <p>Reconocimientos entregados, aprendizajes compartidos e inicio de la Ciclo 2 con nuevos embajadores.</p>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <aside class="closing"><img src="assets/pulpito-migui-transparente.png" alt="Pulpito Migui de SmartIA">
+        <div>
+          <h3>El cierre de una ciclo abre la siguiente.</h3>
+          <p>La demostración final no es solo una entrega: convierte los aprendizajes de la ciclo 1 en mejores
+            decisiones,
+            nuevos referentes y un punto de partida más sólido para la ciclo 2.</p>
+        </div>
+      </aside>
+
+      <section class="tracker" id="seguimiento" aria-labelledby="tracker-title">
+        <div class="tracker-head">
+          <div>
+            <span class="eyebrow">Seguimiento visual</span>
+            <h2 id="tracker-title">El recorrido de cada embajador</h2>
+          </div>
+          <p>Consulta el avance registrado para cada embajador. La información se administra directamente desde el
+            archivo de seguimiento.</p>
+        </div>
+
+        <div class="tracker-controls">
+          <label for="collaborator" style="position:absolute;left:-9999px">Seleccionar colaborador</label>
+          <select id="collaborator" aria-label="Seleccionar colaborador">
+            <option value="">Cargando embajadores...</option>
+          </select>
+        </div>
+
+        <div class="tracker-stage" aria-live="polite">
+          <div class="journey">
+            <div class="journey-progress" id="journey-progress"></div>
+            <div class="journey-person" id="journey-person">
+              <img class="migui" src="assets/pulpito-migui-transparente.png" alt="Migui acompañando al colaborador">
+              <span class="tentacle" aria-hidden="true"></span>
+              <span class="collaborator-avatar" id="collaborator-avatar"
+                aria-label="Avatar de Colaborador X">👨🏽‍💼</span>
+            </div>
+            <div class="journey-point active">Kick-off</div>
+            <div class="journey-point">Caso de negocio</div>
+            <div class="journey-point">Presentación</div>
+            <div class="journey-point">Diseño</div>
+            <div class="journey-point">Construcción</div>
+            <div class="journey-point">Pruebas</div>
+            <div class="journey-point">Validación</div>
+            <div class="journey-point">Implementación</div>
+            <div class="journey-point">Medición</div>
+            <div class="journey-point">Resultados</div>
+          </div>
+        </div>
+
+        <div class="tracker-summary">
+          <span class="stage-number" id="stage-number">01</span>
+          <div>
+            <h3 id="stage-title">Kick-off + Formación</h3>
+            <p id="stage-date">28 de septiembre al 2 de octubre</p>
+          </div>
+          <span class="progress-copy" id="progress-copy">Etapa 1 de 10</span>
+        </div>
+
+        <div class="tracker-editor">
+          <div class="project-readout">
+            <span>Proyecto</span>
+            <p id="ambassador-project">Sin proyecto registrado</p>
+          </div>
+          <label class="tracker-field" for="ambassador-notes">Observaciones
+            <textarea id="ambassador-notes" readonly placeholder="Sin observaciones registradas"></textarea>
+          </label>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner"><span>Programa de Embajadores SmartIA · Roadmap ejecutivo</span><img
+        src="assets/reference-05.png" alt="Smart TDX"></div>
+  </footer>
+  <script>
+    (() => {
+      const API_URL = "https://script.google.com/macros/s/AKfycbziaxrdPgl6OoGg1I51RIdUO5RSK6iWgEHY7zDm7-zGASoMi38r3pjaOJxf0y0lhaqX/exec";
+      const stages = [
+        ["Kick-off + Formación", "28 de septiembre al 2 de octubre"],
+        ["Caso de negocio", "5 al 9 de octubre"],
+        ["Presentación del caso de negocio", "9 al 16 de octubre"],
+        ["Diseño de solución", "19 al 23 de octubre"],
+        ["Construcción", "26 de octubre al 6 de noviembre"],
+        ["Pruebas internas", "9 al 13 de noviembre"],
+        ["Validación con usuarios", "16 al 20 de noviembre"],
+        ["Implementación", "23 al 27 de noviembre"],
+        ["Medición + Demo final", "30 de noviembre al 4 de diciembre"],
+        ["Resultados, reconocimientos y Ciclo 2", "7 al 11 de diciembre"]
+      ];
+      let current = 0;
+      let ambassadors = [];
+      let selectedAmbassador = null;
+      const person = document.getElementById("journey-person");
+      const bar = document.getElementById("journey-progress");
+      const points = [...document.querySelectorAll(".journey-point")];
+      const collaborator = document.getElementById("collaborator");
+      const projectField = document.getElementById("ambassador-project");
+      const notesField = document.getElementById("ambassador-notes");
+
+      function render() {
+        const percentage = current / (stages.length - 1) * 90;
+        person.style.left = `${5 + percentage}%`;
+        bar.style.width = `${percentage}%`;
+        points.forEach((point, index) => {
+          point.classList.toggle("done", index < current);
+          point.classList.toggle("active", index === current);
+        });
+        document.getElementById("stage-number").textContent = String(current + 1).padStart(2, "0");
+        document.getElementById("stage-title").textContent = stages[current][0];
+        document.getElementById("stage-date").textContent = stages[current][1];
+        document.getElementById("progress-copy").textContent = `Etapa ${current + 1} de ${stages.length}`;
+      }
+
+      function selectAmbassador(id) {
+        selectedAmbassador = ambassadors.find(item => item.embajador_id === id) || ambassadors[0] || null;
+        if (!selectedAmbassador) return;
+        collaborator.value = selectedAmbassador.embajador_id;
+        const savedStage = Number(selectedAmbassador.etapa_actual) || 1;
+        current = Math.max(0, Math.min(stages.length - 1, savedStage - 1));
+        projectField.textContent = selectedAmbassador.proyecto || selectedAmbassador.Proyecto || "Sin proyecto registrado";
+        notesField.value = selectedAmbassador.observaciones || "";
+        render();
+      }
+
+      function loadAmbassadors() {
+        const previousScript = document.getElementById("ambassadors-jsonp");
+        if (previousScript) previousScript.remove();
+        const script = document.createElement("script");
+        script.id = "ambassadors-jsonp";
+        script.src = `${API_URL}?callback=recibirEmbajadores&_=${Date.now()}`;
+        script.onerror = () => {
+          console.warn("No fue posible conectar con el registro de embajadores.");
+        };
+        document.body.appendChild(script);
+      }
+
+      window.recibirEmbajadores = data => {
+        if (!data || !data.ok) {
+          console.warn(data && data.error ? data.error : "No fue posible cargar los datos.");
+          return;
+        }
+        const selectedId = selectedAmbassador ? selectedAmbassador.embajador_id : collaborator.value;
+        ambassadors = data.embajadores || [];
+        collaborator.innerHTML = "";
+        ambassadors.forEach(item => {
+          const option = document.createElement("option");
+          option.value = item.embajador_id;
+          option.textContent = item.nombre;
+          collaborator.appendChild(option);
+        });
+        collaborator.disabled = ambassadors.length === 0;
+        selectAmbassador(selectedId || (ambassadors[0] && ambassadors[0].embajador_id));
+      };
+      collaborator.addEventListener("change", () => selectAmbassador(collaborator.value));
+      render();
+      loadAmbassadors();
+    })();
+  </script>
+</body>
+
+</html>
