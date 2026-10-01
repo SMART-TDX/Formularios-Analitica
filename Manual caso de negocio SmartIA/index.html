@@ -1433,6 +1433,105 @@
       display: none !important
     }
   </style>
+  <style>
+    .resources {
+      padding: 76px 0;
+      background: var(--soft);
+    }
+
+    .resources-head {
+      max-width: 760px;
+      margin-bottom: 30px;
+    }
+
+    .resources-head h2 {
+      margin: 8px 0;
+      color: var(--navy);
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.12;
+    }
+
+    .resources-head p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .resource-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 300px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .resource-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .resource-number {
+      display: grid;
+      width: 50px;
+      height: 50px;
+      margin-bottom: 20px;
+      place-items: center;
+      border-radius: 15px;
+      color: var(--navy);
+      background: var(--yellow);
+      font-weight: 900;
+    }
+
+    .resource-card h3 {
+      margin: 0 0 9px;
+      color: var(--navy);
+      font-size: 22px;
+    }
+
+    .resource-card p {
+      margin: 0 0 24px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .resource-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      margin-top: auto;
+      padding: 0 22px;
+      border-radius: 14px;
+      color: var(--navy);
+      background: var(--yellow);
+      font-weight: 850;
+      transition: transform .2s ease, filter .2s ease;
+    }
+
+    .resource-button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.03);
+    }
+
+    @media(max-width:700px) {
+      .resources-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .resource-card {
+        min-height: auto;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -1657,6 +1756,36 @@
             <h3>Claro, pequeño y medible</h3>
             <p>Ese es el punto de partida de un buen caso de negocio con Migui.</p>
           </div><button class="button yellow" type="button" onclick="window.print()">Guardar esta guía</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="resources" id="recursos">
+      <div class="container">
+        <div class="resources-head reveal">
+          <span class="eyebrow">Recursos para continuar</span>
+          <h2>Descarga y diligencia los formatos</h2>
+          <p>Utiliza estos documentos para estructurar el caso de negocio y documentar el diseño funcional de la solución.</p>
+        </div>
+
+        <div class="resources-grid">
+          <article class="resource-card reveal">
+            <span class="resource-number">01</span>
+            <h3>Formato de caso de negocio</h3>
+            <p>Documenta el problema, la línea base, la hipótesis, el alcance, los indicadores y la meta del proyecto.</p>
+            <a class="resource-button"
+              href="https://docs.google.com/document/d/1IXwDFjGSCvbWAeV_Y-EgrFM0KaMrwrgCEQSFmTgEuwA/edit?usp=sharing"
+              target="_blank" rel="noopener noreferrer">Abrir formato →</a>
+          </article>
+
+          <article class="resource-card reveal">
+            <span class="resource-number">02</span>
+            <h3>Formato de SDD</h3>
+            <p>Define el funcionamiento de la solución, sus componentes, fuentes de información, reglas, riesgos y criterios de aceptación.</p>
+            <a class="resource-button"
+              href="https://docs.google.com/document/d/1wEU5Ovc7kVlUXibgpGL_D7z-zkWbMImrZPMHyWCmwps/edit?usp=sharing"
+              target="_blank" rel="noopener noreferrer">Abrir formato →</a>
+          </article>
         </div>
       </div>
     </section>
